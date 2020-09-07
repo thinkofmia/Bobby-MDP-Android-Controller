@@ -19,7 +19,8 @@
     <activity
         android:id="@+id/settingsActivity"
         android:name="com.example.mdpandroidcontrol.SettingsActivity"
-        android:label="SettingsActivity" />
+        android:label="SettingsActivity"
+        app:action="@string/settings" />
     <action
         android:id="@+id/action_global_settingsActivity"
         app:destination="@id/settingsActivity" />

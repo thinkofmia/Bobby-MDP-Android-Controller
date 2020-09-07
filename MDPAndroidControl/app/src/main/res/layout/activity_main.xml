@@ -7,6 +7,8 @@
     tools:context=".MainActivity">
 
 
+
+
     <Button
         android:id="@+id/button_waypoint"
         android:layout_width="wrap_content"
@@ -112,15 +114,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="363dp"
-        android:layout_height="323dp"
+        android:layout_width="358dp"
+        android:layout_height="320dp"
         android:background="#FFEB3B"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.761"
+        app:srcCompat="@android:drawable/sym_def_app_icon"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

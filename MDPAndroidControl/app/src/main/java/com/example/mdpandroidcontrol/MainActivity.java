@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.settings, menu);
         getMenuInflater().inflate(R.menu.lock, menu);
         getMenuInflater().inflate(R.menu.log, menu);
+        getMenuInflater().inflate(R.menu.bluetooth, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

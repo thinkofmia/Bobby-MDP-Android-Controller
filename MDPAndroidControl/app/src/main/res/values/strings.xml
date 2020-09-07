@@ -4,6 +4,7 @@
     <string name="settings">Settings</string>
     <string name="lock">Lock</string>
     <string name="log">Log</string>
+    <string name="bluetooth">Connect to Bluetooth</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
