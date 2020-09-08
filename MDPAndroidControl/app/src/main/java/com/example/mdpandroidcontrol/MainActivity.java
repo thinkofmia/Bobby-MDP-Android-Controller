@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
     }
 
     @Override
@@ -31,10 +32,34 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToSettings(){
-        //Function to bring the application interface to the settings activity
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d("debugMsgs", "onResume");//Create a debug message when the app is resumed
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("debugMsgs", "onStart");//Create a debug message when the app is started
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("debugMsgs", "onPause");//Create a debug message when the app is paused
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("debugMsgs", "onStop");//Create a debug message when the app is stopped
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("debugMsgs", "onDestroyed");//Create a debug message when the app is destroyed
     }
 }
 
