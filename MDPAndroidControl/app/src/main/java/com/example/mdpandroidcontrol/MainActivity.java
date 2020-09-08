@@ -29,7 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.item_preference:
+                goToSettings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     @Override
@@ -60,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d("debugMsgs", "onDestroyed");//Create a debug message when the app is destroyed
+    }
+
+    protected void goToSettings(){
+        Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
     }
 }
 
