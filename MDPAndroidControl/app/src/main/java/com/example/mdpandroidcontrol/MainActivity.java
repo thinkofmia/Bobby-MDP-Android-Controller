@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,24 +24,69 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
 
-        EditText customInput = findViewById(R.id.editableInput);//Find the input text
-        Button sendInput = findViewById(R.id.sendInput);//Find the send input button
+        final EditText customInput = findViewById(R.id.editableInput);//Find the input text
+
+        //Buttons variables
+        final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
+        final ImageButton r_button = findViewById(R.id.button_right);//Find the right button
+        final ImageButton l_button = findViewById(R.id.button_left);//Find the left button
+        final ImageButton u_button = findViewById(R.id.button_up);//Find the up button
+        final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
+
 
         Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
-        //Function to listen for button click
+        //Onclick function for sendInput
         sendInput.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 //Get input text
-                EditText customInput = findViewById(R.id.editableInput);//Find the input text
-                Editable inputMsg = customInput.getText();
+                final EditText customInput = findViewById(R.id.editableInput);//Find the input text
+                String inputMsg = customInput.getText().toString();
                 //If input msg exists, send toast
                 if (inputMsg.length()>0) {
-                    Toast.makeText(MainActivity.this, "Sending: " + customInput.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Sending: " + inputMsg, Toast.LENGTH_SHORT).show();//Display send input toast
+                    Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the input is transmitted
                 } else {//Else show false toast
-                    Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();//Display invalid input toast
+                    Log.d("debugMsgs", "Invalid input. Sending failed. ");//Create a debug message when the input isn't found
                 }
+            }
+        });
+
+        //Onclick function for right button
+        r_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //When on click, move right
+                Toast.makeText(MainActivity.this, "Moving Right... ", Toast.LENGTH_SHORT).show();//Display toast
+            }
+        });
+
+        //Onclick function for left button
+        l_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //When on click, move left
+                Toast.makeText(MainActivity.this, "Moving Left... ", Toast.LENGTH_SHORT).show();//Display toast
+            }
+        });
+
+        //Onclick function for up button
+        u_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //When on click, move right
+                Toast.makeText(MainActivity.this, "Moving Up... ", Toast.LENGTH_SHORT).show();//Display toast
+            }
+        });
+
+        //Onclick function for down button
+        d_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //When on click, move right
+                Toast.makeText(MainActivity.this, "Moving Down... ", Toast.LENGTH_SHORT).show();//Display toast
             }
         });
 
