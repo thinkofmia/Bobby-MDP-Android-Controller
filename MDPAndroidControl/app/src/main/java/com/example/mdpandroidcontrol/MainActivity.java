@@ -8,6 +8,8 @@ import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
+
+        EditText customInput = findViewById(R.id.editableInput);//Find the input text
+        Log.d("debugMsgs", "Text found in input: "+customInput.getText());//Create a debug message when the app is created
     }
 
     @Override
