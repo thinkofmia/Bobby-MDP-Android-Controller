@@ -18,13 +18,17 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    mapGridView mapView = new mapGridView();
+    mapGridView mapView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
+
+        //Map variable
+        //mapView = getActivity().findViewById(R.id.map);
 
         //Text variables
         final EditText customInput = findViewById(R.id.editableInput);//Find the input text
@@ -156,8 +160,15 @@ public class MainActivity extends AppCompatActivity {
     protected void updateMap(){
         Log.d("debugMsgs", "Updating map position");//Create a debug message when the map is updated
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
-        String coordinates = (mapView.getCoordinates()).toString();
-        positionText.setText(coordinates);
+        //Set fake map
+        mapGridView mapView = new mapGridView();
+        //Set dummy coordinates
+        int[] coordinates = new int[2];
+        coordinates[0] = 10;//x-coordinate
+        coordinates[1] = 5;//y-coordinate
+
+        String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+")";
+        positionText.setText(coordinates_str);
     }
 }
 
