@@ -25,7 +25,7 @@ import static android.content.ContentValues.TAG;
 
 public class mapGridView {
     //Variables
-    private int numColumns, numRows;//Set number of columns and rows
+    private int numColumns = 15, numRows = 20;//Set number of columns and rows
     private int pos_x = 10, pos_y = 10; //Sets position of robot
 
     // Get Start Point coordinates
@@ -37,5 +37,32 @@ public class mapGridView {
         return coordinates;//Return coordinates
     }
 
+    //Function to move the robot up
+    public void moveRobotUp(){
+        if (pos_y>0){//If the robot's y-coordinate is more than 0
+            pos_y -= 1;//Decrement the y-coordinate by 1
+        }
+    }
+
+    //Function to move the robot down
+    public void moveRobotDown(){
+        if (pos_y<numRows-1){//If the robot's y-coordinate is less than the number of rows - 1
+            pos_y += 1;//Increment the y-coordinate by 1
+        }
+    }
+
+    //Function to move the robot left
+    public void moveRobotLeft(){
+        if (pos_x>0){//If the robot's x-coordinate is more than 0
+            pos_x -= 1;//Decrement the x-coordinate by 1
+        }
+    }
+
+    //Function to move the robot right
+    public void moveRobotRight(){
+        if (pos_x<numColumns-1){//If the robot's y-coordinate is less than the number of rows - 1
+            pos_x += 1;//Increment the x-coordinate by 1
+        }
+    }
 
 }

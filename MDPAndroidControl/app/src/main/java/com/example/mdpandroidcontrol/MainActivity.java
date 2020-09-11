@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     mapGridView mapView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
 
         //Map variable
-        //mapView = getActivity().findViewById(R.id.map);
+        mapView = new mapGridView();
 
         //Text variables
         final EditText customInput = findViewById(R.id.editableInput);//Find the input text
@@ -67,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
         r_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //When on click, move right
-                Toast.makeText(MainActivity.this, "Moving Right... ", Toast.LENGTH_SHORT).show();//Display toast
+                moveRight();
             }
         });
 
@@ -76,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
         l_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //When on click, move left
-                Toast.makeText(MainActivity.this, "Moving Left... ", Toast.LENGTH_SHORT).show();//Display toast
+                moveLeft();
             }
         });
 
@@ -85,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         u_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //When on click, move right
-                Toast.makeText(MainActivity.this, "Moving Up... ", Toast.LENGTH_SHORT).show();//Display toast
+                moveUp();
             }
         });
 
@@ -94,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         d_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //When on click, move right
-                Toast.makeText(MainActivity.this, "Moving Down... ", Toast.LENGTH_SHORT).show();//Display toast
+                moveDown();
             }
         });
 
@@ -160,8 +155,7 @@ public class MainActivity extends AppCompatActivity {
     protected void updateMap(){
         Log.d("debugMsgs", "Updating map position");//Create a debug message when the map is updated
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
-        //Set fake map
-        mapGridView mapView = new mapGridView();
+
         //Set dummy coordinates
         int[] coordinates = new int[2];
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
@@ -169,6 +163,38 @@ public class MainActivity extends AppCompatActivity {
 
         String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+") ";
         positionText.setText(coordinates_str);
+    }
+
+    protected void moveLeft(){
+        //When on click, move left
+        Toast.makeText(MainActivity.this, "Moving Left... ", Toast.LENGTH_SHORT).show();//Display toast
+        //Update Map
+        mapView.moveRobotLeft();
+        updateMap();
+    }
+
+    protected void moveRight() {
+        //When on click, move right
+        Toast.makeText(MainActivity.this, "Moving Right... ", Toast.LENGTH_SHORT).show();//Display toast
+        //Update Map
+        mapView.moveRobotRight();
+        updateMap();
+    }
+
+    protected void moveUp(){
+        //When on click, move right
+        Toast.makeText(MainActivity.this, "Moving Up... ", Toast.LENGTH_SHORT).show();//Display toast
+        //Update Map
+        mapView.moveRobotUp();
+        updateMap();
+    }
+
+    protected void moveDown(){
+        //When on click, move right
+        Toast.makeText(MainActivity.this, "Moving Down... ", Toast.LENGTH_SHORT).show();//Display toast
+        //Update Map
+        mapView.moveRobotDown();
+        updateMap();
     }
 }
 
