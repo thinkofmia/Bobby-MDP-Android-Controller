@@ -164,10 +164,10 @@ public class MainActivity extends AppCompatActivity {
         mapGridView mapView = new mapGridView();
         //Set dummy coordinates
         int[] coordinates = new int[2];
-        coordinates[0] = 10;//x-coordinate
-        coordinates[1] = 5;//y-coordinate
+        coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
+        coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
-        String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+")";
+        String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+") ";
         positionText.setText(coordinates_str);
     }
 }
