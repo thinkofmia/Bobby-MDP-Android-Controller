@@ -18,13 +18,17 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    mapGridView mapView = new mapGridView();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
 
+        //Text variables
         final EditText customInput = findViewById(R.id.editableInput);//Find the input text
+        TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
 
         //Buttons variables
         final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton u_button = findViewById(R.id.button_up);//Find the up button
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
 
+        updateMap();
 
         Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
@@ -146,6 +151,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void goToSettings(){
         Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
+    }
+
+    protected void updateMap(){
+        Log.d("debugMsgs", "Updating map position");//Create a debug message when the map is updated
+        TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
+        String coordinates = (mapView.getCoordinates()).toString();
+        positionText.setText(coordinates);
     }
 }
 
