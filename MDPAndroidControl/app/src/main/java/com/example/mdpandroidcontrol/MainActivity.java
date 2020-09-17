@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateMap(){
         Log.d("debugMsgs", "Updating map position");//Create a debug message when the map is updated
+
+        //Variables
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
 
         //Set dummy coordinates
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
+        //Setting text view for positions
         String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+") ";
         positionText.setText(coordinates_str);
     }
