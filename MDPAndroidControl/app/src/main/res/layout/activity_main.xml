@@ -113,7 +113,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/editableInput"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,9 +146,12 @@
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:columnCount="15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
             app:rowCount="20">
 
             <Button
@@ -1135,6 +1138,538 @@
 
             <Button
                 android:id="@+id/positionCE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionD9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionDA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionDB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionDC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionDD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionDE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionE9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionEA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionEB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionEC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionED"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionEE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionF9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionFA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionFB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionFC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionFD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionFE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionG9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionGA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionGB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionGC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionGD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionGE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionH9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionHA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionHB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionHC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionHD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionHE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionI9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionIA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionIB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionIC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionID"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionIE"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ0"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ1"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ2"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ3"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ4"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ5"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ6"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ7"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ8"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJ9"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJA"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJB"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJC"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJD"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="@dimen/mapGridSize"
+                android:layout_height="@dimen/mapGridSize" />
+
+            <Button
+                android:id="@+id/positionJE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
         </androidx.gridlayout.widget.GridLayout>
