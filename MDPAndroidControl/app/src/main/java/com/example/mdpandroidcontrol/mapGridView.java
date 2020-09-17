@@ -29,7 +29,7 @@ public class mapGridView {
     private int pos_x = 10, pos_y = 10; //Sets position of robot
     private String direction = "North";//Sets the default position of the robot to be North
     final String restricted_movement_msg = "Reached End.";//Default string message for restricted movement.
-    private String[][] mapper = new String[15][20];//Create a map of strings
+    private String[][] mapper = new String[20][15];//Create a map of strings
     //Keywords in Mapper:
     /**
      * Empty: Means the position on the map is empty
@@ -54,9 +54,9 @@ public class mapGridView {
     // Clear Map
     public void clearMapper() {
         //Loop for all the positions of the map
-        for (int x = 0; x < numColumns; x++) {
-            for (int y=0; y < numRows; y++){
-                mapper[x][y] = "Empty";
+        for (int y = 0; y < numRows; y++) {
+            for (int x=0; y < numColumns; x++){
+                mapper[y][x] = "Empty";
             }
         }
     }
