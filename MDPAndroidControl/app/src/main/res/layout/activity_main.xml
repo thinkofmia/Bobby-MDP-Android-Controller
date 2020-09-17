@@ -1680,13 +1680,13 @@
         android:id="@+id/editableInput"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="4dp"
         android:ems="10"
         android:hint="Type your custom input here."
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toStartOf="@+id/sendInput"
-        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
