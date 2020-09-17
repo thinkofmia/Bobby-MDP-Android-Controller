@@ -167,34 +167,38 @@ public class MainActivity extends AppCompatActivity {
 
     protected void moveLeft(){
         //When on click, move left
-        Toast.makeText(MainActivity.this, "Moving Left... ", Toast.LENGTH_SHORT).show();//Display toast
         //Update Map
-        mapView.moveRobotLeft();
+        String result = mapView.moveRobotLeft();
         updateMap();
+        //Display Toast
+        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
     }
 
     protected void moveRight() {
         //When on click, move right
-        Toast.makeText(MainActivity.this, "Moving Right... ", Toast.LENGTH_SHORT).show();//Display toast
         //Update Map
-        mapView.moveRobotRight();
+        String result = mapView.moveRobotRight();
         updateMap();
+        //Display Toast
+        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
     }
 
     protected void moveUp(){
         //When on click, move right
-        Toast.makeText(MainActivity.this, "Moving Up... ", Toast.LENGTH_SHORT).show();//Display toast
         //Update Map
-        mapView.moveRobotUp();
+        String result = mapView.moveRobotUp();
         updateMap();
+        //Display Toast
+        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
     }
 
     protected void moveDown(){
         //When on click, move right
-        Toast.makeText(MainActivity.this, "Moving Down... ", Toast.LENGTH_SHORT).show();//Display toast
         //Update Map
-        mapView.moveRobotDown();
+        String result = mapView.moveRobotDown();
         updateMap();
+        //Display Toast
+        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
     }
 }
 
