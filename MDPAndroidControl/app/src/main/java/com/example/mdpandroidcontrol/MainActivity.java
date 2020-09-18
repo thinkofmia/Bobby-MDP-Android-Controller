@@ -19,6 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     mapGridView mapView;
+    final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
 
         //Map variables
-        final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
         //Where [rows][columns]
         mapPos[0][0] = findViewById(R.id.position00);//Save the position 00
         mapPos[0][1] = findViewById(R.id.position01);//Save the position 01
@@ -344,6 +344,7 @@ public class MainActivity extends AppCompatActivity {
         mapPos[19][13] = findViewById(R.id.positionJD);//Save the position JD
         mapPos[19][14] = findViewById(R.id.positionJE);//Save the position JE
 
+
         updateMap();
 
         Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
@@ -456,20 +457,60 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
     }
 
-    protected void updateMap(){
+    protected boolean updateMap(){
         Log.d("debugMsgs", "Updating map position");//Create a debug message when the map is updated
 
         //Variables
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
+        int[][] currentMap = mapView.getMapper();//Gets the current map information
 
-        //Set dummy coordinates
+        /**
+         * image ids:
+         * 0: Empty
+         * 1: Up Arrow
+         * 2: Down Arrow
+         * 3: Right Arrow
+         * 4: Left Arrow
+         * 5: Go
+         * 6: Six
+         * 7: Seven
+         * 8: Eight
+         * 9: Nine
+         * 10: Zero
+         * 11: Alphabet V
+         * 12: Alphabet W
+         * 13: Alphabet X
+         * 14: Alphabet Y
+         * 15: Alphabet Z
+         */
+
+        //For loop to run the map
+        for (int y=0; y<mapView.getRows();y++){
+            for (int x=0;x<mapView.getColumns();x++){
+                switch (currentMap[y][x]){
+                    case 0:
+                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
+                        break;
+                    default:
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set the background color of the map to be red
+                        break;
+                }
+
+            }
+        }
+
+        //Get dummy coordinates
         int[] coordinates = new int[2];
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
+        //Set the map view of the robot:
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0x70F0F000);
+
         //Setting text view for positions
         String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+") ";
         positionText.setText(coordinates_str);
+        return true;
     }
 
     protected void moveLeft(){

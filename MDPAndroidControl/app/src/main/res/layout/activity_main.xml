@@ -148,9 +148,9 @@
             android:id="@+id/map"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             app:columnCount="15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintStart_toStartOf="parent"
             app:rowCount="20">
 
@@ -213,7 +213,8 @@
             <Button
                 android:id="@+id/position0B"
                 android:layout_width="@dimen/mapGridSize"
-                android:layout_height="@dimen/mapGridSize" />
+                android:layout_height="@dimen/mapGridSize"
+                android:textColorHighlight="#FFFFFF" />
 
             <Button
                 android:id="@+id/position0C"
