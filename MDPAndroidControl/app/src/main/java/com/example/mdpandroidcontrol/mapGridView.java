@@ -86,7 +86,7 @@ public class mapGridView {
     //Function to move the robot up
     public String moveRobotUp(){
         direction = "North";//Sets the robot direction to face North
-        if (pos_y>0){//If the robot's y-coordinate is more than 0
+        if (pos_y>1){//If the robot's y-coordinate is more than 0
             pos_y -= 1;//Decrement the y-coordinate by 1
             return "Moving up...";//Returns moving up message
         }
@@ -96,7 +96,7 @@ public class mapGridView {
     //Function to move the robot down
     public String moveRobotDown(){
         direction = "South";//Sets the robot direction to face South
-        if (pos_y<numRows-1){//If the robot's y-coordinate is less than the number of rows - 1
+        if (pos_y<numRows-2){//If the robot's y-coordinate is less than the number of rows - 1
             pos_y += 1;//Increment the y-coordinate by 1
             return "Moving down...";//Returns moving down message
         }
@@ -106,7 +106,7 @@ public class mapGridView {
     //Function to move the robot left
     public String moveRobotLeft(){
         direction = "West";//Sets the robot direction to face West
-        if (pos_x>0){//If the robot's x-coordinate is more than 0
+        if (pos_x>1){//If the robot's x-coordinate is more than 0
             pos_x -= 1;//Decrement the x-coordinate by 1
             return "Moving left...";//Returns moving left message
         }
@@ -116,7 +116,7 @@ public class mapGridView {
     //Function to move the robot right
     public String moveRobotRight(){
         direction = "East";//Sets the robot direction to face East
-        if (pos_x<numColumns-1){//If the robot's y-coordinate is less than the number of rows - 1
+        if (pos_x<numColumns-2){//If the robot's y-coordinate is less than the number of rows - 1
             pos_x += 1;//Increment the x-coordinate by 1
             return "Moving right...";//Returns moving right message
         }

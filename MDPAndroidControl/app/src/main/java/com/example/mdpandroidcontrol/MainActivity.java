@@ -504,8 +504,35 @@ public class MainActivity extends AppCompatActivity {
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
-        //Set the map view of the robot:
-        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0x70F0F000);
+        //Set the map position of the robot:
+        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70F0F000);//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0x70F0F000);//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70F0F000);//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Bottom-Right of the robot
+
+        //Get direction of the robot
+        String direction = mapView.getDirection();//Get direction of the robot
+        //Set the direction of the robot
+        switch (direction){
+            case "North":
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
+                break;
+            case "South":
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
+                break;
+            case "East":
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
+                break;
+            case "West":
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
+                break;
+        }
+
 
         //Setting text view for positions
         String coordinates_str = "("+coordinates[0]+", "+coordinates[1]+") ";
