@@ -3,6 +3,7 @@ package com.example.mdpandroidcontrol;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.text.Editable;
@@ -494,6 +495,10 @@ public class MainActivity extends AppCompatActivity {
 
     protected void goToSettings(){
         Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
+        //Create intent
+        Intent intent = new Intent(this, preferencesActivity.class);
+        //Run settings
+        startActivity(intent);
     }
 
     protected boolean updateMap(){
