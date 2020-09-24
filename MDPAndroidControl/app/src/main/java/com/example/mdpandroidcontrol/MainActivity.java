@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //Text variables
         final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
 
         //Buttons variables
         final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -547,6 +548,9 @@ public class MainActivity extends AppCompatActivity {
         updateMap();
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: Moved Left");
     }
 
     protected void moveRight() {
@@ -556,6 +560,9 @@ public class MainActivity extends AppCompatActivity {
         updateMap();
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: Moved Right");
     }
 
     protected void moveUp(){
@@ -565,6 +572,9 @@ public class MainActivity extends AppCompatActivity {
         updateMap();
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: Moved Up");
     }
 
     protected void moveDown(){
@@ -574,6 +584,9 @@ public class MainActivity extends AppCompatActivity {
         updateMap();
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: Moved Down");
     }
 }
 

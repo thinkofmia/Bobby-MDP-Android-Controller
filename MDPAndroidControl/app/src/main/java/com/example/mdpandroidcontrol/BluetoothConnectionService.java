@@ -206,7 +206,7 @@ public class BluetoothConnectionService {
         if(myAcceptThread ==null){
             myAcceptThread = new AcceptThread();
             //this start() is an inbuilt to the thread class
-            myAcceptThread.start()
+            //myAcceptThread.start()
         }
     }
 
