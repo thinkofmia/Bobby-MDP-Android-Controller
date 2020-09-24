@@ -15,6 +15,10 @@
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
 
+    <!-- Defined Strings-->
+    <string name="predefined_str_1">String 1</string>
+    <string name="predefined_str_2">String 2</string>
+
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>

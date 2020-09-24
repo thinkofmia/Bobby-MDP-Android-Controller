@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton l_button = findViewById(R.id.button_left);//Find the left button
         final ImageButton u_button = findViewById(R.id.button_up);//Find the up button
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
+        final Button str1_button = findViewById(R.id.predefinedStr1);//Find the string button 1
+        final Button str2_button = findViewById(R.id.predefinedStr2);//Find the string button 2
 
         //Map variables
         //Where [rows][columns]
@@ -400,6 +402,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Onclick function for str1 button
+        str1_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                sendPredefinedStr(1);
+            }
+        });
+
+        //Onclick function for str2 button
+        str2_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                sendPredefinedStr(2);
+            }
+        });
+
+    }
+
+    protected void sendPredefinedStr(int option){
+        String result = "";
+        switch (option){
+            case 2:
+                //Sets string message
+                result = "Sending "+getResources().getString(R.string.predefined_str_2);
+                break;
+            case 1 :
+            default:
+                //Sets string message
+                result = "Sending "+getResources().getString(R.string.predefined_str_1);
+                break;
+        }
+        //Display Toast
+        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: "+result.toString());
     }
 
     @Override
