@@ -2,8 +2,10 @@ package com.example.mdpandroidcontrol;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.text.Editable;
@@ -423,15 +425,17 @@ public class MainActivity extends AppCompatActivity {
 
     protected void sendPredefinedStr(int option){
         String result = "";
+        //SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences();
         switch (option){
             case 2:
                 //Sets string message
-                result = "Sending "+getResources().getString(R.string.predefined_str_2);
+          //      result = settings.getString("url", "n/a");
+                result = "Sending "+getResources().getString(R.string.predefined_str_2).toString();
                 break;
             case 1 :
             default:
                 //Sets string message
-                result = "Sending "+getResources().getString(R.string.predefined_str_1);
+                result = "Sending "+getResources().getString(R.string.predefined_str_1).toString();
                 break;
         }
         //Display Toast
@@ -593,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: Moved Left");
+        statusText.setText("Status: "+result.toString());
     }
 
     protected void moveRight() {
@@ -605,7 +609,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: Moved Right");
+        statusText.setText("Status: "+result.toString());
     }
 
     protected void moveUp(){
@@ -617,7 +621,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: Moved Up");
+        statusText.setText("Status: "+result.toString());
     }
 
     protected void moveDown(){
@@ -629,7 +633,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: Moved Down");
+        statusText.setText("Status: "+result.toString());
     }
 }
 
