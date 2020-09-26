@@ -2,6 +2,7 @@ package com.example.mdpandroidcontrol;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
@@ -10,7 +11,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -20,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -28,10 +34,13 @@ import android.widget.Toast;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private static final String TAG = "MainActivity";
 
+    boolean tiltNavi;
+    private SensorManager sensorManager;
+    private Sensor sensor;
 
     static String connectedDevice;
     BluetoothDevice myBTConnectionDevice;
@@ -68,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
         connectedState = false;
         currentActivity = true;
 
+        tiltNavi = false;
+
+        //DECLARING SENSOR MANAGER AND SENSOR TYPE
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        //REGISTER TILT MOTION SENSOR
+        sensorManager.registerListener((SensorEventListener) this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
         //Map variable
         mapView = new mapGridView();
 
@@ -84,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
         final Button str1_button = findViewById(R.id.predefinedStr1);//Find the string button 1
         final Button str2_button = findViewById(R.id.predefinedStr2);//Find the string button 2
+
+        //tiltbtn
+//        tiltBtn = findViewById(R.id.tiltSwitch);
 
         //Map variables
         //Where [rows][columns]
@@ -393,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
+        //REGISTER BROADCAST RECEIVER FOR INCOMING MSG
+        LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
+
         //Onclick function for sendInput
         sendInput.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -468,6 +492,8 @@ public class MainActivity extends AppCompatActivity {
                 sendPredefinedStr(2);
             }
         });
+
+//        onClickTiltSwitch();
 
     }
 
@@ -865,5 +891,90 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    /*
+       ONCLICKLISTENER FOR TILT BUTTON
+   */
+//    public void onClickTiltSwitch() {
+//
+//        tiltBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//                if (isChecked) {
+//
+//                    tiltNavi = true;
+//                    Toast.makeText(MainActivity.this, "Tilt Switch On!!", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//
+//                    tiltNavi = false;
+//                    Toast.makeText(MainActivity.this, "Tilt Switch Off!!", Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//            }
+//        });
+//
+//
+//    }
+
+    //METHOD FOR TILT SENSING (NAVIGATION)
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float x = event.values[0];
+        float y = event.values[1];
+
+        //CHECK IF TILT SWITCH IS ENABLED
+        if (tiltNavi) {
+
+            //CHECK IF CONNECTED TO DEVICE FIRST
+            if (connectedDevice == null) {
+                Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+
+                if (Math.abs(x) > Math.abs(y)) {
+                    if (x < 0) {
+                        Log.d("MainActivity:", "RIGHT TILT!!");
+
+                       sendToRPi(sendTurnRight);
+                       /* Toast.makeText(MainActivity.this, "Right Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                    if (x > 0) {
+                        Log.d("MainActivity:", "LEFT TILT!!");
+
+                        sendToRPi(sendTurnLeft);
+                        /*Toast.makeText(MainActivity.this, "Left Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                } else {
+                    if (y < 0) {
+                        Log.d("MainActivity:", "UP TILT!!");
+
+                        sendToRPi(sendMoveForward);
+                        /*Toast.makeText(MainActivity.this, "Forward Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                    if (y > 0) {
+                        Log.d("MainActivity:", "DOWN TILT!!");
+
+                        sendToRPi(sendMoveBack);
+                        /*Toast.makeText(MainActivity.this, "Down Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                }
+       /* if (x > (-2) && x < (2) && y > (-2) && y < (2)) {
+            Log.d("MainActivity:", "NOT TILTED!!");
+
+        }*/
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
 }
 
