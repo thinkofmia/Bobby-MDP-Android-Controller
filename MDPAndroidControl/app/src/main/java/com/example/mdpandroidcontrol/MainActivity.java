@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +27,15 @@ import android.widget.Toast;
 import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
+
+    static String connectedDevice;
+    BluetoothDevice myBTConnectionDevice;
+    boolean connectedState;
+    boolean currentActivity;
+    Intent connectIntent;
 
     mapGridView mapView;
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
@@ -45,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
+
+        connectedDevice = null;
 
         //Map variable
         mapView = new mapGridView();
@@ -375,20 +390,26 @@ public class MainActivity extends AppCompatActivity {
         sendInput.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //Get input text
-                final EditText customInput = findViewById(R.id.editableInput);//Find the input text
-                String inputMsg = customInput.getText().toString();
-                //Set code to sent
-                String sendThisCode = sendCustomText+"'"+inputMsg+"'";
-                //send the code to rpi
-                sendToRPi(sendThisCode);
-                //If input msg exists, send toast
-                if (inputMsg.length()>0) {
-                    Toast.makeText(MainActivity.this, "Sending: " + sendThisCode, Toast.LENGTH_SHORT).show();//Display send input toast
-                    Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the input is transmitted
-                } else {//Else show false toast
-                    Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();//Display invalid input toast
-                    Log.d("debugMsgs", "Invalid input. Sending failed. ");//Create a debug message when the input isn't found
+                //CHECK IF CONNECTED TO DEVICE FIRST
+                if (connectedDevice == null) {
+                    Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    //Get input text
+                    final EditText customInput = findViewById(R.id.editableInput);//Find the input text
+                    String inputMsg = customInput.getText().toString();
+                    //Set code to sent
+                    String sendThisCode = sendCustomText + "'" + inputMsg + "'";
+                    //send the code to rpi
+                    sendToRPi(sendThisCode);
+                    //If input msg exists, send toast
+                    if (inputMsg.length() > 0) {
+                        Toast.makeText(MainActivity.this, "Sending: " + sendThisCode, Toast.LENGTH_SHORT).show();//Display send input toast
+                        Log.d("debugMsgs", "Sending Input: " + customInput.getText());//Create a debug message when the input is transmitted
+                    } else {//Else show false toast
+                        Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();//Display invalid input toast
+                        Log.d("debugMsgs", "Invalid input. Sending failed. ");//Create a debug message when the input isn't found
+                    }
                 }
             }
         });
@@ -444,32 +465,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void sendPredefinedStr(int option){
-        String result = "";
-        String sendThisCode;
-        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);;
-        switch (option){
-            case 2:
-                //Sets string message
-                sendThisCode = sendCustomText+"'"+settings.getString("Str2","No String Set").toString()+"'";
-                //send the code to rpi
-                sendToRPi(sendThisCode);
-                result = "Sending: "+sendThisCode;
+        //CHECK IF CONNECTED TO DEVICE FIRST
+        if (connectedDevice == null) {
+            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            String result = "";
+            String sendThisCode;
+            SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+            ;
+            switch (option) {
+                case 2:
+                    //Sets string message
+                    sendThisCode = sendCustomText + "'" + settings.getString("Str2", "No String Set").toString() + "'";
+                    //send the code to rpi
+                    sendToRPi(sendThisCode);
+                    result = "Sending: " + sendThisCode;
 
-                break;
-            case 1 :
-            default:
-                //Sets string message
-                sendThisCode = sendCustomText+"'"+settings.getString("Str1","No String Set").toString()+"'";
-                //send the code to rpi
-                sendToRPi(sendThisCode);
-                result = "Sending: "+sendThisCode;
-                break;
+                    break;
+                case 1:
+                default:
+                    //Sets string message
+                    sendThisCode = sendCustomText + "'" + settings.getString("Str1", "No String Set").toString() + "'";
+                    //send the code to rpi
+                    sendToRPi(sendThisCode);
+                    result = "Sending: " + sendThisCode;
+                    break;
+            }
+            //Display Toast
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Update Status
+            TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+            statusText.setText("Status: " + result.toString());
         }
-        //Display Toast
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
-        //Update Status
-        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: "+result.toString());
     }
 
     @Override
@@ -623,6 +651,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void moveLeft(){
+<<<<<<< Updated upstream
         //When on click, move left
         //Update Map
         String result = mapView.moveRobotLeft();
@@ -635,13 +664,26 @@ public class MainActivity extends AppCompatActivity {
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
         statusText.setText("Status: "+result.toString());
     }
+=======
 
-    protected void moveRight() {
-        //When on click, move right
-        //Update Map
-        String result = mapView.moveRobotRight();
-        updateMap();
 
+        //CHECK IF CONNECTED TO DEVICE FIRST
+        if (connectedDevice == null) {
+            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            //When on click, move left
+            //Update Map
+            String result = mapView.moveRobotLeft();
+            updateMap();
+
+
+            //send the command to the Raspberry pi
+            sendToRPi(sendTurnLeft);
+>>>>>>> Stashed changes
+
+
+<<<<<<< Updated upstream
         //send the command to the Raspberry pi
         sendToRPi(sendTurnRight);
 
@@ -684,6 +726,94 @@ public class MainActivity extends AppCompatActivity {
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
         statusText.setText("Status: "+result.toString());
+=======
+            //Set result
+            result = "Sending: " + sendTurnLeft;
+            //Display Toast
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Update Status
+            TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+            statusText.setText("Status: " + result.toString());
+        }
+    }
+
+    protected void moveRight() {
+
+        //CHECK IF CONNECTED TO DEVICE FIRST
+        if (connectedDevice == null) {
+            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            //When on click, move right
+            //Update Map
+            String result = mapView.moveRobotRight();
+            updateMap();
+
+
+            //send the command to the Raspberry pi
+            sendToRPi(sendTurnRight);
+
+            //Set message
+            result = "Sending: " + sendTurnRight;
+            //Display Toast
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Update Status
+            TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+            statusText.setText("Status: " + result.toString());
+        }
+    }
+
+    protected void moveUp(){
+        //CHECK IF CONNECTED TO DEVICE FIRST
+        if (connectedDevice == null) {
+            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            //When on click, move right
+            //Update Map
+            String result = mapView.moveRobotUp();
+            updateMap();
+
+
+            //send the command to the Raspberry pi
+            sendToRPi(sendMoveForward);
+
+            //Set results
+            result = "Sending: " + sendMoveForward;
+
+            //Display Toast
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Update Status
+            TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+            statusText.setText("Status: " + result.toString());
+        }
+    }
+
+    protected void moveDown(){
+        //CHECK IF CONNECTED TO DEVICE FIRST
+        if (connectedDevice == null) {
+            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            //When on click, move right
+            //Update Map
+            String result = mapView.moveRobotDown();
+            updateMap();
+
+
+            //send the command to the Raspberry pi
+            sendToRPi(sendMoveBack);
+
+            //Set results
+            result = "Sending: " + sendMoveBack;
+
+            //Display Toast
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Update Status
+            TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+            statusText.setText("Status: " + result.toString());
+        }
+>>>>>>> Stashed changes
     }
 
     protected void sendToRPi(String message){
@@ -692,5 +822,83 @@ public class MainActivity extends AppCompatActivity {
         BluetoothChat.writeMsg(bytes);
 
     }
+
+
+    //This BroadcastReceiver is for reconnecting to the robot if it disconnects
+//    BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//
+//            Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
+//
+//            String connectionStatus = intent.getStringExtra("ConnectionStatus");
+//            myBTConnectionDevice = intent.getParcelableExtra("Device");
+//            //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+//            //DISCONNECTED FROM BLUETOOTH CHAT
+//            if (connectionStatus.equals("disconnect")) {
+//
+//                Log.d("MainActivity:", "Device Disconnected");
+//
+//                if(connectIntent != null) {
+//                    //Stop Bluetooth Connection Service
+//                    stopService(connectIntent);
+//                }
+//
+//                connectedDevice = null;
+//                connectedState = false;
+//                connectionStatusBox.setText(R.string.btStatusOffline);
+//
+//                if (currentActivity) {
+//
+//                    //RECONNECT DIALOG MSG
+//                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+//                    alertDialog.setTitle("BLUETOOTH DISCONNECTED");
+//                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
+//                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                    //START BT CONNECTION SERVICE
+//                                    Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+//                                    connectIntent.putExtra("serviceType", "connect");
+//                                    connectIntent.putExtra("device", myBTConnectionDevice);
+//                                    connectIntent.putExtra("id", myUUID);
+//                                    startService(connectIntent);
+//                                }
+//                            });
+//                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+//                                    connectIntent.putExtra("serviceType", "listen");
+//                                    //connectIntent.putExtra("device", device);
+//                                    //connectIntent.putExtra("id", uuid);
+//                                    startService(connectIntent);
+//                                }
+//                            });
+//                    alertDialog.show();
+//
+//                }
+//            }
+//
+//            //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
+//            else if (connectionStatus.equals("connect")) {
+//
+//                connectedDevice = myBTConnectionDevice.getName();
+//                connectedState = true;
+//                Log.d("MainActivity:", "Device Connected " + connectedState);
+//                connectionStatusBox.setText(connectedDevice);
+//                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//
+//            //BLUETOOTH CONNECTION FAILED
+//            else if (connectionStatus.equals("connectionFail")) {
+//                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//
+//        }
+//    };
 }
 
