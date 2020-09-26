@@ -380,6 +380,8 @@ public class MainActivity extends AppCompatActivity {
                 String inputMsg = customInput.getText().toString();
                 //Set code to sent
                 String sendThisCode = sendCustomText+"'"+inputMsg+"'";
+                //send the code to rpi
+                sendToRPi(sendThisCode);
                 //If input msg exists, send toast
                 if (inputMsg.length()>0) {
                     Toast.makeText(MainActivity.this, "Sending: " + sendThisCode, Toast.LENGTH_SHORT).show();//Display send input toast
@@ -449,6 +451,8 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 //Sets string message
                 sendThisCode = sendCustomText+"'"+settings.getString("Str2","No String Set").toString()+"'";
+                //send the code to rpi
+                sendToRPi(sendThisCode);
                 result = "Sending: "+sendThisCode;
 
                 break;
@@ -456,6 +460,8 @@ public class MainActivity extends AppCompatActivity {
             default:
                 //Sets string message
                 sendThisCode = sendCustomText+"'"+settings.getString("Str1","No String Set").toString()+"'";
+                //send the code to rpi
+                sendToRPi(sendThisCode);
                 result = "Sending: "+sendThisCode;
                 break;
         }
