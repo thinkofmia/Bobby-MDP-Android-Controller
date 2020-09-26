@@ -642,12 +642,9 @@ public class MainActivity extends AppCompatActivity {
         String result = mapView.moveRobotRight();
         updateMap();
 
-
         //send the command to the Raspberry pi
         sendToRPi(sendTurnRight);
 
-        //Set message
-        result = "Sending: "+sendTurnRight;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -665,9 +662,6 @@ public class MainActivity extends AppCompatActivity {
         //send the command to the Raspberry pi
         sendToRPi(sendMoveForward);
 
-        //Set results
-        result = "Sending: "+sendMoveForward;
-
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -684,9 +678,6 @@ public class MainActivity extends AppCompatActivity {
 
         //send the command to the Raspberry pi
         sendToRPi(sendMoveBack);
-
-        //Set results
-        result = "Sending: "+sendMoveBack;
 
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
