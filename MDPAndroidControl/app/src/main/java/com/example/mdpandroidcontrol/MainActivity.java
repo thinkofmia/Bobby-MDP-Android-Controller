@@ -627,14 +627,8 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotLeft();
         updateMap();
-
-
         //send the command to the Raspberry pi
         sendToRPi(sendTurnLeft);
-
-
-        //Set result
-        result = "Sending: "+sendTurnLeft;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
