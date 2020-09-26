@@ -172,10 +172,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            app:columnCount="15"
+            app:columnCount="16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:rowCount="20">
+            app:rowCount="21">
+
+            <TextView
+                android:id="@+id/labely19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19" />
 
             <Button
                 android:id="@+id/position00"
@@ -255,6 +261,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18" />
+
             <Button
                 android:id="@+id/position10"
                 android:layout_width="@dimen/mapGridSize"
@@ -329,6 +341,12 @@
                 android:id="@+id/position1E"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17" />
 
             <Button
                 android:id="@+id/position20"
@@ -406,6 +424,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16" />
+
             <Button
                 android:id="@+id/position30"
                 android:layout_width="@dimen/mapGridSize"
@@ -481,6 +505,12 @@
                 android:id="@+id/position3E"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15" />
 
             <Button
                 android:id="@+id/position40"
@@ -558,6 +588,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14" />
+
             <Button
                 android:id="@+id/position50"
                 android:layout_width="@dimen/mapGridSize"
@@ -633,6 +669,12 @@
                 android:id="@+id/position5E"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13" />
 
             <Button
                 android:id="@+id/position60"
@@ -710,6 +752,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+
             <Button
                 android:id="@+id/position70"
                 android:layout_width="@dimen/mapGridSize"
@@ -785,6 +833,12 @@
                 android:id="@+id/position7E"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11" />
 
             <Button
                 android:id="@+id/position80"
@@ -862,6 +916,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10" />
+
             <Button
                 android:id="@+id/position90"
                 android:layout_width="@dimen/mapGridSize"
@@ -937,6 +997,12 @@
                 android:id="@+id/position9E"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9" />
 
             <Button
                 android:id="@+id/positionA0"
@@ -1014,6 +1080,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8" />
+
             <Button
                 android:id="@+id/positionB0"
                 android:layout_width="@dimen/mapGridSize"
@@ -1089,6 +1161,12 @@
                 android:id="@+id/positionBE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7" />
 
             <Button
                 android:id="@+id/positionC0"
@@ -1166,6 +1244,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6" />
+
             <Button
                 android:id="@+id/positionD0"
                 android:layout_width="@dimen/mapGridSize"
@@ -1241,6 +1325,12 @@
                 android:id="@+id/positionDE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5" />
 
             <Button
                 android:id="@+id/positionE0"
@@ -1318,6 +1408,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4" />
+
             <Button
                 android:id="@+id/positionF0"
                 android:layout_width="@dimen/mapGridSize"
@@ -1393,6 +1489,12 @@
                 android:id="@+id/positionFE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3" />
 
             <Button
                 android:id="@+id/positionG0"
@@ -1470,6 +1572,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+
             <Button
                 android:id="@+id/positionH0"
                 android:layout_width="@dimen/mapGridSize"
@@ -1545,6 +1653,12 @@
                 android:id="@+id/positionHE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/labely1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
 
             <Button
                 android:id="@+id/positionI0"
@@ -1622,6 +1736,12 @@
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
 
+            <TextView
+                android:id="@+id/labely0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
             <Button
                 android:id="@+id/positionJ0"
                 android:layout_width="@dimen/mapGridSize"
@@ -1697,6 +1817,102 @@
                 android:id="@+id/positionJE"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize" />
+
+            <TextView
+                android:id="@+id/blankAxis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/labelx0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/labelx1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/labelx2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/labelx3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3" />
+
+            <TextView
+                android:id="@+id/labelx4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4" />
+
+            <TextView
+                android:id="@+id/labelx5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5" />
+
+            <TextView
+                android:id="@+id/labelx6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6" />
+
+            <TextView
+                android:id="@+id/labelx7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7" />
+
+            <TextView
+                android:id="@+id/labelx8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8" />
+
+            <TextView
+                android:id="@+id/labelx9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9" />
+
+            <TextView
+                android:id="@+id/labelx10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10" />
+
+            <TextView
+                android:id="@+id/labelx11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11" />
+
+            <TextView
+                android:id="@+id/labelx12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+
+            <TextView
+                android:id="@+id/labelx13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13" />
+
+            <TextView
+                android:id="@+id/labelx14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14" />
         </androidx.gridlayout.widget.GridLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1709,6 +1925,7 @@
         android:ems="10"
         android:hint="Type your custom input here."
         android:inputType="textPersonName"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toStartOf="@+id/sendInput"
         app:layout_constraintHorizontal_bias="0.0"
@@ -1719,6 +1936,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
