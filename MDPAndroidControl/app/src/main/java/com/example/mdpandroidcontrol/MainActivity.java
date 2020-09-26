@@ -23,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
     mapGridView mapView;
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
+    //Data Type to send
+    String sendStartExploration = "'A'|'explore'";
+    String sendStartFastest = "'A'|'fastest'";
+    String sendManualControl = "'A'|'control'";
+    String sendWaypoint = "'P'|'waypoint'|";
+    final String sendCustomText = "'P'|'custom'|";
+    String sendGetDirection = "'P'|'getDirection'";
+    String sendTurnLeft = "'A'|'A'";
+    String sendTurnRight = "'A'|'D'";
+    String sendMoveForward = "'A'|'W'";
+    String sendMoveBack = "'A'|'S'";
+    String sendMapRequest = "'P'|'mapstatus'";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -364,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
                 String inputMsg = customInput.getText().toString();
                 //If input msg exists, send toast
                 if (inputMsg.length()>0) {
-                    Toast.makeText(MainActivity.this, "Sending: " + inputMsg, Toast.LENGTH_SHORT).show();//Display send input toast
+                    Toast.makeText(MainActivity.this, "Sending: " + sendCustomText + "'"+inputMsg+"'", Toast.LENGTH_SHORT).show();//Display send input toast
                     Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the input is transmitted
                 } else {//Else show false toast
                     Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();//Display invalid input toast
@@ -425,17 +438,17 @@ public class MainActivity extends AppCompatActivity {
 
     protected void sendPredefinedStr(int option){
         String result = "";
-        //SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences();
+        SharedPreferences settings;
         switch (option){
             case 2:
                 //Sets string message
           //      result = settings.getString("url", "n/a");
-                result = "Sending "+getResources().getString(R.string.predefined_str_2).toString();
+                result = "Sending: "+sendCustomText+"'"+getResources().getString(R.string.predefined_str_2).toString()+"'";
                 break;
             case 1 :
             default:
                 //Sets string message
-                result = "Sending "+getResources().getString(R.string.predefined_str_1).toString();
+                result = "Sending: "+sendCustomText+"'"+getResources().getString(R.string.predefined_str_1).toString()+"'";
                 break;
         }
         //Display Toast
@@ -593,6 +606,8 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotLeft();
         updateMap();
+        //Set result
+        result = "Sending: "+sendTurnLeft;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -605,6 +620,8 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotRight();
         updateMap();
+        //Set message
+        result = "Sending: "+sendTurnRight;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -617,6 +634,8 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotUp();
         updateMap();
+        //Set results
+        result = "Sending: "+sendMoveForward;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -629,6 +648,8 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotDown();
         updateMap();
+        //Set results
+        result = "Sending: "+sendMoveBack;
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
