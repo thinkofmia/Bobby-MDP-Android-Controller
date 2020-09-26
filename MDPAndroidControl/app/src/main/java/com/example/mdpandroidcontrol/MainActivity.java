@@ -439,16 +439,19 @@ public class MainActivity extends AppCompatActivity {
 
     protected void sendPredefinedStr(int option){
         String result = "";
+        String sendThisCode;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);;
         switch (option){
             case 2:
                 //Sets string message
-                result = "Sending: "+sendCustomText+"'"+settings.getString("Str2","No String Set").toString()+"'";
+                sendThisCode = sendCustomText+"'"+settings.getString("Str2","No String Set").toString()+"'";
+                result = "Sending: "+sendThisCode;
                 break;
             case 1 :
             default:
                 //Sets string message
-                result = "Sending: "+sendCustomText+"'"+settings.getString("Str1","No String Set").toString()+"'";
+                sendThisCode = sendCustomText+"'"+settings.getString("Str1","No String Set").toString()+"'";
+                result = "Sending: "+sendThisCode;
                 break;
         }
         //Display Toast
