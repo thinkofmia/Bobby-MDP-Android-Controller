@@ -474,6 +474,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_preference:
                 goToSettings();
                 return true;
+
+            case R.id.item_bluetooth:
+
+
+
+                Intent intent = new Intent(MainActivity.this, Bluetooth.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
