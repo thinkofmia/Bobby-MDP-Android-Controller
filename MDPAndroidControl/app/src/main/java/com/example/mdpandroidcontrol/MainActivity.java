@@ -651,21 +651,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void moveLeft(){
-<<<<<<< Updated upstream
-        //When on click, move left
-        //Update Map
-        String result = mapView.moveRobotLeft();
-        updateMap();
-        //send the command to the Raspberry pi
-        sendToRPi(sendTurnLeft);
-        //Display Toast
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
-        //Update Status
-        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: "+result.toString());
-    }
-=======
-
 
         //CHECK IF CONNECTED TO DEVICE FIRST
         if (connectedDevice == null) {
@@ -680,61 +665,14 @@ public class MainActivity extends AppCompatActivity {
 
             //send the command to the Raspberry pi
             sendToRPi(sendTurnLeft);
->>>>>>> Stashed changes
-
-
-<<<<<<< Updated upstream
-        //send the command to the Raspberry pi
-        sendToRPi(sendTurnRight);
-
-        //Display Toast
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
-        //Update Status
-        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: "+result.toString());
-    }
-
-    protected void moveUp(){
-        //When on click, move right
-        //Update Map
-        String result = mapView.moveRobotUp();
-        updateMap();
-
-
-        //send the command to the Raspberry pi
-        sendToRPi(sendMoveForward);
-
-        //Display Toast
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
-        //Update Status
-        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: "+result.toString());
-    }
-
-    protected void moveDown(){
-        //When on click, move right
-        //Update Map
-        String result = mapView.moveRobotDown();
-        updateMap();
-
-
-        //send the command to the Raspberry pi
-        sendToRPi(sendMoveBack);
-
-        //Display Toast
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
-        //Update Status
-        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        statusText.setText("Status: "+result.toString());
-=======
-            //Set result
-            result = "Sending: " + sendTurnLeft;
             //Display Toast
             Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-            statusText.setText("Status: " + result.toString());
-        }
+            statusText.setText("Status: "+result.toString());
+    }
+
+
     }
 
     protected void moveRight() {
@@ -813,7 +751,7 @@ public class MainActivity extends AppCompatActivity {
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
         }
->>>>>>> Stashed changes
+
     }
 
     protected void sendToRPi(String message){
