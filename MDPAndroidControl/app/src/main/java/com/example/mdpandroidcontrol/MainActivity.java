@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.text.Editable;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.nio.charset.Charset;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     boolean connectedState;
     boolean currentActivity;
     Intent connectIntent;
+
+    //UUID
+    private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     mapGridView mapView;
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
 
         connectedDevice = null;
+        connectedState = false;
+        currentActivity = true;
 
         //Map variable
         mapView = new mapGridView();
@@ -519,7 +526,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.item_bluetooth:
 
-
+                currentActivity = false;
 
                 Intent intent = new Intent(MainActivity.this, Bluetooth.class);
                 startActivity(intent);
@@ -533,6 +540,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         Log.d("debugMsgs", "onResume");//Create a debug message when the app is resumed
+
+        currentActivity = true;
+
+//        //REGISTER TILT MOTION SENSOR
+//        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        Log.d(" MainAcitvity:", "OnResume:" + connectedState);
+
+        //CHECK FOR EXISTING CONNECTION
+        if (connectedState) {
+            Log.d(" MainAcitvity:", "OnResume1");
+
+            //SET TEXTFIELD TO DEVICE NAME
+//            connectionStatusBox.setText(connectedDevice);
+        } else {
+            Log.d(" MainAcitvity:", "OnResume2");
+
+            //SET TEXTFIELD TO NOT CONNECTED
+//            connectionStatusBox.setText(R.string.btStatusOffline);
+        }
     }
 
     @Override
@@ -763,80 +790,80 @@ public class MainActivity extends AppCompatActivity {
 
 
     //This BroadcastReceiver is for reconnecting to the robot if it disconnects
-//    BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//
-//            Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
-//
-//            String connectionStatus = intent.getStringExtra("ConnectionStatus");
-//            myBTConnectionDevice = intent.getParcelableExtra("Device");
-//            //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-//            //DISCONNECTED FROM BLUETOOTH CHAT
-//            if (connectionStatus.equals("disconnect")) {
-//
-//                Log.d("MainActivity:", "Device Disconnected");
-//
-//                if(connectIntent != null) {
-//                    //Stop Bluetooth Connection Service
-//                    stopService(connectIntent);
-//                }
-//
-//                connectedDevice = null;
-//                connectedState = false;
+    BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
+
+            String connectionStatus = intent.getStringExtra("ConnectionStatus");
+            myBTConnectionDevice = intent.getParcelableExtra("Device");
+            //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            //DISCONNECTED FROM BLUETOOTH CHAT
+            if (connectionStatus.equals("disconnect")) {
+
+                Log.d("MainActivity:", "Device Disconnected");
+
+                if(connectIntent != null) {
+                    //Stop Bluetooth Connection Service
+                    stopService(connectIntent);
+                }
+
+                connectedDevice = null;
+                connectedState = false;
 //                connectionStatusBox.setText(R.string.btStatusOffline);
-//
-//                if (currentActivity) {
-//
-//                    //RECONNECT DIALOG MSG
-//                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//                    alertDialog.setTitle("BLUETOOTH DISCONNECTED");
-//                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
-//                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//
-//                                    //START BT CONNECTION SERVICE
-//                                    Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
-//                                    connectIntent.putExtra("serviceType", "connect");
-//                                    connectIntent.putExtra("device", myBTConnectionDevice);
-//                                    connectIntent.putExtra("id", myUUID);
-//                                    startService(connectIntent);
-//                                }
-//                            });
-//                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
-//                                    connectIntent.putExtra("serviceType", "listen");
-//                                    //connectIntent.putExtra("device", device);
-//                                    //connectIntent.putExtra("id", uuid);
-//                                    startService(connectIntent);
-//                                }
-//                            });
-//                    alertDialog.show();
-//
-//                }
-//            }
-//
-//            //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
-//            else if (connectionStatus.equals("connect")) {
-//
-//                connectedDevice = myBTConnectionDevice.getName();
-//                connectedState = true;
-//                Log.d("MainActivity:", "Device Connected " + connectedState);
+
+                if (currentActivity) {
+
+                    //RECONNECT DIALOG MSG
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle("BLUETOOTH DISCONNECTED");
+                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //START BT CONNECTION SERVICE
+                                    Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+                                    connectIntent.putExtra("serviceType", "connect");
+                                    connectIntent.putExtra("device", myBTConnectionDevice);
+                                    connectIntent.putExtra("id", myUUID);
+                                    startService(connectIntent);
+                                }
+                            });
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+                                    connectIntent.putExtra("serviceType", "listen");
+                                    //connectIntent.putExtra("device", device);
+                                    //connectIntent.putExtra("id", uuid);
+                                    startService(connectIntent);
+                                }
+                            });
+                    alertDialog.show();
+
+                }
+            }
+
+            //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
+            else if (connectionStatus.equals("connect")) {
+
+                connectedDevice = myBTConnectionDevice.getName();
+                connectedState = true;
+                Log.d("MainActivity:", "Device Connected " + connectedState);
 //                connectionStatusBox.setText(connectedDevice);
-//                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//
-//            //BLUETOOTH CONNECTION FAILED
-//            else if (connectionStatus.equals("connectionFail")) {
-//                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//
-//        }
-//    };
+                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+
+            //BLUETOOTH CONNECTION FAILED
+            else if (connectionStatus.equals("connectionFail")) {
+                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+
+        }
+    };
 }
 
