@@ -378,9 +378,11 @@ public class MainActivity extends AppCompatActivity {
                 //Get input text
                 final EditText customInput = findViewById(R.id.editableInput);//Find the input text
                 String inputMsg = customInput.getText().toString();
+                //Set code to sent
+                String sendThisCode = sendCustomText+"'"+inputMsg+"'";
                 //If input msg exists, send toast
                 if (inputMsg.length()>0) {
-                    Toast.makeText(MainActivity.this, "Sending: " + sendCustomText + "'"+inputMsg+"'", Toast.LENGTH_SHORT).show();//Display send input toast
+                    Toast.makeText(MainActivity.this, "Sending: " + sendThisCode, Toast.LENGTH_SHORT).show();//Display send input toast
                     Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the input is transmitted
                 } else {//Else show false toast
                     Toast.makeText(MainActivity.this, "Please type something first! ", Toast.LENGTH_SHORT).show();//Display invalid input toast
@@ -442,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
     protected void sendPredefinedStr(int option){
         String result = "";
         String sendThisCode;
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);;
+        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);;
         switch (option){
             case 2:
                 //Sets string message
@@ -620,8 +622,10 @@ public class MainActivity extends AppCompatActivity {
         String result = mapView.moveRobotLeft();
         updateMap();
 
+
         //send the command to the Raspberry pi
         sendToRPi(sendTurnLeft);
+
 
         //Set result
         result = "Sending: "+sendTurnLeft;
@@ -637,6 +641,7 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotRight();
         updateMap();
+
 
         //send the command to the Raspberry pi
         sendToRPi(sendTurnRight);
@@ -656,11 +661,13 @@ public class MainActivity extends AppCompatActivity {
         String result = mapView.moveRobotUp();
         updateMap();
 
+
         //send the command to the Raspberry pi
         sendToRPi(sendMoveForward);
 
         //Set results
         result = "Sending: "+sendMoveForward;
+
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
@@ -674,11 +681,13 @@ public class MainActivity extends AppCompatActivity {
         String result = mapView.moveRobotDown();
         updateMap();
 
+
         //send the command to the Raspberry pi
         sendToRPi(sendMoveBack);
 
         //Set results
         result = "Sending: "+sendMoveBack;
+
         //Display Toast
         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
         //Update Status
