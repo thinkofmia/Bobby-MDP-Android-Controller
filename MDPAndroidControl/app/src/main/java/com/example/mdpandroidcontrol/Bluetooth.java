@@ -46,7 +46,7 @@ public class Bluetooth extends AppCompatActivity {
     //The UUID
     private static final UUID my_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     TextView incomingText;
-    BluetoothDevice myBtDevice;
+    static BluetoothDevice myBtDevice;
     BluetoothDevice myBluetoothConnectionDevice;
     Button btnDiscover;
     Button btnStartConnection;
@@ -66,6 +66,9 @@ public class Bluetooth extends AppCompatActivity {
     ListView lvPairedDevices;
     ListView lvNewDevices;
 
+    public static BluetoothDevice getBluetoothDevice(){
+        return myBtDevice;
+    }
 
 
     //BROADCAST RECEIVER FOR BLUETOOTH CONNECTION STATUS
@@ -117,7 +120,7 @@ public class Bluetooth extends AppCompatActivity {
             else if(connectionStatus.equals("connect")){
 
 
-                Log.d("ConnectAcitvity:","Device Connected");
+                Log.d("ConnectActivity:","Device Connected");
                 Toast.makeText(Bluetooth.this, "Connection Established: "+ myBluetoothConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
@@ -353,14 +356,9 @@ public class Bluetooth extends AppCompatActivity {
         unregisterReceiver(enableDiscoverabilityBroadcastReceiver);
         unregisterReceiver(discoverBroadcastReceiver);
         unregisterReceiver(pairingBroadcastReceiver);
-
-
-
-
-
         unregisterReceiver(discoveryStartedBroadcastReceiver);
         unregisterReceiver(discoveryEndedBroadcastReceiver);
-        unregisterReceiver(enableBluetoothBroadcastReceiver);
+
         LocalBroadcastManager.getInstance(this).unregisterReceiver(incomingMsgReceiver);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(bluetoothConnectionReceiver);
 
@@ -459,7 +457,7 @@ public class Bluetooth extends AppCompatActivity {
                     String deviceName = myBluetoothDevices.get(i).getName();
                     String deviceAddress = myBluetoothDevices.get(i).getAddress();
 
-                    //Unselect the paired devie list
+                    //Unselect the paired device list
                     lvPairedDevices.setAdapter(myPairedDeviceListAdapter);
 
 
@@ -580,6 +578,8 @@ public class Bluetooth extends AppCompatActivity {
     public void enableDisableBluetooth(){
         //If the device does not have have bluetooth capabilities
         if(myBtAdapter == null){
+            Toast.makeText(Bluetooth.this, "Device does not have Bluetooth capabilities",
+                    Toast.LENGTH_LONG).show();
             Log.d(TAG, "enableDisableBluetooth: Device does not have Bluetooth capabilities");
         }
         //If the device's bluetooth is not enabled, turn it on

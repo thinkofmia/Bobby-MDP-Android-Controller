@@ -34,9 +34,10 @@ public class BluetoothChat {
 
     public static String exploredString = "";
 
-//    public static BluetoothDevice getBluetoothDevice(){
-//        return myBluetoothConnectionDevice;
-//    }
+    public static BluetoothDevice getBluetoothDevice(){
+        return myBtDevice;
+    }
+
     public static void startChat(BluetoothSocket socket) {
 
         Log.d(TAG, "startChat: Starting");

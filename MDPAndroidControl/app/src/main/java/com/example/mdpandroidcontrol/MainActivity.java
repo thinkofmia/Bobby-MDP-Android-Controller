@@ -20,6 +20,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.charset.Charset;
+
 public class MainActivity extends AppCompatActivity {
 
     mapGridView mapView;
@@ -446,6 +448,7 @@ public class MainActivity extends AppCompatActivity {
                 //Sets string message
                 sendThisCode = sendCustomText+"'"+settings.getString("Str2","No String Set").toString()+"'";
                 result = "Sending: "+sendThisCode;
+
                 break;
             case 1 :
             default:
@@ -616,6 +619,10 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotLeft();
         updateMap();
+
+        //send the command to the Raspberry pi
+        sendToRPi(sendTurnLeft);
+
         //Set result
         result = "Sending: "+sendTurnLeft;
         //Display Toast
@@ -630,6 +637,10 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotRight();
         updateMap();
+
+        //send the command to the Raspberry pi
+        sendToRPi(sendTurnRight);
+
         //Set message
         result = "Sending: "+sendTurnRight;
         //Display Toast
@@ -644,6 +655,10 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotUp();
         updateMap();
+
+        //send the command to the Raspberry pi
+        sendToRPi(sendMoveForward);
+
         //Set results
         result = "Sending: "+sendMoveForward;
         //Display Toast
@@ -658,6 +673,10 @@ public class MainActivity extends AppCompatActivity {
         //Update Map
         String result = mapView.moveRobotDown();
         updateMap();
+
+        //send the command to the Raspberry pi
+        sendToRPi(sendMoveBack);
+
         //Set results
         result = "Sending: "+sendMoveBack;
         //Display Toast
@@ -665,6 +684,13 @@ public class MainActivity extends AppCompatActivity {
         //Update Status
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
         statusText.setText("Status: "+result.toString());
+    }
+
+    protected void sendToRPi(String message){
+        //send the message to the Raspberry pi
+        byte[] bytes = message.getBytes(Charset.defaultCharset());
+        BluetoothChat.writeMsg(bytes);
+
     }
 }
 
