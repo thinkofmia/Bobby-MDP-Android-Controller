@@ -28,4 +28,5 @@
     <string name="searchDone">Device Found:</string>
     <string name="searchDevice">Searching for Devices....</string>
     <string name="title_activity_preferences">preferencesActivity</string>
+    <string name="btStatusOffline">NOT CONNECTED</string>
 </resources>

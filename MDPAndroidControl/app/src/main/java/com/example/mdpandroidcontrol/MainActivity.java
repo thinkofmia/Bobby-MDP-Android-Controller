@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,12 +42,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     boolean tiltNavi;
     private SensorManager sensorManager;
     private Sensor sensor;
+    Switch tiltSwitch;
 
     static String connectedDevice;
     BluetoothDevice myBTConnectionDevice;
     boolean connectedState;
     boolean currentActivity;
     Intent connectIntent;
+    TextView connectionStatusBox;
 
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -91,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //REGISTER TILT MOTION SENSOR
         sensorManager.registerListener((SensorEventListener) this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
+        connectionStatusBox = findViewById(R.id.bluetoothStatus);
+
         //Map variable
         mapView = new mapGridView();
 
@@ -110,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         final Button waypoint_button = findViewById(R.id.button_waypoint);//Find the waypoint button
         final Button startcoord_button = findViewById(R.id.button_startcoord);//Find the start coordinates button
 
-        //tiltbtn
-//        tiltBtn = findViewById(R.id.tiltSwitch);
+        //tilt switch
+        tiltSwitch = findViewById(R.id.tiltSwitch);
 
         //Map variables
         //Where [rows][columns]
@@ -548,8 +553,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             }
 
-
-//        onClickTiltSwitch();
+        //on click listener for tilt switch
+        onClickTiltSwitch();
 
     }
 
@@ -643,22 +648,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         currentActivity = true;
 
-//        //REGISTER TILT MOTION SENSOR
-//        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        //REGISTER TILT MOTION SENSOR
+        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-        Log.d(" MainAcitvity:", "OnResume:" + connectedState);
+        Log.d(" MainActivity:", "OnResume:" + connectedState);
 
         //CHECK FOR EXISTING CONNECTION
         if (connectedState) {
             Log.d(" MainAcitvity:", "OnResume1");
 
             //SET TEXTFIELD TO DEVICE NAME
-//            connectionStatusBox.setText(connectedDevice);
+            connectionStatusBox.setText(connectedDevice);
         } else {
-            Log.d(" MainAcitvity:", "OnResume2");
+            Log.d(" MainActivity:", "OnResume2");
 
             //SET TEXTFIELD TO NOT CONNECTED
-//            connectionStatusBox.setText(R.string.btStatusOffline);
+            connectionStatusBox.setText(R.string.btStatusOffline);
         }
     }
 
@@ -911,7 +916,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 connectedDevice = null;
                 connectedState = false;
-//                connectionStatusBox.setText(R.string.btStatusOffline);
+                connectionStatusBox.setText(R.string.btStatusOffline);
 
                 if (currentActivity) {
 
@@ -952,7 +957,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 connectedDevice = myBTConnectionDevice.getName();
                 connectedState = true;
                 Log.d("MainActivity:", "Device Connected " + connectedState);
-//                connectionStatusBox.setText(connectedDevice);
+                connectionStatusBox.setText(connectedDevice);
                 Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
@@ -967,30 +972,30 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     };
 
     /*
-       ONCLICKLISTENER FOR TILT BUTTON
+       ONCLICKLISTENER FOR TILT SWITCH
    */
-//    public void onClickTiltSwitch() {
-//
-//        tiltBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//
-//                if (isChecked) {
-//
-//                    tiltNavi = true;
-//                    Toast.makeText(MainActivity.this, "Tilt Switch On!!", Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//
-//                    tiltNavi = false;
-//                    Toast.makeText(MainActivity.this, "Tilt Switch Off!!", Toast.LENGTH_SHORT).show();
-//
-//
-//                }
-//            }
-//        });
-//
-//
-//    }
+    public void onClickTiltSwitch() {
+
+        tiltSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    tiltNavi = true;
+                    Toast.makeText(MainActivity.this, "Tilt Switch On!!", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    tiltNavi = false;
+                    Toast.makeText(MainActivity.this, "Tilt Switch Off!!", Toast.LENGTH_SHORT).show();
+
+
+                }
+            }
+        });
+
+
+    }
 
     //METHOD FOR TILT SENSING (NAVIGATION)
     @Override
