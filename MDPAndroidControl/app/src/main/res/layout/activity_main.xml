@@ -15,7 +15,7 @@
         android:layout_marginLeft="84dp"
         android:text="Status: Waiting"
         app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
-        app:layout_constraintStart_toEndOf="@+id/button_obstacles"
+        app:layout_constraintStart_toEndOf="@+id/button_startcoord"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -31,11 +31,11 @@
 
 
     <Button
-        android:id="@+id/button_obstacles"
+        android:id="@+id/button_startcoord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Place Obstacles"
+        android:text="Start Coordinates"
         app:layout_constraintStart_toEndOf="@+id/button_waypoint"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +142,7 @@
         app:layout_constraintBottom_toTopOf="@+id/editableInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_obstacles"
+        app:layout_constraintTop_toBottomOf="@+id/button_startcoord"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -1950,7 +1950,7 @@
         android:text="Bluetooth Status: Waiting"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
-        app:layout_constraintStart_toEndOf="@+id/button_obstacles"
+        app:layout_constraintStart_toEndOf="@+id/button_startcoord"
         app:layout_constraintTop_toBottomOf="@+id/statusText"
         app:layout_constraintVertical_bias="0.48000002" />
 

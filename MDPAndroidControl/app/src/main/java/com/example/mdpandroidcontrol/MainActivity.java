@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
+    //Map Variables
     mapGridView mapView;
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
+
     //Data Type to send
     String sendStartExploration = "'A'|'explore'";
     String sendStartFastest = "'A'|'fastest'";
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String sendMoveBack = "'A'|'S'";
     String sendMapRequest = "'P'|'mapstatus'";
 
+    //Modes
+    String currentMode = "None";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
         final Button str1_button = findViewById(R.id.predefinedStr1);//Find the string button 1
         final Button str2_button = findViewById(R.id.predefinedStr2);//Find the string button 2
+        final Button waypoint_button = findViewById(R.id.button_waypoint);//Find the waypoint button
+        final Button startcoord_button = findViewById(R.id.button_startcoord);//Find the start coordinates button
 
         //tiltbtn
 //        tiltBtn = findViewById(R.id.tiltSwitch);
@@ -490,6 +496,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onClick(View view) {
                 sendPredefinedStr(2);
+            }
+        });
+
+        //Onclick function for start coordinates button
+        startcoord_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                currentMode = "Start Coordinates";//Set current mode to be choosing starting coordinates
+                String textToDisplay = "Selecting starting coordinates...";
+                //Display Toast
+                Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
+                //Update Status
+                TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+                statusText.setText(textToDisplay);
+            }
+        });
+
+        //Onclick function for way point button
+        waypoint_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                currentMode = "Set Waypoint";//Set current mode to be setting waypoint
+                String textToDisplay = "Selecting waypoint...";
+                //Display Toast
+                Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
+                //Update Status
+                TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+                statusText.setText(textToDisplay);
             }
         });
 
