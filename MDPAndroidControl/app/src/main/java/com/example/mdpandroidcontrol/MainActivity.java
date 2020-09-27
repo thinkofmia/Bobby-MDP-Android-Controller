@@ -527,7 +527,44 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        //For loop for all the map tiles
+        for (int y=0; y<mapView.getRows();y++){
+            for (int x=0;x<mapView.getColumns();x++){
+                final int finalX = x;
+                final int finalY = y;
+                mapPos[y][x].setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        String result = mapTileClicked(finalX, finalY);
+                        currentMode = "";
+                        if (result!="Do nothing"){
+                            //Display Toast
+                            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+                        }
+                    }
+                });
+
+                }
+            }
+
+
 //        onClickTiltSwitch();
+
+    }
+
+    protected String mapTileClicked(int x, int y){
+        //Swtich-case for current mode
+        switch (currentMode){
+            case "Set Waypoint":
+                updateMap();//Update map
+                return "Waypoint set to ("+x+", "+y+")";
+            case "Start Coordinates":
+                mapView.setCoordinates(x,y);
+                updateMap();//Update map
+                return "Start Coordinates set to ("+x+", "+y+")";
+            default:
+                return "Do Nothing";
+        }
 
     }
 

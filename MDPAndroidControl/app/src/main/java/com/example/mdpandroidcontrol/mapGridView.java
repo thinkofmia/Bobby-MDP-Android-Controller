@@ -45,6 +45,13 @@ public class mapGridView {
         return coordinates;//Return coordinates
     }
 
+    // Set Start Point coordinates
+    public void setCoordinates(int coord_x, int coord_y) {
+        //Set coordinates
+        pos_x = coord_x;
+        pos_y = coord_y;
+    }
+
     //Get Columns
     public int getColumns(){
         //Return the number of columns in the maze
