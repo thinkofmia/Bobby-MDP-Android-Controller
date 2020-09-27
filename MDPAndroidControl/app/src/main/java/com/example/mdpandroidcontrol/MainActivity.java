@@ -2,6 +2,7 @@ package com.example.mdpandroidcontrol;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
@@ -10,7 +11,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.text.Editable;
@@ -19,23 +25,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.nio.charset.Charset;
+import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private static final String TAG = "MainActivity";
 
+    boolean tiltNavi;
+    private SensorManager sensorManager;
+    private Sensor sensor;
 
     static String connectedDevice;
     BluetoothDevice myBTConnectionDevice;
     boolean connectedState;
     boolean currentActivity;
     Intent connectIntent;
+
+    //UUID
+    private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     mapGridView mapView;
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
@@ -60,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
 
         connectedDevice = null;
+        connectedState = false;
+        currentActivity = true;
+
+        tiltNavi = false;
+
+        //DECLARING SENSOR MANAGER AND SENSOR TYPE
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        //REGISTER TILT MOTION SENSOR
+        sensorManager.registerListener((SensorEventListener) this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         //Map variable
         mapView = new mapGridView();
@@ -77,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton d_button = findViewById(R.id.button_down);//Find the down button
         final Button str1_button = findViewById(R.id.predefinedStr1);//Find the string button 1
         final Button str2_button = findViewById(R.id.predefinedStr2);//Find the string button 2
+
+        //tiltbtn
+//        tiltBtn = findViewById(R.id.tiltSwitch);
 
         //Map variables
         //Where [rows][columns]
@@ -386,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
+        //REGISTER BROADCAST RECEIVER FOR INCOMING MSG
+        LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
+
         //Onclick function for sendInput
         sendInput.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -462,6 +493,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        onClickTiltSwitch();
+
     }
 
     protected void sendPredefinedStr(int option){
@@ -519,7 +552,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.item_bluetooth:
 
-
+                currentActivity = false;
 
                 Intent intent = new Intent(MainActivity.this, Bluetooth.class);
                 startActivity(intent);
@@ -533,6 +566,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         Log.d("debugMsgs", "onResume");//Create a debug message when the app is resumed
+
+        currentActivity = true;
+
+//        //REGISTER TILT MOTION SENSOR
+//        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        Log.d(" MainAcitvity:", "OnResume:" + connectedState);
+
+        //CHECK FOR EXISTING CONNECTION
+        if (connectedState) {
+            Log.d(" MainAcitvity:", "OnResume1");
+
+            //SET TEXTFIELD TO DEVICE NAME
+//            connectionStatusBox.setText(connectedDevice);
+        } else {
+            Log.d(" MainAcitvity:", "OnResume2");
+
+            //SET TEXTFIELD TO NOT CONNECTED
+//            connectionStatusBox.setText(R.string.btStatusOffline);
+        }
     }
 
     @Override
@@ -763,80 +816,165 @@ public class MainActivity extends AppCompatActivity {
 
 
     //This BroadcastReceiver is for reconnecting to the robot if it disconnects
-//    BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//
-//            Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
-//
-//            String connectionStatus = intent.getStringExtra("ConnectionStatus");
-//            myBTConnectionDevice = intent.getParcelableExtra("Device");
-//            //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-//            //DISCONNECTED FROM BLUETOOTH CHAT
-//            if (connectionStatus.equals("disconnect")) {
-//
-//                Log.d("MainActivity:", "Device Disconnected");
-//
-//                if(connectIntent != null) {
-//                    //Stop Bluetooth Connection Service
-//                    stopService(connectIntent);
-//                }
-//
-//                connectedDevice = null;
-//                connectedState = false;
+    BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
+
+            String connectionStatus = intent.getStringExtra("ConnectionStatus");
+            myBTConnectionDevice = intent.getParcelableExtra("Device");
+            //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            //DISCONNECTED FROM BLUETOOTH CHAT
+            if (connectionStatus.equals("disconnect")) {
+
+                Log.d("MainActivity:", "Device Disconnected");
+
+                if(connectIntent != null) {
+                    //Stop Bluetooth Connection Service
+                    stopService(connectIntent);
+                }
+
+                connectedDevice = null;
+                connectedState = false;
 //                connectionStatusBox.setText(R.string.btStatusOffline);
+
+                if (currentActivity) {
+
+                    //RECONNECT DIALOG MSG
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle("BLUETOOTH DISCONNECTED");
+                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //START BT CONNECTION SERVICE
+                                    Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+                                    connectIntent.putExtra("serviceType", "connect");
+                                    connectIntent.putExtra("device", myBTConnectionDevice);
+                                    connectIntent.putExtra("id", myUUID);
+                                    startService(connectIntent);
+                                }
+                            });
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
+                                    connectIntent.putExtra("serviceType", "listen");
+                                    //connectIntent.putExtra("device", device);
+                                    //connectIntent.putExtra("id", uuid);
+                                    startService(connectIntent);
+                                }
+                            });
+                    alertDialog.show();
+
+                }
+            }
+
+            //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
+            else if (connectionStatus.equals("connect")) {
+
+                connectedDevice = myBTConnectionDevice.getName();
+                connectedState = true;
+                Log.d("MainActivity:", "Device Connected " + connectedState);
+//                connectionStatusBox.setText(connectedDevice);
+                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+
+            //BLUETOOTH CONNECTION FAILED
+            else if (connectionStatus.equals("connectionFail")) {
+                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+
+        }
+    };
+
+    /*
+       ONCLICKLISTENER FOR TILT BUTTON
+   */
+//    public void onClickTiltSwitch() {
 //
-//                if (currentActivity) {
+//        tiltBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //
-//                    //RECONNECT DIALOG MSG
-//                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//                    alertDialog.setTitle("BLUETOOTH DISCONNECTED");
-//                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
-//                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
+//                if (isChecked) {
 //
-//                                    //START BT CONNECTION SERVICE
-//                                    Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
-//                                    connectIntent.putExtra("serviceType", "connect");
-//                                    connectIntent.putExtra("device", myBTConnectionDevice);
-//                                    connectIntent.putExtra("id", myUUID);
-//                                    startService(connectIntent);
-//                                }
-//                            });
-//                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
-//                                    connectIntent.putExtra("serviceType", "listen");
-//                                    //connectIntent.putExtra("device", device);
-//                                    //connectIntent.putExtra("id", uuid);
-//                                    startService(connectIntent);
-//                                }
-//                            });
-//                    alertDialog.show();
+//                    tiltNavi = true;
+//                    Toast.makeText(MainActivity.this, "Tilt Switch On!!", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//
+//                    tiltNavi = false;
+//                    Toast.makeText(MainActivity.this, "Tilt Switch Off!!", Toast.LENGTH_SHORT).show();
+//
 //
 //                }
 //            }
+//        });
 //
-//            //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
-//            else if (connectionStatus.equals("connect")) {
 //
-//                connectedDevice = myBTConnectionDevice.getName();
-//                connectedState = true;
-//                Log.d("MainActivity:", "Device Connected " + connectedState);
-//                connectionStatusBox.setText(connectedDevice);
-//                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//
-//            //BLUETOOTH CONNECTION FAILED
-//            else if (connectionStatus.equals("connectionFail")) {
-//                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//
-//        }
-//    };
+//    }
+
+    //METHOD FOR TILT SENSING (NAVIGATION)
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float x = event.values[0];
+        float y = event.values[1];
+
+        //CHECK IF TILT SWITCH IS ENABLED
+        if (tiltNavi) {
+
+            //CHECK IF CONNECTED TO DEVICE FIRST
+            if (connectedDevice == null) {
+                Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+
+                if (Math.abs(x) > Math.abs(y)) {
+                    if (x < 0) {
+                        Log.d("MainActivity:", "RIGHT TILT!!");
+
+                       sendToRPi(sendTurnRight);
+                       /* Toast.makeText(MainActivity.this, "Right Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                    if (x > 0) {
+                        Log.d("MainActivity:", "LEFT TILT!!");
+
+                        sendToRPi(sendTurnLeft);
+                        /*Toast.makeText(MainActivity.this, "Left Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                } else {
+                    if (y < 0) {
+                        Log.d("MainActivity:", "UP TILT!!");
+
+                        sendToRPi(sendMoveForward);
+                        /*Toast.makeText(MainActivity.this, "Forward Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                    if (y > 0) {
+                        Log.d("MainActivity:", "DOWN TILT!!");
+
+                        sendToRPi(sendMoveBack);
+                        /*Toast.makeText(MainActivity.this, "Down Movement Detected!!",
+                                Toast.LENGTH_SHORT).show();*/
+                    }
+                }
+       /* if (x > (-2) && x < (2) && y > (-2) && y < (2)) {
+            Log.d("MainActivity:", "NOT TILTED!!");
+
+        }*/
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
 }
 
