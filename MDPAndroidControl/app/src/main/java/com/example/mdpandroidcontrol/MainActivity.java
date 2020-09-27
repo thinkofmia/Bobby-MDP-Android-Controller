@@ -505,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else {
             String result = "";
             String sendThisCode;
-            SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
             ;
             switch (option) {
                 case 2:
@@ -615,7 +615,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void goToSettings(){
         Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
         //Create intent
-        Intent intent = new Intent(this, preferencesActivity.class);
+        Intent intent = new Intent(MainActivity.this, preferencesActivity.class);
         //Run settings
         startActivity(intent);
     }

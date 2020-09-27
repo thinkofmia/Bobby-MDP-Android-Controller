@@ -6,14 +6,14 @@
         <EditTextPreference
             android:key="Str1"
             android:title="@string/predefined_str_1"
-            app:key="@string/predefined_str_1"
+            app:key="Str1"
             app:title="Predefined String 1"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             android:key="Str2"
             android:title="@string/predefined_str_2"
-            app:key="@string/predefined_str_2"
+            app:key="Str2"
             app:title="Predefined String 2"
             app:useSimpleSummaryProvider="true" />
 
