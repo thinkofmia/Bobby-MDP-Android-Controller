@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String sendMoveForward = "'A'|'W'";
     String sendMoveBack = "'A'|'S'";
     String sendMapRequest = "'P'|'mapstatus'";
+    String sendStartCoord = "'P'|'startcoord'|";
 
     //Modes
     String currentMode = "None";
@@ -557,10 +558,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (currentMode){
             case "Set Waypoint":
                 updateMap();//Update map
+                if (connectedDevice!=null) sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
             case "Start Coordinates":
                 mapView.setCoordinates(x,y);
                 updateMap();//Update map
+                if (connectedDevice!=null) sendToRPi(sendStartCoord+"'("+x+","+y+")'");//Send to bluetooth
                 return "Start Coordinates set to ("+x+", "+y+")";
             default:
                 return "Do Nothing";
