@@ -26,7 +26,7 @@ import static android.content.ContentValues.TAG;
 public class mapGridView {
     //Variables
     private int numColumns = 15, numRows = 20;//Set number of columns and rows
-    private int pos_x = 10, pos_y = 10; //Sets position of robot
+    private int pos_x = 1, pos_y = 1; //Sets position of robot
     private String direction = "North";//Sets the default position of the robot to be North
     final String restricted_movement_msg = "Stopped";//Default string message for restricted movement.
     private int[][] mapper = new int[20][15];//Create a map of strings
