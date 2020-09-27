@@ -714,10 +714,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Map
             String result = mapView.moveRobotLeft();
             updateMap();
-
-
             //send the command to the Raspberry pi
             sendToRPi(sendTurnLeft);
+            //Set message
+            result = "Sending: " + sendTurnLeft;
             //Display Toast
             Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
