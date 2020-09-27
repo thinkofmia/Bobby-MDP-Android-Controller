@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     public void onClick(View view) {
                         String result = mapTileClicked(finalX, finalY);
                         currentMode = "";
-                        if (result!="Do nothing"){
+                        if (result!="Do Nothing"){
                             //Display Toast
                             Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
                         }
