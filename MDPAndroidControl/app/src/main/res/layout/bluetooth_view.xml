@@ -70,20 +70,28 @@
         app:layout_constraintVertical_bias="0.76"
         android:background="#E5E5E5"/>
 
+
     <TextView
         android:id="@+id/incomingText"
-        android:layout_width="175dp"
-        android:layout_height="228dp"
-        android:text="Incoming Message:"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="568dp"
+        android:background="@drawable/incomingspeechbubble"
         android:lineSpacingExtra="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Hi, How are you?"
+        android:textColor="#000000"
+        android:textSize="13.5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743"
-        android:background="@drawable/incomingspeechbubble" />
-
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
         android:id="@+id/btnSend"

@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String sendWaypoint = "'P'|'waypoint'|";
     final String sendCustomText = "'P'|'custom'|";
     String sendGetDirection = "'P'|'getDirection'";
-    String sendTurnLeft = "'A'|'A'";
-    String sendTurnRight = "'A'|'D'";
-    String sendMoveForward = "'A'|'W'";
-    String sendMoveBack = "'A'|'S'";
+    String sendTurnLeft = "A";
+    String sendTurnRight = "D";
+    String sendMoveForward = "W";
+    String sendMoveBack = "S";
     String sendMapRequest = "'P'|'mapstatus'";
     String sendStartCoord = "'P'|'startcoord'|";
 
