@@ -7,14 +7,12 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/statusText"
+    <Button
+        android:id="@+id/spbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:text="Status: Waiting"
-        app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
+        android:text="Shortest Path"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toEndOf="@+id/button_startcoord"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +23,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:text="Set Waypoint"
+        android:text="Waypoint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Start Coordinates"
+        android:text="Startpoint"
         app:layout_constraintStart_toEndOf="@+id/button_waypoint"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,8 +97,6 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_up"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.49"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
         <Button
@@ -129,9 +125,26 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47"
+            app:layout_constraintTop_toBottomOf="@+id/bluetoothStatus"
             app:srcCompat="@android:drawable/ic_media_rew" />
+
+        <TextView
+            android:id="@+id/bluetoothStatus"
+            android:layout_width="117dp"
+            android:layout_height="16dp"
+            android:text="BT Status: Waiting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: Waiting"
+            app:layout_constraintBottom_toTopOf="@+id/button_down"
+            app:layout_constraintEnd_toStartOf="@+id/button_auto"
+            app:layout_constraintStart_toEndOf="@+id/bluetoothStatus"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -139,11 +152,9 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="500dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/editableInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_startcoord"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/button_startcoord">
 
         <TextView
             android:id="@+id/positionLabel"
@@ -1918,42 +1929,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/editableInput"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:hint="Type your custom input here."
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toStartOf="@+id/sendInput"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/sendInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.881" />
-
-    <TextView
-        android:id="@+id/bluetoothStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bluetooth Status: Waiting"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
-        app:layout_constraintStart_toEndOf="@+id/button_startcoord"
-        app:layout_constraintTop_toBottomOf="@+id/statusText"
-        app:layout_constraintVertical_bias="0.48000002" />
-
     <Switch
         android:id="@+id/tiltSwitch"
         android:layout_width="wrap_content"
@@ -1961,6 +1936,15 @@
         android:text="Tilt"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/exploreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toEndOf="@+id/spbutton"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

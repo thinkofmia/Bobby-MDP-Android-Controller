@@ -100,12 +100,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mapView = new mapGridView();
 
         //Text variables
-        final EditText customInput = findViewById(R.id.editableInput);//Find the input text
+        //final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
 
         //Buttons variables
-        final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
+        //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
         final ImageButton r_button = findViewById(R.id.button_right);//Find the right button
         final ImageButton l_button = findViewById(R.id.button_left);//Find the left button
         final ImageButton u_button = findViewById(R.id.button_up);//Find the up button
@@ -424,13 +424,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         updateMap();
 
-        Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
+        //Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
         //REGISTER BROADCAST RECEIVER FOR INCOMING MSG
         LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
 
         //Onclick function for sendInput
-        sendInput.setOnClickListener(new View.OnClickListener(){
+        /*sendInput.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 //CHECK IF CONNECTED TO DEVICE FIRST
@@ -455,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     }
                 }
             }
-        });
+        });*/
 
         //Onclick function for right button
         r_button.setOnClickListener(new View.OnClickListener(){
