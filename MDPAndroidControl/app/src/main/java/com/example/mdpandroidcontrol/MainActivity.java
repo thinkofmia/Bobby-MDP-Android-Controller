@@ -812,15 +812,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
         //Set the map position of the robot:
-        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Top-Left of the robot
-        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70F0F000);//Top of the robot
-        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Top-Right of the robot
-        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0x70F0F000);//Center of the robot
-        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Right of the robot
-        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Bottom-Left of the robot
-        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70F0F000);//Bottom of the robot
-        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Bottom-Right of the robot
+        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xF0F0F000);//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xF0F0F000);//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xF0F0F000);//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xF0F0F000);//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xF0F0F000);//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xF0F0F000);//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xF0F0F000);//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xF0F0F000);//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xF0F0F000);//Bottom-Right of the robot
 
         //Get direction of the robot
         String direction = mapView.getDirection();//Get direction of the robot
@@ -828,27 +828,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (direction){
             case "North":
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("⇈");
+                mapPos[coordinates[1]+1][coordinates[0]].setText("↑");
                 //Set Color
-                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70FF0000);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("⇊");
+                mapPos[coordinates[1]-1][coordinates[0]].setText("↓");
                 //Set Color
-                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70FF0000);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]+1].setText("⇉");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70FF0000);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]-1].setText("⇇");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70FF0000);//Left of the robot
                 break;
         }
 
