@@ -16,11 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceFragmentCompat;
 
+import java.nio.charset.Charset;
 import java.util.UUID;
 
 public class preferencesActivity extends AppCompatActivity {
 
-    BluetoothDevice myBTConnectionDevice;
+    BluetoothDevice myBluetoothConnectionDevice;
     private static final String TAG = "preferencesActivity";
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -69,7 +70,7 @@ public class preferencesActivity extends AppCompatActivity {
             Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
 
             String connectionStatus = intent.getStringExtra("ConnectionStatus");
-            myBTConnectionDevice = intent.getParcelableExtra("Device");
+            myBluetoothConnectionDevice = intent.getParcelableExtra("Device");
 
             //DISCONNECTED FROM BLUETOOTH CHAT
             if(connectionStatus.equals("disconnect")){
@@ -82,7 +83,7 @@ public class preferencesActivity extends AppCompatActivity {
                 //RECONNECT DIALOG MSG
                 AlertDialog alertDialog = new AlertDialog.Builder(preferencesActivity.this).create();
                 alertDialog.setTitle("BLUETOOTH DISCONNECTED");
-                alertDialog.setMessage("Connection with device: '"+myBTConnectionDevice.getName()+"' has ended. Do you want to reconnect?");
+                alertDialog.setMessage("Connection with device: '"+myBluetoothConnectionDevice.getName()+"' has ended. Do you want to reconnect?");
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -90,7 +91,7 @@ public class preferencesActivity extends AppCompatActivity {
                                 //START BT CONNECTION SERVICE
                                 Intent connectIntent = new Intent(preferencesActivity.this, BluetoothConnectionService.class);
                                 connectIntent.putExtra("serviceType", "connect");
-                                connectIntent.putExtra("device", myBTConnectionDevice);
+                                connectIntent.putExtra("device", myBluetoothConnectionDevice);
                                 connectIntent.putExtra("id", myUUID);
                                 startService(connectIntent);
 
@@ -113,18 +114,25 @@ public class preferencesActivity extends AppCompatActivity {
 
 
                 Log.d("ConnectActivity:","Device Connected");
-                Toast.makeText(preferencesActivity.this, "Connection Established: "+ myBTConnectionDevice.getName(),
+                Toast.makeText(preferencesActivity.this, "Connection Established: "+ myBluetoothConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
 
             //BLUETOOTH CONNECTION FAILED
             else if(connectionStatus.equals("connectionFail")) {
-                Toast.makeText(preferencesActivity.this, "Connection Failed: "+ myBTConnectionDevice.getName(),
+                Toast.makeText(preferencesActivity.this, "Connection Failed: "+ myBluetoothConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
 
         }
     };
+
+    protected void sendToRPi(String message){
+        //send the message to the Raspberry pi
+        byte[] bytes = message.getBytes(Charset.defaultCharset());
+        BluetoothChat.writeMsg(bytes);
+
+    }
 
 
 }
