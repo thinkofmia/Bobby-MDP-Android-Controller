@@ -795,14 +795,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //For loop to run the map
         for (int y=0; y<mapView.getRows();y++){
             for (int x=0;x<mapView.getColumns();x++){
+                mapPos[y][x].setText("");//Clear Text
                 switch (currentMap[y][x]){
                     case 0:
-                        ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
-                        //mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
+                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
                         break;
                     default:
-                        ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-//                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set the background color of the map to be red
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set the background color of the map to be red
                         break;
                 }
 
@@ -815,40 +816,43 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
 
         //Set the map position of the robot:
-        //Top Left of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]-1][coordinates[0]-1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Top of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]-1][coordinates[0]], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Top Right of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]-1][coordinates[0]+1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Left of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]][coordinates[0]-1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Center of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]][coordinates[0]], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Right of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]][coordinates[0]+1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Bottom-Left of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]+1][coordinates[0]-1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Bottom of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]+1][coordinates[0]], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
-        //Bottom-Right of Robot
-        ViewCompat.setBackgroundTintList(mapPos[coordinates[1]+1][coordinates[0]+1], ContextCompat.getColorStateList(this, android.R.color.holo_orange_light));
+        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70F0F000);//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0x70F0F000);//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0x70F0F000);//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70F0F000);//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0x70F0F000);//Bottom-Right of the robot
 
         //Get direction of the robot
         String direction = mapView.getDirection();//Get direction of the robot
         //Set the direction of the robot
         switch (direction){
-            case "North"://Top of Robot
-                ViewCompat.setBackgroundTintList(mapPos[coordinates[1]+1][coordinates[0]], ContextCompat.getColorStateList(this, android.R.color.holo_red_dark));
+            case "North":
+                //Set Arrow
+                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
+                //Set Color
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
                 break;
-            case "South"://Bottom of Robot
-                ViewCompat.setBackgroundTintList(mapPos[coordinates[1]-1][coordinates[0]], ContextCompat.getColorStateList(this, android.R.color.holo_red_dark));
+            case "South":
+                //Set Arrow
+                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
+                //Set Color
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
                 break;
-            case "East"://Right of Robot
-                ViewCompat.setBackgroundTintList(mapPos[coordinates[1]][coordinates[0]+1], ContextCompat.getColorStateList(this, android.R.color.holo_red_dark));
+            case "East":
+                //Set Arrow
+                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
+                //Set Color
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
                 break;
-            case "West"://Left of Robot
-                ViewCompat.setBackgroundTintList(mapPos[coordinates[1]][coordinates[0]-1], ContextCompat.getColorStateList(this, android.R.color.holo_red_dark));
+            case "West":
+                //Set Arrow
+                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
+                //Set Color
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
                 break;
         }
 
