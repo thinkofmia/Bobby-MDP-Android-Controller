@@ -76,6 +76,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_down"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8"
             app:srcCompat="@android:drawable/ic_media_ff" />
 
         <ImageButton
@@ -87,6 +88,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_left"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72"
             app:srcCompat="@android:drawable/arrow_up_float" />
 
         <ImageButton
@@ -95,6 +97,7 @@
             android:layout_height="80dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_up"
             app:srcCompat="@android:drawable/arrow_down_float" />
@@ -132,6 +135,8 @@
             android:id="@+id/bluetoothStatus"
             android:layout_width="117dp"
             android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="BT Status: Waiting"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -144,7 +149,8 @@
             app:layout_constraintBottom_toTopOf="@+id/button_down"
             app:layout_constraintEnd_toStartOf="@+id/button_auto"
             app:layout_constraintStart_toEndOf="@+id/bluetoothStatus"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
