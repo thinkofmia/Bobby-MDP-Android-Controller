@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         final Button str2_button = findViewById(R.id.predefinedStr2);//Find the string button 2
         final Button waypoint_button = findViewById(R.id.button_waypoint);//Find the waypoint button
         final Button startcoord_button = findViewById(R.id.button_startcoord);//Find the start coordinates button
+        final Button sp_button = findViewById(R.id.spbutton);// Find the shortest path button
+        final Button explore_button = findViewById(R.id.exploreButton);// Find the explore button
 
         //tilt switch
         tiltSwitch = findViewById(R.id.tiltSwitch);
@@ -527,6 +529,36 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String textToDisplay = "Selecting waypoint...";
                 //Display Toast
                 //Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
+                //Update Status
+                TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+                statusText.setText(textToDisplay);
+            }
+        });
+
+        //Onclick function for shortest path button
+        sp_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if (connectedDevice != null) {
+                    sendToRPi(sendStartFastest);
+                }
+                //Set text to display
+                String textToDisplay = "Sending: "+sendStartFastest;
+                //Update Status
+                TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+                statusText.setText(textToDisplay);
+            }
+        });
+
+        //Onclick function for explore button
+        explore_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if (connectedDevice != null) {
+                    sendToRPi(sendStartExploration);
+                }
+                //Set text to display
+                String textToDisplay = "Sending: "+sendStartExploration;
                 //Update Status
                 TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
                 statusText.setText(textToDisplay);
