@@ -52,16 +52,6 @@ public class preferencesActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    public void onBackPressed() {
-
-        Intent intent = new Intent(preferencesActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-    }
-
-
     //BROADCAST RECEIVER FOR BLUETOOTH CONNECTION STATUS
     BroadcastReceiver btConnectionReceiver = new BroadcastReceiver() {
         @Override
