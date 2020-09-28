@@ -635,9 +635,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 Intent intent = new Intent(MainActivity.this, Bluetooth.class);
                 startActivity(intent);
-            default:
-                return super.onOptionsItemSelected(item);
+
+
         }
+        return super.onOptionsItemSelected(item);
 
     }
 

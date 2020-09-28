@@ -267,11 +267,11 @@ public class BluetoothConnectionService extends IntentService {
             myConnectThread.cancel();
             myConnectThread = null;
         }
-        if(myAcceptThread ==null){
-            myAcceptThread = new AcceptThread();
-            //this start() is an inbuilt to the thread class
-            myAcceptThread.start();
-        }
+
+        myAcceptThread = new AcceptThread();
+        //this start() is an inbuilt to the thread class
+        myAcceptThread.start();
+
     }
 
     /*
