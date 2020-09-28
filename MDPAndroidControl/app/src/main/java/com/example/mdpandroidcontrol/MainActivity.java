@@ -693,6 +693,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     protected void goToSettings(){
         Log.d("debugMsgs", "Going to settings");//Create a debug message when settings menu is clicked
+
+        currentActivity = false;
         //Create intent
         Intent intent = new Intent(MainActivity.this, preferencesActivity.class);
         //Run settings
