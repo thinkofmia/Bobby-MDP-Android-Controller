@@ -61,18 +61,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
 
     //Data Type to send
-    String sendStartExploration = "'A'|'explore'";
-    String sendStartFastest = "'A'|'fastest'";
-    String sendManualControl = "'A'|'control'";
-    String sendWaypoint = "'P'|'waypoint'|";
-    final String sendCustomText = "'P'|'custom'|";
-    String sendGetDirection = "'P'|'getDirection'";
+    String sendStartExploration = "explore";
+    String sendStartFastest = "fastest";
+    String sendManualControl = "control";
+    String sendWaypoint = "waypoint";
+    final String sendCustomText = "";
+    String sendGetDirection = "getDirection";
     String sendTurnLeft = "A";
     String sendTurnRight = "D";
     String sendMoveForward = "W";
     String sendMoveBack = "S";
-    String sendMapRequest = "'P'|'mapstatus'";
-    String sendStartCoord = "'P'|'startcoord'|";
+    String sendMapRequest = "mapstatus";
+    String sendStartCoord = "startcoord";
 
     //Modes
     String currentMode = "None";
