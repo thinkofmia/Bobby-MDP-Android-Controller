@@ -6,12 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceFragmentCompat;
 
 import java.util.UUID;
@@ -25,6 +27,11 @@ public class preferencesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //REGISTER BROADCAST RECEIVER FOR IMCOMING MSG
+        LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         getSupportFragmentManager()
@@ -67,7 +74,7 @@ public class preferencesActivity extends AppCompatActivity {
             //DISCONNECTED FROM BLUETOOTH CHAT
             if(connectionStatus.equals("disconnect")){
 
-                Log.d("ConnectAcitvity:","Device Disconnected");
+                Log.d("ConnectActivity:","Device Disconnected");
 
                 //Stop Bluetooth Connection Service
                 //stopService(connectIntent);
@@ -105,7 +112,7 @@ public class preferencesActivity extends AppCompatActivity {
             else if(connectionStatus.equals("connect")){
 
 
-                Log.d("ConnectAcitvity:","Device Connected");
+                Log.d("ConnectActivity:","Device Connected");
                 Toast.makeText(preferencesActivity.this, "Connection Established: "+ myBTConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
