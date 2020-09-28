@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     //Modes
     String currentMode = "None";
+    String mapMode = "Auto";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         final Button startcoord_button = findViewById(R.id.button_startcoord);//Find the start coordinates button
         final Button sp_button = findViewById(R.id.spbutton);// Find the shortest path button
         final Button explore_button = findViewById(R.id.exploreButton);// Find the explore button
+        final Button auto_button = findViewById(R.id.button_auto);//Find the auto button
+        final Button manual_button = findViewById(R.id.button_manual);//Find the manual button
 
         //tilt switch
         tiltSwitch = findViewById(R.id.tiltSwitch);
@@ -565,6 +568,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        //Onclick function for manual button
+        manual_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //Set map mode to be manual
+                mapMode = "Manual";
+                //Update Map
+                updateMap();
+                //Display toast
+                Toast.makeText(MainActivity.this, "Map Mode: Manual", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Onclick function for auto button
+        auto_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //Set map mode to be auto
+                mapMode = "Auto";
+                //Update Map
+                updateMap();
+                //Display toast
+                Toast.makeText(MainActivity.this, "Map Mode: Auto", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //For loop for all the map tiles
         for (int y=0; y<mapView.getRows();y++){
             for (int x=0;x<mapView.getColumns();x++){
@@ -594,12 +623,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Swtich-case for current mode
         switch (currentMode){
             case "Set Waypoint":
-                updateMap();//Update map
+                if (mapMode=="Auto") updateMap();//Update map
                 if (connectedDevice!=null) sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
             case "Start Coordinates":
                 mapView.setCoordinates(x,y);
-                updateMap();//Update map
+                if (mapMode=="Auto") updateMap();//Update map
                 if (connectedDevice!=null) sendToRPi(sendStartCoord+"'("+x+","+y+")'");//Send to bluetooth
                 return "Start Coordinates set to ("+x+", "+y+")";
             default:
@@ -827,7 +856,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //When on click, move left
             //Update Map
             String result = mapView.moveRobotLeft();
-            updateMap();
+            if (mapMode=="Auto") updateMap();
             //send the command to the Raspberry pi
             sendToRPi(sendTurnLeft);
             //Set message
@@ -852,7 +881,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotRight();
-            updateMap();
+            if (mapMode=="Auto") updateMap();
 
 
             //send the command to the Raspberry pi
@@ -877,7 +906,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotUp();
-            updateMap();
+            if (mapMode=="Auto") updateMap();
 
 
             //send the command to the Raspberry pi
@@ -903,7 +932,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotDown();
-            updateMap();
+            if (mapMode=="Auto") updateMap();
 
 
             //send the command to the Raspberry pi
