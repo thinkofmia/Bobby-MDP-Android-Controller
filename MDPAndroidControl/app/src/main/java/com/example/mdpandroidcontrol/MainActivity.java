@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Switch tiltSwitch;
 
     static String connectedDevice;
-    BluetoothDevice myBTConnectionDevice;
+    BluetoothDevice myBluetoothConnectionDevice;
     boolean connectedState;
     boolean currentActivity;
     Intent connectIntent;
@@ -966,7 +966,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Log.d(TAG, "Receiving btConnectionStatus Msg!!!");
 
             String connectionStatus = intent.getStringExtra("ConnectionStatus");
-            myBTConnectionDevice = intent.getParcelableExtra("Device");
+            myBluetoothConnectionDevice = intent.getParcelableExtra("Device");
             //myBTConnectionDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             //DISCONNECTED FROM BLUETOOTH CHAT
             if (connectionStatus.equals("disconnect")) {
@@ -987,7 +987,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     //RECONNECT DIALOG MSG
                     AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                     alertDialog.setTitle("BLUETOOTH DISCONNECTED");
-                    alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
+                    alertDialog.setMessage("Connection with device: '" + myBluetoothConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -995,7 +995,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     //START BT CONNECTION SERVICE
                                     Intent connectIntent = new Intent(MainActivity.this, BluetoothConnectionService.class);
                                     connectIntent.putExtra("serviceType", "connect");
-                                    connectIntent.putExtra("device", myBTConnectionDevice);
+                                    connectIntent.putExtra("device", myBluetoothConnectionDevice);
                                     connectIntent.putExtra("id", myUUID);
                                     startService(connectIntent);
                                 }
@@ -1018,17 +1018,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
             else if (connectionStatus.equals("connect")) {
 
-                connectedDevice = myBTConnectionDevice.getName();
+                connectedDevice = myBluetoothConnectionDevice.getName();
                 connectedState = true;
                 Log.d("MainActivity:", "Device Connected " + connectedState);
                 connectionStatusBox.setText(connectedDevice);
-                Toast.makeText(MainActivity.this, "Connection Established: " + myBTConnectionDevice.getName(),
+                Toast.makeText(MainActivity.this, "Connection Established: " + myBluetoothConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
 
             //BLUETOOTH CONNECTION FAILED
             else if (connectionStatus.equals("connectionFail")) {
-                Toast.makeText(MainActivity.this, "Connection Failed: " + myBTConnectionDevice.getName(),
+                Toast.makeText(MainActivity.this, "Connection Failed: " + myBluetoothConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
 
