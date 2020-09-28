@@ -795,6 +795,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //For loop to run the map
         for (int y=0; y<mapView.getRows();y++){
             for (int x=0;x<mapView.getColumns();x++){
+                mapPos[y][x].setText("");//Clear Text
                 switch (currentMap[y][x]){
                     case 0:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
@@ -830,15 +831,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Set the direction of the robot
         switch (direction){
             case "North":
+                //Set Arrow
+                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
+                //Set Color
                 mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
                 break;
             case "South":
+                //Set Arrow
+                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
+                //Set Color
                 mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
                 break;
             case "East":
+                //Set Arrow
+                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
+                //Set Color
                 mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
                 break;
             case "West":
+                //Set Arrow
+                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
+                //Set Color
                 mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
                 break;
         }
