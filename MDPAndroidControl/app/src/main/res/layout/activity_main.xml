@@ -11,10 +11,11 @@
         android:id="@+id/spbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shortest Path"
+        android:text="Fastest"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toEndOf="@+id/button_startcoord"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_waypoint"
@@ -32,7 +33,7 @@
         android:id="@+id/button_startcoord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Startpoint"
         app:layout_constraintStart_toEndOf="@+id/button_waypoint"
         app:layout_constraintTop_toTopOf="parent" />
@@ -1955,6 +1956,7 @@
         android:text="Explore"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toEndOf="@+id/spbutton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
