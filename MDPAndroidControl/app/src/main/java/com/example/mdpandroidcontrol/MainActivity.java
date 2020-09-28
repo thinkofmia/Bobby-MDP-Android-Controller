@@ -797,9 +797,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             for (int x=0;x<mapView.getColumns();x++){
                 mapPos[y][x].setText("");//Clear Text
                 switch (currentMap[y][x]){
-                    case 0:
+                    case -1://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
                         mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
+                        break;
+                    case 0://Explored
+                        mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
+                        break;
+                    case 1://Obstacles
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
@@ -832,25 +838,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (direction){
             case "North":
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
+                mapPos[coordinates[1]+1][coordinates[0]].setText("↑");
                 //Set Color
                 mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
+                mapPos[coordinates[1]-1][coordinates[0]].setText("↓");
                 //Set Color
                 mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
+                mapPos[coordinates[1]][coordinates[0]+1].setText("→");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
+                mapPos[coordinates[1]][coordinates[0]-1].setText("←");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
                 break;
