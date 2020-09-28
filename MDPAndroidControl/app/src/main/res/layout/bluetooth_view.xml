@@ -36,54 +36,72 @@
 
     <Button
         android:id="@+id/btnDiscover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="49dp"
         android:text="Discover"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.45" />
+
 
     <Button
         android:id="@+id/btnStartConnection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="49dp"
         android:text="Start Connection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <EditText
         android:id="@+id/outgoingText"
-        android:layout_width="167dp"
-        android:layout_height="239dp"
-        android:hint="Enter Text Here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+
+        android:layout_marginStart="384dp"
+        android:layout_marginLeft="384dp"
+        android:layout_marginTop="688dp"
+        android:background="@drawable/outgoingspeechbubble"
+        android:lineSpacingExtra="2dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="outgoing text"
+        android:textColor="#000000"
+        android:textSize="13.5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
-        android:background="#E5E5E5"/>
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.8" />
 
     <TextView
         android:id="@+id/incomingText"
-        android:layout_width="175dp"
-        android:layout_height="228dp"
-        android:text="Incoming Message:"
+        android:layout_width="165dp"
+        android:layout_height="47dp"
+
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="568dp"
+        android:background="@drawable/incomingspeechbubble"
         android:lineSpacingExtra="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Incoming text"
+        android:textColor="#000000"
+        android:textSize="13.5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743"
-        android:background="@drawable/incomingspeechbubble" />
-
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
         android:id="@+id/btnSend"
@@ -92,10 +110,10 @@
         android:text="Send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <Button
         android:id="@+id/btnCancel"
@@ -104,10 +122,10 @@
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/deviceSearchStatus"
@@ -134,6 +152,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.008"
         android:background="#E5E5E5"/>
+
+    <ScrollView
+        android:layout_width="604dp"
+        android:layout_height="452dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="506dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
