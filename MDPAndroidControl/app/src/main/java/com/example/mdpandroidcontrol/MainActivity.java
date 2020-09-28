@@ -512,7 +512,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 currentMode = "Start Coordinates";//Set current mode to be choosing starting coordinates
                 String textToDisplay = "Selecting starting coordinates...";
                 //Display Toast
-                Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
+                //Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
                 //Update Status
                 TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
                 statusText.setText(textToDisplay);
@@ -526,7 +526,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 currentMode = "Set Waypoint";//Set current mode to be setting waypoint
                 String textToDisplay = "Selecting waypoint...";
                 //Display Toast
-                Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
+                //Toast.makeText(MainActivity.this, textToDisplay, Toast.LENGTH_SHORT).show();//Display toast
                 //Update Status
                 TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
                 statusText.setText(textToDisplay);
@@ -605,7 +605,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     break;
             }
             //Display Toast
-            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
@@ -800,7 +800,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Set message
             result = "Sending: " + sendTurnLeft;
             //Display Toast
-            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: "+result.toString());
@@ -828,7 +828,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Set message
             result = "Sending: " + sendTurnRight;
             //Display Toast
-            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
@@ -854,7 +854,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             result = "Sending: " + sendMoveForward;
 
             //Display Toast
-            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
@@ -880,7 +880,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             result = "Sending: " + sendMoveBack;
 
             //Display Toast
-            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
+            //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//Display toast
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
