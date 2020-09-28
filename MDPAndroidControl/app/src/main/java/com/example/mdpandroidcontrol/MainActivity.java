@@ -544,9 +544,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sp_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (connectedDevice != null) {
-                    sendToRPi(sendStartFastest);
-                }
+                sendToRPi(sendStartFastest);
                 //Set text to display
                 String textToDisplay = "Sending: "+sendStartFastest;
                 //Update Status
@@ -559,9 +557,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         explore_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (connectedDevice != null) {
-                    sendToRPi(sendStartExploration);
-                }
+                sendToRPi(sendStartExploration);
                 //Set text to display
                 String textToDisplay = "Sending: "+sendStartExploration;
                 //Update Status
@@ -626,12 +622,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (currentMode){
             case "Set Waypoint":
                 if (mapMode=="Auto") updateMap();//Update map
-                if (connectedDevice!=null) sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
+                sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
             case "Start Coordinates":
                 mapView.setCoordinates(x,y);
                 if (mapMode=="Auto") updateMap();//Update map
-                if (connectedDevice!=null) sendToRPi(sendStartCoord+"'("+x+","+y+")'");//Send to bluetooth
+                sendToRPi(sendStartCoord+"'("+x+","+y+")'");//Send to bluetooth
                 return "Start Coordinates set to ("+x+", "+y+")";
             default:
                 return "Do Nothing";
@@ -640,11 +636,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     protected void sendPredefinedStr(int option){
-        //CHECK IF CONNECTED TO DEVICE FIRST
-        if (connectedDevice == null) {
-            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             String result = "";
             String sendThisCode;
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -672,7 +663,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
-        }
     }
 
     @Override
@@ -838,25 +828,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (direction){
             case "North":
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("↑");
+                mapPos[coordinates[1]+1][coordinates[0]].setText("⇈");
                 //Set Color
                 mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("↓");
+                mapPos[coordinates[1]-1][coordinates[0]].setText("⇊");
                 //Set Color
                 mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x7000F0F0);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]+1].setText("→");
+                mapPos[coordinates[1]][coordinates[0]+1].setText("⇉");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x7000F0F0);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]-1].setText("←");
+                mapPos[coordinates[1]][coordinates[0]-1].setText("⇇");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x7000F0F0);//Left of the robot
                 break;
@@ -870,12 +860,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     protected void moveLeft(){
-
-        //CHECK IF CONNECTED TO DEVICE FIRST
-        if (connectedDevice == null) {
-            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             //When on click, move left
             //Update Map
             String result = mapView.moveRobotLeft();
@@ -889,23 +873,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: "+result.toString());
-    }
-
 
     }
 
     protected void moveRight() {
-
-        //CHECK IF CONNECTED TO DEVICE FIRST
-        if (connectedDevice == null) {
-            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotRight();
             if (mapMode=="Auto") updateMap();
-
 
             //send the command to the Raspberry pi
             sendToRPi(sendTurnRight);
@@ -917,15 +892,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
-        }
     }
 
     protected void moveUp(){
-        //CHECK IF CONNECTED TO DEVICE FIRST
-        if (connectedDevice == null) {
-            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotUp();
@@ -943,24 +912,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
-        }
     }
 
     protected void moveDown(){
-        //CHECK IF CONNECTED TO DEVICE FIRST
-        if (connectedDevice == null) {
-            Toast.makeText(MainActivity.this, "Please Connect to a Device First!!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
             //When on click, move right
             //Update Map
             String result = mapView.moveRobotDown();
             if (mapMode=="Auto") updateMap();
-
-
             //send the command to the Raspberry pi
             sendToRPi(sendMoveBack);
-
             //Set results
             result = "Sending: " + sendMoveBack;
 
@@ -969,14 +929,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Update Status
             TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
             statusText.setText("Status: " + result.toString());
-        }
-
     }
 
     protected void sendToRPi(String message){
         //send the message to the Raspberry pi
         byte[] bytes = message.getBytes(Charset.defaultCharset());
-        BluetoothChat.writeMsg(bytes);
+        if (connectedDevice != null) BluetoothChat.writeMsg(bytes);
 
     }
 
