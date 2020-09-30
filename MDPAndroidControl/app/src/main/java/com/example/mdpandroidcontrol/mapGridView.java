@@ -30,6 +30,7 @@ public class mapGridView {
     private String direction = "North";//Sets the default position of the robot to be North
     final String restricted_movement_msg = "Stopped";//Default string message for restricted movement.
     private int[][] mapper = new int[20][15];//Create a map of strings
+    private int[] waypoint = new int[2];//Create coordinate of waypoint
 
     //Keywords in Mapper:
     /**
@@ -51,7 +52,9 @@ public class mapGridView {
         //Set coordinates
         pos_x = coord_x;
         pos_y = coord_y;
+        clearMapper();//Restart map
     }
+
 
     //Get Columns
     public int getColumns(){
@@ -75,10 +78,24 @@ public class mapGridView {
     public void clearMapper() {
         //Loop for all the positions of the map
         for (int y = 0; y < numRows; y++) {
-            for (int x=0; y < numColumns; x++){
-                mapper[y][x] = -1;
+            for (int x=0; x < numColumns; x++){
+                mapper[y][x] = 0;
             }
         }
+    }
+
+    public void setWaypoint(int x, int y){
+        waypoint[0] = x;//Sets the x-coordinate of the waypoint
+        waypoint[1] = y;//Sets the y-coordinate of the waypoint
+        //Loop the map to find any other waypoint
+        for (int j = 0; j < numRows; j++) {
+            for (int i=0; i < numColumns; i++){
+                if (mapper[j][i]==20){
+
+                }mapper[j][i] = 0;
+            }
+        }
+        mapper[y][x] = 20;//Set the waypoint coordinate
     }
 
     public void setRobotPosition(){
@@ -88,23 +105,54 @@ public class mapGridView {
 
     //Get direction
     public String getDirection(){
+        mapper[1][1] = 1;
+        mapper[2][2] = 2;
+        mapper[3][3] = 3;
+        mapper[4][4] = 4;
+        mapper[5][5] = 5;
+        mapper[6][6] = 6;
+        mapper[7][7] = 7;
+        mapper[8][8] = 8;
+        mapper[9][9] = 9;
+        mapper[10][10] = 10;
+        mapper[11][11] = 11;
+        mapper[12][12] = 12;
+        mapper[13][13] = 13;
+        mapper[14][14] = 14;
+        mapper[0][0] = 15;
+        mapper[10][0] = 23332;
+        mapper[10][1] = 23332;
+        mapper[10][2] = 23332;
+        mapper[10][3] = 23332;
         return direction;//Return direction of robot upon request
+
     }
 
     //Function to move the robot up
     public String moveRobotUp(){
         direction = "North";//Sets the robot direction to face North
         if (pos_y<numRows-2){//If the robot's y-coordinate is less than number of rows - 2
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             pos_y += 1;//Increment the y-coordinate by 1
             return "Moving up...";//Returns moving up message
         }
         else return restricted_movement_msg;//Returns default restricted movement message
     }
 
+    //Function to set the trail of the robot
+    public void setTrail(int x, int y){
+        if (mapper[y][x]==0 || mapper[y][x]==-1)mapper[y][x]=100;
+        if (mapper[y+1][x]==0)mapper[y+1][x]=-1;
+        if (mapper[y-1][x]==0)mapper[y-1][x]=-1;
+        if (mapper[y][x+1]==0)mapper[y][x+1]=-1;
+        if (mapper[y][x-1]==0)mapper[y][x-1]=-1;
+    }
+
     //Function to move the robot down
     public String moveRobotDown(){
         direction = "South";//Sets the robot direction to face South
         if (pos_y>1){//If the robot's y-coordinate is more than 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             pos_y -= 1;//Decrement the y-coordinate by 1
             return "Moving down...";//Returns moving down message
         }
@@ -115,6 +163,7 @@ public class mapGridView {
     public String moveRobotLeft(){
         direction = "West";//Sets the robot direction to face West
         if (pos_x>1){//If the robot's x-coordinate is more than 0
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             pos_x -= 1;//Decrement the x-coordinate by 1
             return "Moving left...";//Returns moving left message
         }
@@ -125,6 +174,7 @@ public class mapGridView {
     public String moveRobotRight(){
         direction = "East";//Sets the robot direction to face East
         if (pos_x<numColumns-2){//If the robot's y-coordinate is less than the number of rows - 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             pos_x += 1;//Increment the x-coordinate by 1
             return "Moving right...";//Returns moving right message
         }

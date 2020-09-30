@@ -621,6 +621,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Swtich-case for current mode
         switch (currentMode){
             case "Set Waypoint":
+                mapView.setWaypoint(x,y);//Set way point on the map
                 if (mapMode=="Auto") updateMap();//Update map
                 sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
@@ -639,7 +640,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             String result = "";
             String sendThisCode;
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            ;
             switch (option) {
                 case 2:
                     //Sets string message
@@ -668,8 +668,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.settings, menu);
-        getMenuInflater().inflate(R.menu.lock, menu);
-        getMenuInflater().inflate(R.menu.log, menu);
         getMenuInflater().inflate(R.menu.bluetooth, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -764,7 +762,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         /**
          * image ids:
-         * 0: Empty
+         * -1: Explored
+         * 0: Unexplored
          * 1: Up Arrow
          * 2: Down Arrow
          * 3: Right Arrow
@@ -780,6 +779,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * 13: Alphabet X
          * 14: Alphabet Y
          * 15: Alphabet Z
+         * 100: Trail
+         * 20: Waypoint
          */
 
         //For loop to run the map
@@ -794,12 +795,78 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     case -1://Explored
                         mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
                         break;
-                    case 1://Obstacles
+                    case 1://Obstacles: Arrow Up
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC15");//Set Text as 🠕
+                        break;
+                    case 2://Obstacles: Arrow Down
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC17");//Set Text as 🠗
+                        break;
+                    case 3://Obstacles: Arrow Right
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("➞");//Set Text as ➞
+                        break;
+                    case 4://Obstacles: Arrow Left
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC14");//Set Text as 🠔
+                        break;
+                    case 5://Obstacles: Go
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("⦿");//Set Text as ⦿
+                        break;
+                    case 6://Obstacles: 6
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("6");//Set Text as 6
+                        break;
+                    case 7://Obstacles: 7
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("7");//Set Text as 7
+                        break;
+                    case 8://Obstacles: 8
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("8");//Set Text as 8
+                        break;
+                    case 9://Obstacles: 9
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("9");//Set Text as 9
+                        break;
+                    case 10://Obstacles: 10
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("0");//Set Text as 0
+                        break;
+                    case 11://Obstacles: V
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("V");//Set Text as V
+                        break;
+                    case 12://Obstacles: W
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("W");//Set Text as W
+                        break;
+                    case 13://Obstacles: X
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("X");//Set Text as X
+                        break;
+                    case 14://Obstacles: Y
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("Y");//Set Text as Y
+                        break;
+                    case 15://Obstacles: Z
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("Z");//Set Text as Z
+                        break;
+                    case 100://Trail
+                        mapPos[y][x].setBackgroundColor(0x709DF9FF);//Set bg color of the map
+                        //mapPos[y][x].setText("☼");//Set Text as ☼
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
+                        break;
+                    case 20: //Waypoint
+                        mapPos[y][x].setBackgroundColor(0x7000F900);//Set bg color of the map
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set the background color of the map to be red
+                        mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be red
                         break;
                 }
 
@@ -810,6 +877,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int[] coordinates = new int[2];
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
+
+        //Clear Texts for the robot
+        mapPos[coordinates[1]-1][coordinates[0]-1].setText("");//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setText("");//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setText("");//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setText("");//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setText("");//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setText("");//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setText("");//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setText("");//Bottom-Right of the robot
 
         //Set the map position of the robot:
         mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xF0F0F000);//Top-Left of the robot
