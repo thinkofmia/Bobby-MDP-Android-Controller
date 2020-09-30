@@ -854,6 +854,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     case 100://Trail
                         mapPos[y][x].setBackgroundColor(0x709DF9FF);//Set bg color of the map
+                        mapPos[y][x].setText("☼");//Set Text as ☼
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
@@ -868,6 +870,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int[] coordinates = new int[2];
         coordinates[0] = mapView.getCoordinates()[0];//Get x-coordinate
         coordinates[1] = mapView.getCoordinates()[1];//Get y-coordinate
+
+        //Clear Texts for the robot
+        mapPos[coordinates[1]-1][coordinates[0]-1].setText("");//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setText("");//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setText("");//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setText("");//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setText("");//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setText("");//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setText("");//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setText("");//Bottom-Right of the robot
 
         //Set the map position of the robot:
         mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xF0F0F000);//Top-Left of the robot
