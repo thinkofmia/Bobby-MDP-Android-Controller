@@ -906,25 +906,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (direction){
             case "North":
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("↑↑");
+                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
                 //Set Color
                 mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70FF00FF);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("↓↓");
+                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
                 //Set Color
                 mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70FF00FF);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]+1].setText("⇉");
+                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70FF00FF);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]-1].setText("⇇");
+                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
                 //Set Color
                 mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70FF00FF);//Left of the robot
                 break;
