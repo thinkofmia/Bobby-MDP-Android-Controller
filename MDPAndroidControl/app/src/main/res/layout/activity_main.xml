@@ -1929,16 +1929,15 @@
 
     <Switch
         android:id="@+id/tiltSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="67dp"
+        android:layout_height="22dp"
         android:text="Tilt"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/exploreButton"
@@ -1958,7 +1957,7 @@
         android:layout_marginBottom="4dp"
         android:text="BT Status: Waiting"
         app:layout_constraintBottom_toBottomOf="@+id/spbutton"
-        app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/exploreButton" />
 
     <TextView
@@ -1967,7 +1966,7 @@
         android:layout_height="wrap_content"
         android:text="Status: Waiting"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothStatus"
-        app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/exploreButton"
         app:layout_constraintTop_toTopOf="parent" />
 
