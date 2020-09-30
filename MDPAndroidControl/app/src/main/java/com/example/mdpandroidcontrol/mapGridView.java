@@ -96,9 +96,19 @@ public class mapGridView {
         direction = "North";//Sets the robot direction to face North
         if (pos_y<numRows-2){//If the robot's y-coordinate is less than number of rows - 2
             pos_y += 1;//Increment the y-coordinate by 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             return "Moving up...";//Returns moving up message
         }
         else return restricted_movement_msg;//Returns default restricted movement message
+    }
+
+    //Function to set the trail of the robot
+    public void setTrail(int x, int y){
+        mapper[y][x]=100;
+        if (mapper[y+1][x]!=100)mapper[y+1][x]=-1;
+        if (mapper[y-1][x]!=100)mapper[y-1][x]=-1;
+        if (mapper[y][x+1]!=100)mapper[y][x+1]=-1;
+        if (mapper[y][x-1]!=100)mapper[y][x-1]=-1;
     }
 
     //Function to move the robot down
@@ -106,6 +116,7 @@ public class mapGridView {
         direction = "South";//Sets the robot direction to face South
         if (pos_y>1){//If the robot's y-coordinate is more than 1
             pos_y -= 1;//Decrement the y-coordinate by 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             return "Moving down...";//Returns moving down message
         }
         else return restricted_movement_msg;//Returns default restricted movement message
@@ -116,6 +127,7 @@ public class mapGridView {
         direction = "West";//Sets the robot direction to face West
         if (pos_x>1){//If the robot's x-coordinate is more than 0
             pos_x -= 1;//Decrement the x-coordinate by 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             return "Moving left...";//Returns moving left message
         }
         else return restricted_movement_msg;//Returns default restricted movement message
@@ -126,6 +138,7 @@ public class mapGridView {
         direction = "East";//Sets the robot direction to face East
         if (pos_x<numColumns-2){//If the robot's y-coordinate is less than the number of rows - 1
             pos_x += 1;//Increment the x-coordinate by 1
+            setTrail(pos_x,pos_y);//Sets the trail of the robot
             return "Moving right...";//Returns moving right message
         }
         else return restricted_movement_msg;//Returns default restricted movement message

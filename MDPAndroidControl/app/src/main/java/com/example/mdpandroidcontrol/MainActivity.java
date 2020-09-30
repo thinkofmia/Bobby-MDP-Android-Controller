@@ -668,8 +668,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.settings, menu);
-        getMenuInflater().inflate(R.menu.lock, menu);
-        getMenuInflater().inflate(R.menu.log, menu);
         getMenuInflater().inflate(R.menu.bluetooth, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -855,8 +853,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         mapPos[y][x].setText("Z");//Set Text as Z
                         break;
                     case 100://Trail
-                        mapPos[y][x].setBackgroundColor(0x700000FF);//Set bg color of the map
-                        mapPos[y][x].setText("Z");//Set Text as Z
+                        mapPos[y][x].setBackgroundColor(0x709DF9FF);//Set bg color of the map
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
