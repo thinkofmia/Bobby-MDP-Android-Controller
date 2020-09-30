@@ -11,28 +11,28 @@
 
     <ListView
         android:id="@+id/lvNewDevices"
-        android:layout_width="201dp"
-        android:layout_height="214dp"
+        android:layout_width="224dp"
+        android:layout_height="275dp"
+        android:background="#E5E5E5"
         android:listSelector="#bcbcbc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lvPairedDevices"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123"
-        android:background="#E5E5E5"/>
+        app:layout_constraintVertical_bias="0.122" />
 
     <ListView
         android:id="@+id/lvPairedDevices"
-        android:layout_width="201dp"
-        android:layout_height="214dp"
+        android:layout_width="237dp"
+        android:layout_height="271dp"
+        android:background="#E5E5E5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123"
-        android:background="#E5E5E5"/>
+        app:layout_constraintVertical_bias="0.123" />
 
     <Button
         android:id="@+id/btnDiscover"
@@ -138,7 +138,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009"
-        android:background="#E5E5E5"/>
+        android:background="@drawable/rounded_corner"
+        />
 
     <TextView
         android:id="@+id/pairedStatus"
@@ -151,19 +152,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.008"
-        android:background="#E5E5E5"/>
-
-    <ScrollView
-        android:layout_width="604dp"
-        android:layout_height="452dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="506dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        android:background="@drawable/rounded_corner"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
