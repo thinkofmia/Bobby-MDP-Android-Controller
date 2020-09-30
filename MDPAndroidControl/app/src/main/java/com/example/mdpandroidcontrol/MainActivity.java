@@ -790,10 +790,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 switch (currentMap[y][x]){
                     case 0://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
-                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
+                        mapPos[y][x].setBackgroundColor(0x7000F0FF);//Set the background color of the map to be white
                         break;
                     case -1://Explored
-                        mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
+                        mapPos[y][x].setBackgroundColor(0xD000F0FF);//Set the background color of the map to be white
                         break;
                     case 1://Obstacles: Arrow Up
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map

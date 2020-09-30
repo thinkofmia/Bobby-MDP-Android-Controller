@@ -152,7 +152,7 @@ public class mapGridView {
         if (mapper[y-1][x]==0)mapper[y-1][x]=-1;
         if (mapper[y][x+1]==0)mapper[y][x+1]=-1;
         if (mapper[y][x-1]==0)mapper[y][x-1]=-1;
-        
+
     }
 
     //Function to move the robot down
