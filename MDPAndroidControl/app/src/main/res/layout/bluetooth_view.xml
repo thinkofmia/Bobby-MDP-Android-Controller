@@ -5,34 +5,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#14213D"
+    android:background="#212529"
     >
 
 
     <ListView
         android:id="@+id/lvNewDevices"
-        android:layout_width="224dp"
-        android:layout_height="275dp"
-        android:background="#E5E5E5"
+        android:layout_width="241dp"
+        android:layout_height="261dp"
+        android:background="@drawable/rounded_corner"
         android:listSelector="#bcbcbc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lvPairedDevices"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.226" />
+
 
     <ListView
         android:id="@+id/lvPairedDevices"
-        android:layout_width="237dp"
-        android:layout_height="271dp"
-        android:background="#E5E5E5"
+        android:layout_width="241dp"
+        android:layout_height="261dp"
+        android:background="@drawable/rounded_corner"
+        android:listSelector="#bcbcbc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <Button
         android:id="@+id/btnDiscover"
@@ -40,12 +42,9 @@
         android:layout_height="49dp"
         android:text="Discover"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/btnStartConnection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnStartConnection"
@@ -57,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.501" />
 
     <EditText
         android:id="@+id/outgoingText"
@@ -117,43 +116,49 @@
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="46dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toEndOf="@+id/btnStartConnection"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.502" />
 
     <TextView
         android:id="@+id/deviceSearchStatus"
         android:layout_width="197dp"
         android:layout_height="33dp"
+        android:background="@drawable/rounded_corner"
         android:text="Search Status"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lvNewDevices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009"
-        android:background="@drawable/rounded_corner"
-        />
+        app:layout_constraintVertical_bias="0.832" />
 
     <TextView
         android:id="@+id/pairedStatus"
-        android:layout_width="201dp"
-        android:layout_height="33dp"
+        android:layout_width="236dp"
+        android:layout_height="36dp"
+        android:background="@drawable/rounded_corner"
         android:text="Paired Status"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lvPairedDevices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008"
-        android:background="@drawable/rounded_corner"
-        />
+        app:layout_constraintVertical_bias="0.827" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="46dp"
+        android:layout_height="38dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="235dp"
+        tools:layout_editor_absoluteY="104dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

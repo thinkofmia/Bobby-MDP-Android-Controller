@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
 
     //Data Type to send
-    String sendStartExploration = "explore";
-    String sendStartFastest = "fastest";
+    String sendStartExploration = "EX";
+    String sendStartFastest = "FP";
     String sendManualControl = "control";
     String sendWaypoint = "waypoint";
     final String sendCustomText = "";
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("debugMsgs", "onCreate");//Create a debug message when the app is created
+        Log.d("debugMsgs", "onCreate"); //Create a debug message when the app is created
 
         connectedDevice = null;
         connectedState = false;
@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //Log.d("debugMsgs", "Sending Input: "+customInput.getText());//Create a debug message when the app is created
 
-        //REGISTER BROADCAST RECEIVER FOR INCOMING MSG
+        //REGISTER BROADCAST RECEIVER FOR MAINTAINING BLUETOOTH CONNECTION
         LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
 
         //Onclick function for sendInput
@@ -1100,5 +1100,86 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+
+    //BROADCAST RECEIVER FOR INCOMING MESSAGE
+    BroadcastReceiver incomingMsgReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String msg = intent.getStringExtra("receivingMsg");
+            //incomingText.setText(msg);
+
+            Log.d(TAG, "Receiving incomingMsg!!!" + msg);
+
+            //FILTER EMPTY AND CONCATENATED STRING FROM RECEIVING CHANNEL
+//            if (msg.length() > 7 && msg.length() < 345) {
+//
+//                //CHECK IS STARTING STRING FOR ANDROID
+//                if (msg.substring(0, 7).equals("Android")) {
+//
+//                    String[] filteredMsg = delimiterMsg(msg.replaceAll(" ", "").replaceAll("\\n", "").trim(), "\\|");
+//
+//                    Log.d(TAG, "Stage 1: " + filteredMsg[2]);
+//
+//                    switch (filteredMsg[2]) {
+//
+//
+//                        case "arenaupdate":
+//
+//                            String[] mazeInfo = delimiterMsg(filteredMsg[3], ",");
+//
+//                            try {
+//                                //ENSURE ROBOT COORDINATES IS WITHIN RANGE
+//                                if (Integer.parseInt(mazeInfo[2]) > 0 && Integer.parseInt(mazeInfo[2]) < 14 && Integer.parseInt(mazeInfo[3]) > 0 && Integer.parseInt(mazeInfo[3]) < 19) {
+//
+//                                    myMaze.updateMaze(mazeInfo, autoUpdate);
+//
+//                                }
+//                                //SET ROBOT STATUS TO STOP FOR EXPLORATION WHEN ROBOT RETURN TO ORIGINAL POSITION
+//                                if (mazeInfo[2].equals("13") && mazeInfo[3].equals("18") && robotStatus.getText().equals(getString(R.string.FastestPath))) {
+//                                    robotStatus.setText(R.string.Robot_Idle);
+//                                }
+//                            }
+//                            catch (Exception e){
+//                                e.printStackTrace();
+//                            }
+//                            break;
+//
+//                        case "robotstatus":
+//                            Log.d(TAG, "RobotStatus: " + filteredMsg[3]);
+//
+//                            try {
+//                                if (filteredMsg[3].equals("stop")) {
+//                                    robotStatus.setText(R.string.Robot_Idle);
+//                                } else if (filteredMsg[3].equals("moving")) {
+//                                    robotStatus.setText(R.string.Robot_Moving);
+//                                }
+//                            }
+//                            catch (Exception e){
+//                                e.printStackTrace();
+//                            }
+//                            break;
+//
+//                        case "hex":
+//
+//                            try {
+//                                String[] mapDescriptor = delimiterMsg(filteredMsg[3], ",");
+//                                mapDescriptor[0] = "Part1: " + mapDescriptor[0].toUpperCase();
+//                                mapDescriptor[1] = "Part2: " + mapDescriptor[1].toUpperCase();
+//
+//                                md5ExplorationText.setText(mapDescriptor[0]);
+//                                md5ObstacleText.setText(mapDescriptor[1]);
+//                                robotStatus.setText(R.string.Robot_Idle);
+//                            }
+//                            catch (Exception e){
+//                                e.printStackTrace();
+//                            }
+//                            break;
+//                    }
+//                }
+//            }
+        }
+    };
 }
 

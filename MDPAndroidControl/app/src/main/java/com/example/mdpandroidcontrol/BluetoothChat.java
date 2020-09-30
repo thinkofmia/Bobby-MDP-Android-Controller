@@ -70,52 +70,13 @@ public class BluetoothChat {
 
                 String incomingMessage = new String(buffer, 0, bytes);
                 Log.d(TAG, "InputStream: " + incomingMessage);
-                //au|oba
-                if(incomingMessage.length() >=6 && incomingMessage.substring(0,6).equals("au|exp")){
-                    exploredString = incomingMessage;
-                }
 
-                else if (incomingMessage.length() >=6 && incomingMessage.substring(0,6).equals("au|obs")) {
-                    if (exploredString != null) {
-                        Intent incomingMsgIntent = new Intent("IncomingMsg");
-                        incomingMsgIntent.putExtra("receivingMsg", exploredString);
-                        LocalBroadcastManager.getInstance(myContext).sendBroadcast(incomingMsgIntent);
-
-                        Intent incomingMsgIntent2 = new Intent("IncomingMsg");
-                        incomingMsgIntent2.putExtra("receivingMsg", incomingMessage);
-                        LocalBroadcastManager.getInstance(myContext).sendBroadcast(incomingMsgIntent2);
-
-                        exploredString = null;
-                    }
-                    else{
-                    }
-                }
-                else{
-                    Intent incomingMsgIntent = new Intent("IncomingMsg");
-                    incomingMsgIntent.putExtra("receivingMsg", incomingMessage);
-                    LocalBroadcastManager.getInstance(myContext).sendBroadcast(incomingMsgIntent);
-                }
+                //BROADCAST INCOMING MSG
+                Intent incomingMsgIntent = new Intent("IncomingMsg");
+                incomingMsgIntent.putExtra("receivingMsg", incomingMessage);
+                LocalBroadcastManager.getInstance(myContext).sendBroadcast(incomingMsgIntent);
 
             } catch (IOException e) {
-
-                try {
-                    myInStream.close();
-                } catch (IOException e1){
-
-                }
-
-                try {
-                    myOutStream.close();
-                } catch (IOException e2){
-
-                }
-
-                try {
-                    myBtSocket.close();
-                } catch (IOException e3){
-
-                }
-
 
                 //BROADCAST CONNECTION MSG
                 Intent connectionStatusIntent = new Intent("btConnectionStatus");
@@ -135,6 +96,7 @@ public class BluetoothChat {
 
         }
     }
+
 
     /*
     //CALL THIS FROM MAIN ACTIVITY TO SEND DATA TO REMOTE DEVICE (ROBOT)//

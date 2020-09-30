@@ -131,4 +131,8 @@ public class mapGridView {
         else return restricted_movement_msg;//Returns default restricted movement message
     }
 
+    public void updateGrid(String msg){
+        
+    }
+
 }
