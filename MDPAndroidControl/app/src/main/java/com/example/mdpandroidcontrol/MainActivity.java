@@ -794,12 +794,73 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     case -1://Explored
                         mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
                         break;
-                    case 1://Obstacles
+                    case 1://Obstacles: Arrow Up
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC15");//Set Text as 🠕
+                        break;
+                    case 2://Obstacles: Arrow Down
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC17");//Set Text as 🠗
+                        break;
+                    case 3://Obstacles: Arrow Right
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("➞");//Set Text as ➞
+                        break;
+                    case 4://Obstacles: Arrow Left
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("\uD83E\uDC14");//Set Text as 🠔
+                        break;
+                    case 5://Obstacles: Go
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("⦿");//Set Text as ⦿
+                        break;
+                    case 6://Obstacles: 6
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("6");//Set Text as 6
+                        break;
+                    case 7://Obstacles: 7
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("7");//Set Text as 7
+                        break;
+                    case 8://Obstacles: 8
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("8");//Set Text as 8
+                        break;
+                    case 9://Obstacles: 9
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("9");//Set Text as 9
+                        break;
+                    case 10://Obstacles: 10
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("0");//Set Text as 0
+                        break;
+                    case 11://Obstacles: V
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("V");//Set Text as V
+                        break;
+                    case 12://Obstacles: W
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("W");//Set Text as W
+                        break;
+                    case 13://Obstacles: X
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("X");//Set Text as X
+                        break;
+                    case 14://Obstacles: Y
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("Y");//Set Text as Y
+                        break;
+                    case 15://Obstacles: Z
+                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
+                        mapPos[y][x].setText("Z");//Set Text as Z
+                        break;
+                    case 100://Trail
+                        mapPos[y][x].setBackgroundColor(0x700000FF);//Set bg color of the map
+                        mapPos[y][x].setText("Z");//Set Text as Z
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-                        mapPos[y][x].setBackgroundColor(0x70FF0000);//Set the background color of the map to be red
+                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be red
                         break;
                 }
 
