@@ -621,6 +621,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Swtich-case for current mode
         switch (currentMode){
             case "Set Waypoint":
+                mapView.setWaypoint(x,y);//Set way point on the map
                 if (mapMode=="Auto") updateMap();//Update map
                 sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
@@ -762,7 +763,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         /**
          * image ids:
-         * 0: Empty
+         * -1: Explored
+         * 0: Unexplored
          * 1: Up Arrow
          * 2: Down Arrow
          * 3: Right Arrow
@@ -778,6 +780,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * 13: Alphabet X
          * 14: Alphabet Y
          * 15: Alphabet Z
+         * 100: Trail
+         * 20: Waypoint
          */
 
         //For loop to run the map
@@ -855,6 +859,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     case 100://Trail
                         mapPos[y][x].setBackgroundColor(0x709DF9FF);//Set bg color of the map
                         mapPos[y][x].setText("☼");//Set Text as ☼
+                        //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
+                        break;
+                    case 20: //Waypoint
+                        mapPos[y][x].setBackgroundColor(0x7000F900);//Set bg color of the map
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     default:

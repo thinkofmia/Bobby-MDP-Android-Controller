@@ -30,6 +30,7 @@ public class mapGridView {
     private String direction = "North";//Sets the default position of the robot to be North
     final String restricted_movement_msg = "Stopped";//Default string message for restricted movement.
     private int[][] mapper = new int[20][15];//Create a map of strings
+    private int[] waypoint = new int[2];//Create coordinate of waypoint
 
     //Keywords in Mapper:
     /**
@@ -51,6 +52,7 @@ public class mapGridView {
         //Set coordinates
         pos_x = coord_x;
         pos_y = coord_y;
+        clearMapper();//Restart map
     }
 
     //Get Columns
@@ -75,10 +77,22 @@ public class mapGridView {
     public void clearMapper() {
         //Loop for all the positions of the map
         for (int y = 0; y < numRows; y++) {
-            for (int x=0; y < numColumns; x++){
-                mapper[y][x] = -1;
+            for (int x=0; x < numColumns; x++){
+                mapper[y][x] = 0;
             }
         }
+    }
+
+    public void setWaypoint(int x, int y){
+        waypoint[0] = x;//Sets the x-coordinate of the waypoint
+        waypoint[1] = y;//Sets the y-coordinate of the waypoint
+        //Loop the map to find any other waypoint
+        for (int j = 0; j < numRows; j++) {
+            for (int i=0; i < numColumns; i++){
+                if (mapper[j][i]==20)mapper[j][i] = 0;
+            }
+        }
+        mapper[y][x] = 20;//Set the waypoint coordinate
     }
 
     public void setRobotPosition(){
@@ -104,11 +118,11 @@ public class mapGridView {
 
     //Function to set the trail of the robot
     public void setTrail(int x, int y){
-        mapper[y][x]=100;
-        if (mapper[y+1][x]!=100)mapper[y+1][x]=-1;
-        if (mapper[y-1][x]!=100)mapper[y-1][x]=-1;
-        if (mapper[y][x+1]!=100)mapper[y][x+1]=-1;
-        if (mapper[y][x-1]!=100)mapper[y][x-1]=-1;
+        if (mapper[y][x]!=20)mapper[y][x]=100;
+        if (mapper[y+1][x]!=100 && mapper[y+1][x]!=20)mapper[y+1][x]=-1;
+        if (mapper[y-1][x]!=100 && mapper[y-1][x]!=20)mapper[y-1][x]=-1;
+        if (mapper[y][x+1]!=100 && mapper[y][x+1]!=20)mapper[y][x+1]=-1;
+        if (mapper[y][x-1]!=100 && mapper[y][x-1]!=20)mapper[y][x-1]=-1;
     }
 
     //Function to move the robot down
