@@ -640,7 +640,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             String result = "";
             String sendThisCode;
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            ;
             switch (option) {
                 case 2:
                     //Sets string message
@@ -858,7 +857,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     case 100://Trail
                         mapPos[y][x].setBackgroundColor(0x709DF9FF);//Set bg color of the map
-                        mapPos[y][x].setText("☼");//Set Text as ☼
+                        //mapPos[y][x].setText("☼");//Set Text as ☼
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     case 20: //Waypoint
@@ -867,7 +866,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be red
+                        mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be red
                         break;
                 }
 

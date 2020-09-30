@@ -55,6 +55,7 @@ public class mapGridView {
         clearMapper();//Restart map
     }
 
+
     //Get Columns
     public int getColumns(){
         //Return the number of columns in the maze
@@ -89,7 +90,9 @@ public class mapGridView {
         //Loop the map to find any other waypoint
         for (int j = 0; j < numRows; j++) {
             for (int i=0; i < numColumns; i++){
-                if (mapper[j][i]==20)mapper[j][i] = 0;
+                if (mapper[j][i]==20){
+
+                }mapper[j][i] = 0;
             }
         }
         mapper[y][x] = 20;//Set the waypoint coordinate
@@ -102,7 +105,27 @@ public class mapGridView {
 
     //Get direction
     public String getDirection(){
+        mapper[1][1] = 1;
+        mapper[2][2] = 2;
+        mapper[3][3] = 3;
+        mapper[4][4] = 4;
+        mapper[5][5] = 5;
+        mapper[6][6] = 6;
+        mapper[7][7] = 7;
+        mapper[8][8] = 8;
+        mapper[9][9] = 9;
+        mapper[10][10] = 10;
+        mapper[11][11] = 11;
+        mapper[12][12] = 12;
+        mapper[13][13] = 13;
+        mapper[14][14] = 14;
+        mapper[0][0] = 15;
+        mapper[10][0] = 23332;
+        mapper[10][1] = 23332;
+        mapper[10][2] = 23332;
+        mapper[10][3] = 23332;
         return direction;//Return direction of robot upon request
+
     }
 
     //Function to move the robot up
@@ -118,11 +141,11 @@ public class mapGridView {
 
     //Function to set the trail of the robot
     public void setTrail(int x, int y){
-        if (mapper[y][x]!=20)mapper[y][x]=100;
-        if (mapper[y+1][x]!=100 && mapper[y+1][x]!=20)mapper[y+1][x]=-1;
-        if (mapper[y-1][x]!=100 && mapper[y-1][x]!=20)mapper[y-1][x]=-1;
-        if (mapper[y][x+1]!=100 && mapper[y][x+1]!=20)mapper[y][x+1]=-1;
-        if (mapper[y][x-1]!=100 && mapper[y][x-1]!=20)mapper[y][x-1]=-1;
+        if (mapper[y][x]==0 || mapper[y][x]==-1)mapper[y][x]=100;
+        if (mapper[y+1][x]==0)mapper[y+1][x]=-1;
+        if (mapper[y-1][x]==0)mapper[y-1][x]=-1;
+        if (mapper[y][x+1]==0)mapper[y][x+1]=-1;
+        if (mapper[y][x-1]==0)mapper[y][x-1]=-1;
     }
 
     //Function to move the robot down
