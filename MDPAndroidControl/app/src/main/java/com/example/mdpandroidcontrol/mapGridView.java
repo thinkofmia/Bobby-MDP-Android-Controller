@@ -242,7 +242,7 @@ public class mapGridView {
             int strLength = mazeInfo.length();
 
             int rows = (int) Math.floor(strLength/15);
-
+            int columns = (int) 
 
             int counter = 0;
 
