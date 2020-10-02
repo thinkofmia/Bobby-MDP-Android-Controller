@@ -10,6 +10,7 @@
 
     <Button
         android:id="@+id/spbutton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -23,17 +24,20 @@
 
     <Button
         android:id="@+id/button_waypoint"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
         android:text="Waypoint"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_startcoord"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -55,6 +59,7 @@
 
         <Button
             android:id="@+id/predefinedStr2"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="String 2"
@@ -66,6 +71,7 @@
 
         <Button
             android:id="@+id/predefinedStr1"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -112,6 +118,7 @@
 
         <Button
             android:id="@+id/button_manual"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manual"
@@ -120,6 +127,7 @@
 
         <Button
             android:id="@+id/button_auto"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Auto"
@@ -2214,7 +2222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
-                android:textColor="@color/mapLabelColor"/>
+                android:textColor="@color/mapLabelColor" />
 
             <TextView
                 android:id="@+id/labelx9"
@@ -2276,6 +2284,7 @@
 
     <Button
         android:id="@+id/exploreButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
