@@ -16,7 +16,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
-        android:text="Fastest"
+        android:text="Fast"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toEndOf="@+id/button_startcoord"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
-        android:text="Waypoint"
+        android:text="WP"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
-        android:text="Startpoint"
+        android:text="SP"
         app:layout_constraintStart_toEndOf="@+id/button_waypoint"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -2287,7 +2287,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Explore"
+        android:text="EX"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toEndOf="@+id/spbutton"
         app:layout_constraintTop_toTopOf="parent"
