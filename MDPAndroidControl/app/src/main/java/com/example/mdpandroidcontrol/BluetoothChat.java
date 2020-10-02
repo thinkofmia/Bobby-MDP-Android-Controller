@@ -98,6 +98,7 @@ public class BluetoothChat {
     }
 
 
+
     /*
     //CALL THIS FROM MAIN ACTIVITY TO SEND DATA TO REMOTE DEVICE (ROBOT)//
     */

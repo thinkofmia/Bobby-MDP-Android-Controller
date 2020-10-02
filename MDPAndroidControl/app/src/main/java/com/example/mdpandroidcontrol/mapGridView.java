@@ -31,6 +31,9 @@ public class mapGridView {
     final String restricted_movement_msg = "Stopped";//Default string message for restricted movement.
     private int[][] mapper = new int[20][15];//Create a map of strings
     private int[] waypoint = new int[2];//Create coordinate of waypoint
+    private static String exploredString = "", obstacleString = "";
+    private static final int COLS = 15, ROWS = 20;
+    private static String robot_direction;
 
     //Keywords in Mapper:
     /**
@@ -181,8 +184,101 @@ public class mapGridView {
         else return restricted_movement_msg;//Returns default restricted movement message
     }
 
-    public void updateGrid(String msg){
-        
+
+    //UPDATE THE MAZE
+    public void updateMaze(String purpose, String mazeInfo){
+
+//        Log.d(TAG, "Stage 2: " + mazeInfo[0] + " " + mazeInfo[1] + " " + mazeInfo[2] + " " + mazeInfo[3]);
+//        Log.d(TAG, "Stage 3-1: " + mazeInfo[1]);
+//        Log.d(TAG, "Stage 3-1: " + mazeInfo[2]);
+//        Log.d(TAG, "Stage 3-1: " + mazeInfo[3]);
+
+//        robot_direction = mazeInfo[1];
+//        switch (robot_direction) {
+//            case "0": direction = "north"; break;
+//            case "1": direction = "east"; break;
+//            case "2": direction = "south"; break;
+//            case "3": direction = "west"; break;
+//
+//        }
+//        robotCols = Integer.parseInt(mazeInfo[2]);
+//        robotRow = 19 - Integer.parseInt(mazeInfo[3]);
+
+
+        if (purpose.equals("exp"))
+        {
+            exploredString = mazeInfo;
+            mazeInfo = hexToBinary(mazeInfo);
+            mazeInfo = mazeInfo.substring(2, mazeInfo.length()-2);
+
+            int counter = 0;
+            for (int y = 0; y<ROWS; y++){
+                for (int x = 0;x<COLS; x++){
+                    Character compare = mazeInfo.charAt(counter);
+                    if(compare.equals("1")){
+                        mapper[y][x] = -1;
+                    }
+                    counter++;
+                }
+            }
+
+        }
+
+        else if (purpose.equals("obs"))
+        {
+            obstacleString = mazeInfo;
+            Log.d(TAG, mazeInfo);
+            mazeInfo = hexToBinary(mazeInfo);
+
+            Log.d(TAG, mazeInfo);
+
+            int strLength = mazeInfo.length();
+
+            int rows = (int) Math.floor(strLength/15);
+
+
+            int counter = 0;
+
+            for (int y = 0;y < ROWS; y++)
+            {
+                for (int x = 0; x < COLS; x++)
+                {
+                    if (mapper[y][x].getExplored() == 1)
+                    {
+                        Log.d(TAG, "Explored Cell at " + x + "-"+ y);
+                        Log.d(TAG, "Char recieved"+mazeInfo.charAt(counter));
+                        if (mazeInfo.charAt(counter) == '1')
+                        {
+                            mapper[y][x]= ;
+                        }
+
+                        counter++;
+                    }
+                }
+            }
+        }
+
+        Log.d(TAG, "Stage 4: ");
+
     }
+
+
+    public String hexToBinary(String hex){
+        int supposedLength = hex.length() * 4;
+        int toAppendZero = supposedLength - new BigInteger(hex, 16).toString(2).length();
+
+        StringBuilder sb1 = new StringBuilder();
+
+        for (int i = 0 ;i < toAppendZero;i++){
+            sb1.append(0);
+        }
+
+        return sb1.toString() + new BigInteger(hex, 16).toString(2);
+    }
+
+    public String[] getMDFStrings() {
+        return new String[] {exploredString, obstacleString};
+    }
+
 
 }

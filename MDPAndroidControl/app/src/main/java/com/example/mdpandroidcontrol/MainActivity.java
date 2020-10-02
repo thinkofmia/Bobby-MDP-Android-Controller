@@ -1191,73 +1191,102 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Log.d(TAG, "Receiving incomingMsg!!!" + msg);
 
             //FILTER EMPTY AND CONCATENATED STRING FROM RECEIVING CHANNEL
-//            if (msg.length() > 7 && msg.length() < 345) {
-//
-//                //CHECK IS STARTING STRING FOR ANDROID
-//                if (msg.substring(0, 7).equals("Android")) {
-//
-//                    String[] filteredMsg = delimiterMsg(msg.replaceAll(" ", "").replaceAll("\\n", "").trim(), "\\|");
-//
-//                    Log.d(TAG, "Stage 1: " + filteredMsg[2]);
-//
-//                    switch (filteredMsg[2]) {
-//
-//
-//                        case "arenaupdate":
-//
-//                            String[] mazeInfo = delimiterMsg(filteredMsg[3], ",");
-//
-//                            try {
-//                                //ENSURE ROBOT COORDINATES IS WITHIN RANGE
-//                                if (Integer.parseInt(mazeInfo[2]) > 0 && Integer.parseInt(mazeInfo[2]) < 14 && Integer.parseInt(mazeInfo[3]) > 0 && Integer.parseInt(mazeInfo[3]) < 19) {
-//
-//                                    myMaze.updateMaze(mazeInfo, autoUpdate);
-//
-//                                }
-//                                //SET ROBOT STATUS TO STOP FOR EXPLORATION WHEN ROBOT RETURN TO ORIGINAL POSITION
-//                                if (mazeInfo[2].equals("13") && mazeInfo[3].equals("18") && robotStatus.getText().equals(getString(R.string.FastestPath))) {
-//                                    robotStatus.setText(R.string.Robot_Idle);
-//                                }
-//                            }
-//                            catch (Exception e){
-//                                e.printStackTrace();
-//                            }
-//                            break;
-//
-//                        case "robotstatus":
-//                            Log.d(TAG, "RobotStatus: " + filteredMsg[3]);
-//
-//                            try {
-//                                if (filteredMsg[3].equals("stop")) {
-//                                    robotStatus.setText(R.string.Robot_Idle);
-//                                } else if (filteredMsg[3].equals("moving")) {
-//                                    robotStatus.setText(R.string.Robot_Moving);
-//                                }
-//                            }
-//                            catch (Exception e){
-//                                e.printStackTrace();
-//                            }
-//                            break;
-//
-//                        case "hex":
-//
-//                            try {
-//                                String[] mapDescriptor = delimiterMsg(filteredMsg[3], ",");
-//                                mapDescriptor[0] = "Part1: " + mapDescriptor[0].toUpperCase();
-//                                mapDescriptor[1] = "Part2: " + mapDescriptor[1].toUpperCase();
-//
-//                                md5ExplorationText.setText(mapDescriptor[0]);
-//                                md5ObstacleText.setText(mapDescriptor[1]);
-//                                robotStatus.setText(R.string.Robot_Idle);
-//                            }
-//                            catch (Exception e){
-//                                e.printStackTrace();
-//                            }
-//                            break;
-//                    }
-//                }
-//            }
+            //if (msg.length() > 7 && msg.length() < 345) {
+
+            //CHECK IS STARTING STRING FOR ANDROID
+            //if (msg.substring(0, 7).equals("Android")) {
+
+
+
+            String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), " ");
+
+            //Log.d(TAG, "Stage 1: " + filteredMsg[1]);
+
+            switch (filteredMsg[0]) {
+                case "MAP":
+                    explored_String = filteredMsg[1];
+                    obstacle_String = filteredMsg[2];
+                case "BOT_POS":
+                case "au":
+
+                    String[] mazeInfo = delimiterMsg(filteredMsg[2], ";");
+                    String purpose = filteredMsg[1];
+
+                    try {
+                        //ENSURE ROBOT COORDINATES IS WITHIN RANGE
+                        if (Integer.parseInt(mazeInfo[2]) > 0 && Integer.parseInt(mazeInfo[2]) < 14 && Integer.parseInt(mazeInfo[3]) > 0 && Integer.parseInt(mazeInfo[3]) < 19) {
+
+                            mapView.updateMaze(purpose, mazeInfo);
+
+                        }
+                        //SET ROBOT STATUS TO STOP FOR EXPLORATION WHEN ROBOT RETURN TO ORIGINAL POSITION
+                        if (mazeInfo[2].equals("13") && mazeInfo[3].equals("18") && robotStatus.getText().equals(getString(R.string.FastestPath))) {
+                            robotStatus.setText(R.string.Robot_Idle);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "rs":
+
+
+                    try {
+                        if (filteredMsg[1].equals("stop")) {
+                            robotStatus.setText(R.string.Robot_Idle);
+                        } else if (filteredMsg[1].equals("moving")) {
+                            robotStatus.setText(R.string.Robot_Moving);
+                        } else if (filteredMsg[1].equals("left")) {
+                            robotStatus.setText("Turn Left");
+                        } else if (filteredMsg[1].equals("right")) {
+                            robotStatus.setText("Turn Right");
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "done":
+
+                    try {
+                        String[] mdfStrings = myMaze.getMDFStrings();
+                        String exploredOrNot = mdfStrings[0];
+                        String obstacleOrNot = mdfStrings[1];
+
+
+                        md5ExplorationText.setText(exploredOrNot);
+
+                        md5ObstacleText.setText(obstacleOrNot);
+
+                        String displayNumberIds = myMaze.getAllNumberIds();
+                        displayNumberIds = displayNumberIds.substring(0, displayNumberIds.length()-1);
+                        incomingText.setText(displayNumberIds);
+
+                        robotStatus.setText(R.string.Robot_Idle);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "id":
+
+                    try {
+                        String idAndLocation = filteredMsg[1];
+                        myMaze.addNewNumberId(idAndLocation);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+            }
+
         }
     };
+
+    private String[] delimiterMsg(String msg, String delimiter) {
+
+        return (msg.toLowerCase()).split(delimiter);
+    }
 }
 
