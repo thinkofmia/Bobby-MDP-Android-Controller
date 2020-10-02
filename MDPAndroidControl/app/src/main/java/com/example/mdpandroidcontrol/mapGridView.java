@@ -132,7 +132,7 @@ public class mapGridView {
 
     //Get direction
     public String getDirection(){
-        //setFakeMapItems();//For debugging
+        setFakeMapItems();//For debugging
         return direction;//Return direction of robot upon request
 
     }
