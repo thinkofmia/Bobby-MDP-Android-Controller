@@ -55,7 +55,7 @@ public class mapGridView {
         //Set coordinates
         pos_x = coord_x;
         pos_y = coord_y;
-        clearMapper();//Restart map
+//        clearMapper();//Restart map
         setTrail(pos_x,pos_y);//Set trail on current starting point
     }
 
@@ -132,9 +132,13 @@ public class mapGridView {
 
     //Get direction
     public String getDirection(){
-        setFakeMapItems();//For debugging
+//        setFakeMapItems();//For debugging
         return direction;//Return direction of robot upon request
 
+    }
+
+    public void setDirection(String dir){
+        direction = dir;
     }
 
     //Function to move the robot up
@@ -193,7 +197,7 @@ public class mapGridView {
 
 
     //UPDATE THE MAZE
-    public void updateMaze(String purpose, String mazeInfo){
+    public void updateMaze(String purpose, String string1, String string2, String string3){
 
 //        Log.d(TAG, "Stage 2: " + mazeInfo[0] + " " + mazeInfo[1] + " " + mazeInfo[2] + " " + mazeInfo[3]);
 //        Log.d(TAG, "Stage 3-1: " + mazeInfo[1]);
@@ -211,59 +215,89 @@ public class mapGridView {
 //        robotCols = Integer.parseInt(mazeInfo[2]);
 //        robotRow = 19 - Integer.parseInt(mazeInfo[3]);
 
+        Log.d(TAG,"purpose"+purpose);
 
-        if (purpose.equals("exp"))
-        {
-            exploredString = mazeInfo;
-            mazeInfo = hexToBinary(mazeInfo);
-            mazeInfo = mazeInfo.substring(2, mazeInfo.length()-2);
+
+        if(purpose == "map"){
+            string1 = hexToBinary(string1);
+            string1 = string1.substring(2, string1.length()-2);
 
             int counter = 0;
             for (int y = 0; y<ROWS; y++){
                 for (int x = 0;x<COLS; x++){
-                    Character compare = mazeInfo.charAt(counter);
+                    Character compare = string1.charAt(counter);
                     if(compare.equals("1")){
                         mapper[y][x] = -1;
+                        Log.d(TAG, "change at"+y+";"+x);
                     }
                     counter++;
                 }
             }
 
-        }
 
-        else if (purpose.equals("obs"))
-        {
-            obstacleString = mazeInfo;
-            Log.d(TAG, mazeInfo);
-            mazeInfo = hexToBinary(mazeInfo);
 
-            Log.d(TAG, mazeInfo);
 
-            int strLength = mazeInfo.length();
+
+            string2 = hexToBinary(string2);
+
+            Log.d(TAG, string2);
+
+            int strLength = string2.length();
 
             int rows = (int) Math.floor(strLength/15);
-            int columns = (int) 
+            int columns = (int) strLength%15;
 
-            int counter = 0;
+            counter = 0;
 
-            for (int y = 0;y < ROWS; y++)
+            for (int y = 0;y < rows+1; y++)
             {
                 for (int x = 0; x < COLS; x++)
                 {
-                    if (mapper[y][x].getExplored() == 1)
-                    {
-                        Log.d(TAG, "Explored Cell at " + x + "-"+ y);
-                        Log.d(TAG, "Char recieved"+mazeInfo.charAt(counter));
-                        if (mazeInfo.charAt(counter) == '1')
-                        {
-                            mapper[y][x]= ;
-                        }
-
-                        counter++;
+                    if(y==rows & x == columns-1){
+                        break;
                     }
+
+
+                    Log.d(TAG, "Explored Cell at " + x + "-"+ y);
+                    Log.d(TAG, "Char received"+string2.charAt(counter));
+                    if (string2.charAt(counter) == '1')
+                    {
+                        mapper[y][x]= -2;
+                    }
+
+                    counter++;
+
                 }
             }
         }
+
+        if(purpose == "pos"){
+            Log.d(TAG, "pos: "+string1+","+string2+","+string3);
+            setCoordinates(Integer.parseInt(string1), Integer.parseInt(string1));
+
+            robot_direction = string3;
+            switch (robot_direction) {
+                case "n": setDirection("North"); break;
+                case "s": setDirection("South"); break;
+                case "e": setDirection("East"); break;
+                case "w": setDirection("West"); break;
+
+            }
+
+        }
+
+        if(purpose == "img"){
+            Log.d(TAG, "img: "+string1+","+string2+","+string3);
+            int y=Integer.parseInt(string1);
+            int x=Integer.parseInt(string2);
+
+
+//
+            int id = Integer.parseInt(string3);
+            mapper[y][x]=id;
+
+        }
+
 
         Log.d(TAG, "Stage 4: ");
 
