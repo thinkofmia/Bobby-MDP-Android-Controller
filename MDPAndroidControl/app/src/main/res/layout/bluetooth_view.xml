@@ -61,11 +61,8 @@
     <EditText
         android:id="@+id/outgoingText"
         android:layout_width="165dp"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
 
-        android:layout_marginStart="384dp"
-        android:layout_marginLeft="384dp"
-        android:layout_marginTop="688dp"
         android:background="@drawable/outgoingspeechbubble"
         android:lineSpacingExtra="2dp"
         android:paddingLeft="20dp"
@@ -75,19 +72,20 @@
         android:text="outgoing text"
         android:textColor="#000000"
         android:textSize="13.5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695"
         app:layout_constraintWidth_max="wrap"
         app:layout_constraintWidth_percent="0.8" />
 
     <TextView
         android:id="@+id/incomingText"
         android:layout_width="165dp"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
 
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="568dp"
         android:background="@drawable/incomingspeechbubble"
         android:lineSpacingExtra="2dp"
         android:paddingLeft="20dp"
@@ -97,8 +95,12 @@
         android:text="Incoming text"
         android:textColor="#000000"
         android:textSize="13.5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617"
         app:layout_constraintWidth_max="wrap"
         app:layout_constraintWidth_percent="0.8" />
 
@@ -128,16 +130,16 @@
 
     <TextView
         android:id="@+id/deviceSearchStatus"
-        android:layout_width="197dp"
-        android:layout_height="33dp"
+        android:layout_width="206dp"
+        android:layout_height="36dp"
         android:background="@drawable/rounded_corner"
         android:text="Search Status"
         app:layout_constraintBottom_toTopOf="@+id/lvNewDevices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.832" />
+        app:layout_constraintVertical_bias="0.827" />
 
     <TextView
         android:id="@+id/pairedStatus"
@@ -152,13 +154,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.827" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="46dp"
-        android:layout_height="38dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="104dp" />
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="101dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
