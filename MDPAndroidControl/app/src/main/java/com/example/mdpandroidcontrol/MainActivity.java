@@ -1,12 +1,5 @@
 package com.example.mdpandroidcontrol;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.preference.PreferenceManager;
-
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -20,19 +13,21 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
 
 import java.nio.charset.Charset;
 import java.util.UUID;
@@ -61,16 +56,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     final Button[][] mapPos = new Button[20][15];//Create map arrays of buttons
 
     //Data Type to send
-    String sendStartExploration = "EX";
-    String sendStartFastest = "FP";
+    String sendStartExploration = "EX"; // Android > Algo: Start Exploration
+    String sendStartFastest = "FP"; // Android > Algo: Start Fastest Path
     String sendManualControl = "control";
-    String sendWaypoint = "waypoint";
+    String sendWaypoint = "waypoint"; // Android > Algo: Set Waypoint
     final String sendCustomText = "";
     String sendGetDirection = "getDirection";
-    String sendTurnLeft = "A";
-    String sendTurnRight = "D";
-    String sendMoveForward = "W";
-    String sendMoveBack = "S";
+    String sendTurnLeft = "A"; // Android > Arduino: Go Left
+    String sendTurnRight = "D"; // Android > Arduino: Go Right
+    String sendMoveForward = "W"; // Android > Arduino: Go Forward
+    String sendMoveBack = "S"; // Android > Arduino: Go Back
+    String SendArena = "SA"; // Android > Algo: Send MDF String
     String sendMapRequest = "mapstatus";
     String sendStartCoord = "startcoord";
 
@@ -623,7 +619,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             case "Set Waypoint":
                 mapView.setWaypoint(x,y);//Set way point on the map
                 if (mapMode=="Auto") updateMap();//Update map
-                sendToRPi(sendWaypoint+"'("+x+","+y+")'");//Send to bluetooth
+                sendToRPi(sendWaypoint+"'|("+x+","+y+")'");//Send to bluetooth
                 return "Waypoint set to ("+x+", "+y+")";
             case "Start Coordinates":
                 mapView.setCoordinates(x,y);
@@ -790,18 +786,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 switch (currentMap[y][x]){
                     case 0://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
-                        mapPos[y][x].setBackgroundColor(0x70000000);//Set the background color of the map to be white
+                        mapPos[y][x].setBackgroundColor(0x7000F0FF);//Set the background color of the map to be white
                         break;
                     case -1://Explored
-                        mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
+                        mapPos[y][x].setBackgroundColor(0xD000F0FF);//Set the background color of the map to be white
                         break;
                     case 1://Obstacles: Arrow Up
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
-                        mapPos[y][x].setText("\uD83E\uDC15");//Set Text as 🠕
+                        mapPos[y][x].setText("↑");//Set Text as ↑
                         break;
                     case 2://Obstacles: Arrow Down
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
-                        mapPos[y][x].setText("\uD83E\uDC17");//Set Text as 🠗
+                        mapPos[y][x].setText("↓");//Set Text as ↓
                         break;
                     case 3://Obstacles: Arrow Right
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
@@ -809,7 +805,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     case 4://Obstacles: Arrow Left
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
-                        mapPos[y][x].setText("\uD83E\uDC14");//Set Text as 🠔
+                        mapPos[y][x].setText("←");//Set Text as ←
                         break;
                     case 5://Obstacles: Go
                         mapPos[y][x].setBackgroundColor(0x70FF0000);//Set bg color of the map
@@ -906,27 +902,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         switch (direction){
             case "North":
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("↑");
+                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
                 //Set Color
-                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70FF0000);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70FF00FF);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("↓");
+                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
                 //Set Color
-                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70FF0000);//Top of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70FF00FF);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]+1].setText("⇉");
+                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70FF0000);//Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70FF00FF);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]-1].setText("⇇");
+                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70FF0000);//Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70FF00FF);//Left of the robot
                 break;
         }
 

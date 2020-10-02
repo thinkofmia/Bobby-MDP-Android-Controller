@@ -56,6 +56,7 @@ public class mapGridView {
         pos_x = coord_x;
         pos_y = coord_y;
         clearMapper();//Restart map
+        setTrail(pos_x,pos_y);//Set trail on current starting point
     }
 
 
@@ -106,8 +107,8 @@ public class mapGridView {
         int coord_y = getCoordinates()[1];
     }
 
-    //Get direction
-    public String getDirection(){
+    //Set fake map, to test map items.
+    public void setFakeMapItems(){
         mapper[1][1] = 1;
         mapper[2][2] = 2;
         mapper[3][3] = 3;
@@ -127,6 +128,11 @@ public class mapGridView {
         mapper[10][1] = 23332;
         mapper[10][2] = 23332;
         mapper[10][3] = 23332;
+    }
+
+    //Get direction
+    public String getDirection(){
+        //setFakeMapItems();//For debugging
         return direction;//Return direction of robot upon request
 
     }
@@ -149,6 +155,7 @@ public class mapGridView {
         if (mapper[y-1][x]==0)mapper[y-1][x]=-1;
         if (mapper[y][x+1]==0)mapper[y][x+1]=-1;
         if (mapper[y][x-1]==0)mapper[y][x-1]=-1;
+
     }
 
     //Function to move the robot down
