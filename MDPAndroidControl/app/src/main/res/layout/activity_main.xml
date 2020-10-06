@@ -8,6 +8,17 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/imageStringView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
+        app:layout_constraintStart_toEndOf="@+id/mdfview"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
     <Button
         android:id="@+id/spbutton"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -205,6 +216,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize"
+                android:background="@mipmap/blue_ship_north_background"
                 android:textColor="@color/white" />
 
             <Button
@@ -2276,8 +2288,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -2299,6 +2309,7 @@
         android:layout_height="16dp"
         android:layout_marginBottom="4dp"
         android:text="BT Status: Waiting"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/spbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/exploreButton" />
@@ -2313,5 +2324,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/exploreButton"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mdfview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MDF"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 
@@ -102,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        TextView mdfView = findViewById(R.id.mdfview);//Find the mdf view box
+        TextView imageStringView = findViewById(R.id.imageStringView);//Find the image string view box
 
         //Buttons variables
         //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -789,7 +793,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 switch (currentMap[y][x]){
                     case 0://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
-                        mapPos[y][x].setBackgroundColor(0x7E404040);//Set the background color of the map to be white
+                        //mapPos[y][x].setBackgroundColor(0x7E404040);//Set the background color of the map to be white
                         break;
                     case -1://Explored
                         mapPos[y][x].setBackgroundColor(0x10000000);//Set the background color of the map to be white
@@ -865,7 +869,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-                        mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be red
+                        mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be black
+                        //mapPos[y][x].setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.bobby_up_button_background, null));
                         break;
                 }
 
