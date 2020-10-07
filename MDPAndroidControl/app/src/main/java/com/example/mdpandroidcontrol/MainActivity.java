@@ -1202,7 +1202,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-            String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), " ");
+            String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), "|");
 
             Log.d(TAG, "filteredmsg[0]" + filteredMsg[0]);
 
@@ -1237,16 +1237,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 case "bot_pos":
                     purpose = "pos";
 
-                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
+//                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
 
-                    Log.d(TAG, "filteredPos[0] "+filteredPos[0]);
-                    Log.d(TAG, "filteredPos[1]"+filteredPos[1]);
-                    Log.d(TAG, "filteredPos[2]"+filteredPos[2]);
+                    Log.d(TAG, "filteredMsg[0] "+filteredMsg[1]);
+                    Log.d(TAG, "filteredMsg[1]"+filteredMsg[2]);
+                    Log.d(TAG, "filteredMsg[2]"+filteredMsg[3]);
 
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
-                        mapView.updateMaze(purpose, filteredPos[0], filteredPos[1], filteredPos[2]);
+                        mapView.updateMaze(purpose, filteredMsg[1], filteredMsg[2], filteredMsg[3]);
 
                         if(mapMode == "Auto"){
                             updateMap();
