@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Image"
         android:textColor="@color/white"
+        android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toStartOf="@+id/tiltSwitch"
         app:layout_constraintStart_toStartOf="parent" />
@@ -23,25 +24,21 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:text="Fast"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toEndOf="@+id/button_startcoord"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_startcoord" />
 
     <Button
         android:id="@+id/button_waypoint"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
         android:text="WP"
         android:textColor="@android:color/white"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,12 +47,10 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
         android:text="SP"
-        app:layout_constraintStart_toEndOf="@+id/button_waypoint"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_waypoint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -165,8 +160,7 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/water_background_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_startcoord">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/positionLabel"
@@ -2293,24 +2287,21 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="EX"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toEndOf="@+id/spbutton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spbutton" />
 
     <TextView
         android:id="@+id/bluetoothStatus"
         android:layout_width="117dp"
         android:layout_height="16dp"
-        android:layout_marginBottom="16dp"
         android:text="BT Status: Waiting"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/spbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toEndOf="@+id/exploreButton" />
+        android:textSize="8sp"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exploreButton" />
 
     <TextView
         android:id="@+id/statusText"
@@ -2318,11 +2309,10 @@
         android:layout_height="wrap_content"
         android:text="Status: Waiting"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/bluetoothStatus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exploreButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="8sp"
+        app:layout_constraintBottom_toTopOf="@+id/mdfview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothStatus" />
 
     <TextView
         android:id="@+id/mdfview"
@@ -2330,6 +2320,7 @@
         android:layout_height="wrap_content"
         android:text="MDF"
         android:textColor="#FFFFFF"
+        android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/imageStringView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -2340,6 +2331,7 @@
         android:layout_height="wrap_content"
         android:text="Obstacle View"
         android:textColor="@color/white"
+        android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/mdfview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
