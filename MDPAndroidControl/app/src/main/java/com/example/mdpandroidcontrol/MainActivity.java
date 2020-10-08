@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     boolean currentActivity;
     Intent connectIntent;
     TextView connectionStatusBox;
+    TextView mdfString;
+
 
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -124,6 +126,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //tilt switch
         tiltSwitch = findViewById(R.id.tiltSwitch);
+
+        //mdf String text view
+        mdfString = findViewById(R.id.mdfview);
 
         //Map variables
         //Where [rows][columns]
@@ -1202,9 +1207,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-            String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), "|");
+            String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), "\\|");
 
-            Log.d(TAG, "filteredmsg[0]" + filteredMsg[0]);
+            Log.d(TAG, "filteredmsg[0] :" + filteredMsg[0]);
 
             //Log.d(TAG, "Stage 1: " + filteredMsg[1]);
 
@@ -1214,6 +1219,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     String obstacle_String = filteredMsg[2];
 
                     String purpose = "map";
+
+                    mdfString.setText(filteredMsg[1]+"|"+filteredMsg[2]);
 
                     Toast.makeText(MainActivity.this, "CASE MAP",
                             Toast.LENGTH_LONG).show();
