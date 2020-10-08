@@ -904,22 +904,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mapPos[coordinates[1]-1][coordinates[0]].setText("");//Top of the robot
         mapPos[coordinates[1]-1][coordinates[0]+1].setText("");//Top-Right of the robot
         mapPos[coordinates[1]][coordinates[0]-1].setText("");//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the934b00
         mapPos[coordinates[1]][coordinates[0]+1].setText("");//Right of the robot
         mapPos[coordinates[1]+1][coordinates[0]-1].setText("");//Bottom-Left of the robot
         mapPos[coordinates[1]+1][coordinates[0]].setText("");//Bottom of the robot
         mapPos[coordinates[1]+1][coordinates[0]+1].setText("");//Bottom-Right of the robot
 
         //Set the map position of the robot:
-        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Top-Left of the robot
-        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Top of the robot
-        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Top-Right of the robot
-        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Center of the robot
-        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Right of the robot
-        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Bottom-Left of the robot
-        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Bottom of the robot
-        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Bottom-Right of the robot
+        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF934b00);//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xFF934b00);//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF934b00);//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Bottom-Right of the robot
 
         //Get direction of the robot
         String direction = mapView.getDirection();//Get direction of the robot
@@ -928,26 +928,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             case "North":
                 //Set Arrow
                 mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
-                //Set Color
-                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70081C15);//Bottom of the robot
+                //Set2e2d2b
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
                 mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
                 //Set Color
-                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70081C15);//Top of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70081C15);//Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF2e2d2b);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70081C15);//Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF2e2d2b);//Left of the robot
                 break;
         }
 
