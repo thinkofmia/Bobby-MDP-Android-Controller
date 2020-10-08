@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Intent connectIntent;
     TextView connectionStatusBox;
     TextView mdfString;
+    TextView obsString;
+
+    TextView obstacleView;
+    TextView mdfView;
 
 
     //UUID
@@ -104,9 +108,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        TextView obstacleView = findViewById(R.id.obstacleview);//Find the obstacle view box
+        obstacleView = findViewById(R.id.obstacleview);//Find the obstacle view box
         TextView imageStringView = findViewById(R.id.imageStringView);//Find the image string view box
-        TextView mdfView = findViewById(R.id.exView);//Find the mdf view box
+        mdfView = findViewById(R.id.exView);//Find the mdf view box
 
         //Buttons variables
         //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -788,6 +792,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * 15: Alphabet Z
          * 100: Trail
          * 20: Waypoint
+         * anything else: obstacle
          */
 
         //For loop to run the map
@@ -900,22 +905,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mapPos[coordinates[1]-1][coordinates[0]].setText("");//Top of the robot
         mapPos[coordinates[1]-1][coordinates[0]+1].setText("");//Top-Right of the robot
         mapPos[coordinates[1]][coordinates[0]-1].setText("");//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]].setText("");//Center of the934b00
         mapPos[coordinates[1]][coordinates[0]+1].setText("");//Right of the robot
         mapPos[coordinates[1]+1][coordinates[0]-1].setText("");//Bottom-Left of the robot
         mapPos[coordinates[1]+1][coordinates[0]].setText("");//Bottom of the robot
         mapPos[coordinates[1]+1][coordinates[0]+1].setText("");//Bottom-Right of the robot
 
         //Set the map position of the robot:
-        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Top-Left of the robot
-        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Top of the robot
-        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Top-Right of the robot
-        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Center of the robot
-        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Right of the robot
-        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xF0BC6C25);//Bottom-Left of the robot
-        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xF0BC6C25);//Bottom of the robot
-        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xF0BC6C25);//Bottom-Right of the robot
+        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Top-Left of the robot
+        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF934b00);//Top of the robot
+        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Top-Right of the robot
+        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Left of the robot
+        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xFF934b00);//Center of the robot
+        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Right of the robot
+        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Bottom-Left of the robot
+        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF934b00);//Bottom of the robot
+        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Bottom-Right of the robot
 
         //Get direction of the robot
         String direction = mapView.getDirection();//Get direction of the robot
@@ -924,26 +929,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             case "North":
                 //Set Arrow
                 mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
-                //Set Color
-                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0x70081C15);//Bottom of the robot
+                //Set2e2d2b
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Bottom of the robot
                 break;
             case "South":
                 //Set Arrow
                 mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
                 //Set Color
-                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0x70081C15);//Top of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0x70081C15);//Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF2e2d2b);//Right of the robot
                 break;
             case "West":
                 //Set Arrow
                 mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0x70081C15);//Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF2e2d2b);//Left of the robot
                 break;
         }
 
@@ -1223,15 +1228,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             switch (filteredMsg[0]) {
                 case "map":
-                    String explored_String = filteredMsg[1];
-                    String obstacle_String = filteredMsg[2];
+                    String[] parsedExplore = delimiterMsg(filteredMsg[1].replaceAll("\\n", "").trim(), " ");
+
+                    String explored_String = parsedExplore[0];
+                    String obstacle_String = parsedExplore[1];
 
                     String purpose = "map";
 
-                    mdfString.setText(filteredMsg[1]+"|"+filteredMsg[2]);
+                    mdfView.setText(parsedExplore[0]);
+                    obstacleView.setText(parsedExplore[1]);
 
-                    Toast.makeText(MainActivity.this, "CASE MAP",
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(MainActivity.this, "CASE MAP",
+//                            Toast.LENGTH_LONG).show();
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
@@ -1252,16 +1260,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 case "bot_pos":
                     purpose = "pos";
 
-//                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
+                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
 
-                    Log.d(TAG, "filteredMsg[0] "+filteredMsg[1]);
-                    Log.d(TAG, "filteredMsg[1]"+filteredMsg[2]);
-                    Log.d(TAG, "filteredMsg[2]"+filteredMsg[3]);
+                    Log.d(TAG, "filteredPos[0] "+filteredPos[0]);
+                    Log.d(TAG, "filteredPos[1] "+filteredPos[1]);
+                    Log.d(TAG, "filteredPos[2] "+filteredPos[2]);
 
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
-                        mapView.updateMaze(purpose, filteredMsg[1], filteredMsg[2], filteredMsg[3]);
+                        mapView.updateMaze(purpose, filteredPos[0], filteredPos[1], filteredPos[2]);
 
                         if(mapMode == "Auto"){
                             updateMap();
@@ -1348,6 +1356,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                        String obstacleOrNot = mdfStrings[1];
 //
 //
+//                        md5ExplorationText.setText(exploredOrNot);
 //                        md5ExplorationText.setText(exploredOrNot);
 //
 //                        md5ObstacleText.setText(obstacleOrNot);

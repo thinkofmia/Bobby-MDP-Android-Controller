@@ -264,6 +264,10 @@ public class mapGridView {
                     {
                         mapper[y][x]= -2;
                     }
+                    if (string2.charAt(counter) == '0')
+                    {
+                        mapper[y][x]= -1;
+                    }
 
                     counter++;
 
