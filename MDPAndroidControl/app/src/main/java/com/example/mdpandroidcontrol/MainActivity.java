@@ -799,6 +799,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if (y<=2 && x<=2) mapPos[y][x].setText("S");//Label zone as S
                 else if (y>=17 && x>=12) mapPos[y][x].setText("G");//Label zone as G
                 else mapPos[y][x].setText("");//Clear Text
+                //Set text size of buttons
+                mapPos[y][x].setTextSize(10);
                 switch (currentMap[y][x]){
                     case 0://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
