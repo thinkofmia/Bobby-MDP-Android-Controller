@@ -2280,14 +2280,13 @@
 
     <Switch
         android:id="@+id/tiltSwitch"
-        android:layout_width="67dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Tilt"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/mdfview" />
 
     <Button
         android:id="@+id/exploreButton"
