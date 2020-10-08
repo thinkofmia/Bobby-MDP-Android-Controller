@@ -878,7 +878,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     default:
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
-                        mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be black
+                        //mapPos[y][x].setBackgroundColor(0xFF000000);//Set the background color of the map to be black
+                        mapPos[y][x].setBackgroundResource(R.mipmap.blue_ship_north_background);
                         //mapPos[y][x].setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.bobby_up_button_background, null));
                         break;
                 }
