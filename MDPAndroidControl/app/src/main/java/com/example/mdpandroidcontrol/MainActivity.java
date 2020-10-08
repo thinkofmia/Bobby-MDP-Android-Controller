@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
         TextView mdfView = findViewById(R.id.mdfview);//Find the mdf view box
         TextView imageStringView = findViewById(R.id.imageStringView);//Find the image string view box
+        TextView obstacleView = findViewById(R.id.obstacleView);//Find the obstacle view box
 
         //Buttons variables
         //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button

@@ -2331,6 +2331,16 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/imageStringView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/obstacleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Obstacle View"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/mdfview"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
