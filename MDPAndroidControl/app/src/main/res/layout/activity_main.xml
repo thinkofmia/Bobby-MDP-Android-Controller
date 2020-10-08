@@ -2282,7 +2282,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mdfview" />
+        app:layout_constraintTop_toBottomOf="@+id/obstacleview" />
 
     <Button
         android:id="@+id/exploreButton"
@@ -2298,6 +2298,8 @@
         android:id="@+id/bluetoothStatus"
         android:layout_width="117dp"
         android:layout_height="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="BT Status: Waiting"
         android:textColor="#FFFFFF"
         android:textSize="8sp"
@@ -2309,18 +2311,20 @@
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Status: Waiting"
         android:textColor="@color/white"
         android:textSize="8sp"
-        app:layout_constraintBottom_toTopOf="@+id/mdfview"
+        app:layout_constraintBottom_toTopOf="@+id/obstacleview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatus" />
 
     <TextView
-        android:id="@+id/mdfview"
+        android:id="@+id/obstacleview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MDF"
+        android:text="Obstacle View"
         android:textColor="#FFFFFF"
         android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/imageStringView"
@@ -2328,13 +2332,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/obstacleView"
+        android:id="@+id/exView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Obstacle View"
+        android:text="Exploration View"
         android:textColor="@color/white"
         android:textSize="8sp"
-        app:layout_constraintBottom_toTopOf="@+id/mdfview"
+        app:layout_constraintBottom_toTopOf="@+id/obstacleview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"

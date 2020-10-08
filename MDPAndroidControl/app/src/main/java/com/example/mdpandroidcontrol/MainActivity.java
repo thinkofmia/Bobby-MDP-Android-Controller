@@ -26,8 +26,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.PreferenceManager;
 
@@ -107,9 +105,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        TextView mdfView = findViewById(R.id.mdfview);//Find the mdf view box
+        TextView obstacleView = findViewById(R.id.obstacleview);//Find the obstacle view box
         TextView imageStringView = findViewById(R.id.imageStringView);//Find the image string view box
-        TextView obstacleView = findViewById(R.id.obstacleView);//Find the obstacle view box
+        TextView mdfView = findViewById(R.id.exView);//Find the mdf view box
 
         //Buttons variables
         //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -130,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         tiltSwitch = findViewById(R.id.tiltSwitch);
 
         //mdf String text view
-        mdfString = findViewById(R.id.mdfview);
-        obsString = findViewById(R.id.obstacleView);
+        mdfString = findViewById(R.id.obstacleview);
 
         //Map variables
         //Where [rows][columns]
