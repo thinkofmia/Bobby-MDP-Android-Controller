@@ -216,7 +216,6 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="@dimen/mapGridSize"
                 android:layout_height="@dimen/mapGridSize"
-                android:background="@mipmap/blue_ship_north_background"
                 android:textColor="@color/white" />
 
             <Button
