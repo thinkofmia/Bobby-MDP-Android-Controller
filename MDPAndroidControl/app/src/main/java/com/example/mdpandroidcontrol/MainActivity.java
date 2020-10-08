@@ -795,7 +795,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //For loop to run the map
         for (int y=0; y<mapView.getRows();y++){
             for (int x=0;x<mapView.getColumns();x++){
-                mapPos[y][x].setText("");//Clear Text
+                //Condition to check if its within start or goal zone
+                if (y<=2 && x<=2) mapPos[y][x].setText("S");//Label zone as S
+                else if (y>=17 && x>=12) mapPos[y][x].setText("G");//Label zone as G
+                else mapPos[y][x].setText("");//Clear Text
                 switch (currentMap[y][x]){
                     case 0://Default Unexplored
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.darker_gray));
