@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Intent connectIntent;
     TextView connectionStatusBox;
     TextView mdfString;
+    TextView obsString;
 
 
     //UUID
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //mdf String text view
         mdfString = findViewById(R.id.mdfview);
+        obsString = findViewById(R.id.obstacleView);
 
         //Map variables
         //Where [rows][columns]
@@ -790,6 +792,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
          * 15: Alphabet Z
          * 100: Trail
          * 20: Waypoint
+         * anything else: obstacle
          */
 
         //For loop to run the map
@@ -1216,15 +1219,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             switch (filteredMsg[0]) {
                 case "map":
-                    String explored_String = filteredMsg[1];
-                    String obstacle_String = filteredMsg[2];
+                    String[] parsedExplore = delimiterMsg(filteredMsg[1].replaceAll("\\n", "").trim(), " ");
+
+                    String explored_String = parsedExplore[0];
+                    String obstacle_String = parsedExplore[1];
 
                     String purpose = "map";
 
-                    mdfString.setText(filteredMsg[1]+"|"+filteredMsg[2]);
+                    mdfString.setText(parsedExplore[0]);
+                    obsString.setText(parsedExplore[1]);
 
-                    Toast.makeText(MainActivity.this, "CASE MAP",
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(MainActivity.this, "CASE MAP",
+//                            Toast.LENGTH_LONG).show();
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
@@ -1245,16 +1251,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 case "bot_pos":
                     purpose = "pos";
 
-//                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
+                    String[] filteredPos = delimiterMsg(filteredMsg[1].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
 
-                    Log.d(TAG, "filteredMsg[0] "+filteredMsg[1]);
-                    Log.d(TAG, "filteredMsg[1]"+filteredMsg[2]);
-                    Log.d(TAG, "filteredMsg[2]"+filteredMsg[3]);
+                    Log.d(TAG, "filteredPos[0] "+filteredPos[0]);
+                    Log.d(TAG, "filteredPos[1] "+filteredPos[1]);
+                    Log.d(TAG, "filteredPos[2] "+filteredPos[2]);
 
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
-                        mapView.updateMaze(purpose, filteredMsg[1], filteredMsg[2], filteredMsg[3]);
+                        mapView.updateMaze(purpose, filteredPos[0], filteredPos[1], filteredPos[2]);
 
                         if(mapMode == "Auto"){
                             updateMap();
@@ -1341,6 +1347,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                        String obstacleOrNot = mdfStrings[1];
 //
 //
+//                        md5ExplorationText.setText(exploredOrNot);
 //                        md5ExplorationText.setText(exploredOrNot);
 //
 //                        md5ObstacleText.setText(obstacleOrNot);
