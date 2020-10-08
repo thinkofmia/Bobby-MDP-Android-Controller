@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView mdfString;
     TextView obsString;
 
+    TextView obstacleView;
+    TextView mdfView;
+
 
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -105,9 +108,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //final EditText customInput = findViewById(R.id.editableInput);//Find the input text
         TextView positionText = findViewById(R.id.positionText);//Find the debug text for the position
         TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
-        TextView obstacleView = findViewById(R.id.obstacleview);//Find the obstacle view box
+        obstacleView = findViewById(R.id.obstacleview);//Find the obstacle view box
         TextView imageStringView = findViewById(R.id.imageStringView);//Find the image string view box
-        TextView mdfView = findViewById(R.id.exView);//Find the mdf view box
+        mdfView = findViewById(R.id.exView);//Find the mdf view box
 
         //Buttons variables
         //final Button sendInput = findViewById(R.id.sendInput);//Find the send input button
@@ -1231,8 +1234,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     String purpose = "map";
 
-                    mdfString.setText(parsedExplore[0]);
-                    obsString.setText(parsedExplore[1]);
+                    mdfView.setText(parsedExplore[0]);
+                    obstacleView.setText(parsedExplore[1]);
 
 //                    Toast.makeText(MainActivity.this, "CASE MAP",
 //                            Toast.LENGTH_LONG).show();
