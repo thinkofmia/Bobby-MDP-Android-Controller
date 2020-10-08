@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mapGridSize">35dp</dimen>
+    <dimen name="mapGridSize">33dp</dimen>
 </resources>
