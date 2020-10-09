@@ -221,13 +221,23 @@ public class mapGridView {
         if(purpose == "map"){
             string1 = hexToBinary(string1);
             string1 = string1.substring(2, string1.length()-2);
+            string2 = hexToBinary(string2);
 
             int counter = 0;
+            int string2CharCounter = 0;
+
             for (int y = 0; y<ROWS; y++){
                 for (int x = 0;x<COLS; x++){
                     Character compare = string1.charAt(counter);
-                    if(compare.equals("1")){
+                    if(compare.equals('1')){
                         mapper[y][x] = -1;
+                        Character compare2 = string2.charAt(string2CharCounter);
+                        if (compare2.equals('1')){
+                            mapper[y][x]= -2;
+                            Log.d(TAG, "Explored Cell at " + x + "-"+ y);
+                            Log.d(TAG, "Char received"+string2.charAt(string2CharCounter));
+                        }
+                        string2CharCounter++;
                         Log.d(TAG, "change at"+y+";"+x);
                     }
                     counter++;
@@ -237,42 +247,41 @@ public class mapGridView {
 
 
 
-
-            string2 = hexToBinary(string2);
-
-            Log.d(TAG, string2);
-
-            int strLength = string2.length();
-
-            int rows = (int) Math.floor(strLength/15);
-            int columns = (int) strLength%15;
-
-            counter = 0;
-
-            for (int y = 0;y < rows+1; y++)
-            {
-                for (int x = 0; x < COLS; x++)
-                {
-                    if(y==rows & x == columns-1){
-                        break;
-                    }
-
-
-                    Log.d(TAG, "Explored Cell at " + x + "-"+ y);
-                    Log.d(TAG, "Char received"+string2.charAt(counter));
-                    if (string2.charAt(counter) == '1')
-                    {
-                        mapper[y][x]= -2;
-                    }
-                    if (string2.charAt(counter) == '0')
-                    {
-                        mapper[y][x]= -1;
-                    }
-
-                    counter++;
-
-                }
-            }
+//            string2 = hexToBinary(string2);
+//
+//            Log.d(TAG, string2);
+//
+//            int strLength = string2.length();
+//
+//            int rows = (int) Math.floor(strLength/15);
+//            int columns = (int) strLength%15;
+//
+//            counter = 0;
+//
+//            for (int y = 0;y < rows+1; y++)
+//            {
+//                for (int x = 0; x < COLS; x++)
+//                {
+//                    if(y==rows & x == columns-1){
+//                        break;
+//                    }
+//
+//
+//                    Log.d(TAG, "Explored Cell at " + x + "-"+ y);
+//                    Log.d(TAG, "Char received"+string2.charAt(counter));
+//                    if (string2.charAt(counter) == '1')
+//                    {
+//                        mapper[y][x]= -2;
+//                    }
+//                    if (string2.charAt(counter) == '0')
+//                    {
+//                        mapper[y][x]= -1;
+//                    }
+//
+//                    counter++;
+//
+//                }
+//            }
         }
 
         if(purpose == "pos"){
