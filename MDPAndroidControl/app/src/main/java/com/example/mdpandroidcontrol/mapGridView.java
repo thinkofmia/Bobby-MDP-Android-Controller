@@ -286,7 +286,7 @@ public class mapGridView {
 
         if(purpose == "pos"){
             Log.d(TAG, "pos: "+string1+","+string2+","+string3);
-            setCoordinates(Integer.parseInt(string1), Integer.parseInt(string1));
+            setCoordinates(Integer.parseInt(string2), Integer.parseInt(string1));
 
             robot_direction = string3;
             switch (robot_direction) {
