@@ -236,9 +236,13 @@ public class mapGridView {
                             mapper[y][x]= -2;
                             Log.d(TAG, "Explored Cell at " + x + "-"+ y);
                             Log.d(TAG, "Char received"+string2.charAt(string2CharCounter));
+                        } else {
+                            mapper[y][x]= -1;
                         }
                         string2CharCounter++;
                         Log.d(TAG, "change at"+y+";"+x);
+                    } else {
+                        mapper[y][x] = 0;
                     }
                     counter++;
                 }
