@@ -1269,7 +1269,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     try {
                         //ENSURE ROBOT COORDINATES IS WITHIN RANGE
-                        mapView.updateMaze(purpose, filteredPos[0], filteredPos[1], filteredPos[2]);
+                        mapView.updateMaze(purpose, filteredPos[1], filteredPos[0], filteredPos[2]);
 
                         if(mapMode == "Auto"){
                             updateMap();
