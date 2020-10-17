@@ -946,6 +946,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //Set the direction of the robot
         switch (direction){
             case "North":
+                //Set Bobby
+                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyS00);//Top-Left of the robot
                 //Set Arrow
                 mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
                 //Set2e2d2b
