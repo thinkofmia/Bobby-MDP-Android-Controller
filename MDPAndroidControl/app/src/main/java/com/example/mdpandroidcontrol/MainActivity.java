@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String SendArena = "SA"; // Android > Algo: Send MDF String
     String sendMapRequest = "mapstatus";
     String sendStartCoord = "startcoord";
+    String sendCallibrateCode = "N";
 
     //Modes
     String currentMode = "None";
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         final Button explore_button = findViewById(R.id.exploreButton);// Find the explore button
         final Button auto_button = findViewById(R.id.button_auto);//Find the auto button
         final Button manual_button = findViewById(R.id.button_manual);//Find the manual button
+        final Button calli_button = findViewById(R.id.callibrateButton);//Find the callibrate button
 
         //tilt switch
         tiltSwitch = findViewById(R.id.tiltSwitch);
@@ -523,6 +525,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        //Onclick function for callibrate button
+        calli_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                sendCallibrate();
+            }
+        });
+
         //Onclick function for start coordinates button
         startcoord_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -645,6 +655,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 return "Do Nothing";
         }
 
+    }
+
+    protected void sendCallibrate() {
+        //Send Callibrate Code to rpi
+        sendToRPi(sendCallibrateCode);
+        String result = "Sending: " + sendCallibrateCode;
+        //Update Status
+        TextView statusText = findViewById(R.id.statusText);//Find the debug text for the status
+        statusText.setText("Status: " + result.toString());
     }
 
     protected void sendPredefinedStr(int option){

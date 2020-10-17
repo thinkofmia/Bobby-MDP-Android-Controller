@@ -24,11 +24,11 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="Fast"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_startcoord" />
+        app:layout_constraintTop_toBottomOf="@+id/callibrateButton" />
 
     <Button
         android:id="@+id/button_waypoint"
@@ -2289,8 +2289,10 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="EX"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spbutton" />
 
@@ -2300,10 +2302,12 @@
         android:layout_height="16dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
+        android:layout_marginTop="84dp"
         android:text="BT Status: Waiting"
         android:textColor="#FFFFFF"
         android:textSize="8sp"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exploreButton" />
 
@@ -2343,5 +2347,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/callibrateButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calli"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_startcoord" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
