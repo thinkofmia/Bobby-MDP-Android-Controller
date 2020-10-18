@@ -931,45 +931,83 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mapPos[coordinates[1]+1][coordinates[0]+1].setText("");//Bottom-Right of the robot
 
         //Set the map position of the robot:
-        mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Top-Left of the robot
-        mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF934b00);//Top of the robot
-        mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Top-Right of the robot
-        mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Left of the robot
-        mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xFF934b00);//Center of the robot
-        mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Right of the robot
-        mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Bottom-Left of the robot
-        mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF934b00);//Bottom of the robot
-        mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Bottom-Right of the robot
+        //mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Top-Left of the robot
+        //mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF934b00);//Top of the robot
+        //mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Top-Right of the robot
+        //mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Left of the robot
+        //mapPos[coordinates[1]][coordinates[0]].setBackgroundColor(0xFF934b00);//Center of the robot
+        //mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Right of the robot
+        //mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundColor(0xFF934b00);//Bottom-Left of the robot
+        //mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF934b00);//Bottom of the robot
+        //mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundColor(0xFF934b00);//Bottom-Right of the robot
 
         //Get direction of the robot
         String direction = mapView.getDirection();//Get direction of the robot
         //Set the direction of the robot
         switch (direction){
             case "North":
-                //Set Bobby
-                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyS00);//Top-Left of the robot
                 //Set Arrow
-                mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
+                //mapPos[coordinates[1]+1][coordinates[0]].setText("▲");
                 //Set2e2d2b
-                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Bottom of the robot
+                //mapPos[coordinates[1]+1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Bottom of the robot
+                //Set Bobby Sprite
+                mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyn00_background);//Top-Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyn01_background);//Left of the robot
+                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyn02_background);//Bottom-Left of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundResource(R.mipmap.bobbyn10_background);//Top of the robot
+                mapPos[coordinates[1]][coordinates[0]].setBackgroundResource(R.mipmap.bobbyn11_background);//Center of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundResource(R.mipmap.bobbyn12_background);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyn20_background);//Top-Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyn21_background);//Right of the robot
+                mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyn22_background);//Bottom-Right of the robot
                 break;
             case "South":
+                //Set Bobby Sprite
+                mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbys00_background);//Top-Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbys01_background);//Left of the robot
+                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbys02_background);//Bottom-Left of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundResource(R.mipmap.bobbys10_background);//Top of the robot
+                mapPos[coordinates[1]][coordinates[0]].setBackgroundResource(R.mipmap.bobbys11_background);//Center of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundResource(R.mipmap.bobbys12_background);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbys20_background);//Top-Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbys21_background);//Right of the robot
+                mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbys22_background);//Bottom-Right of the robot
                 //Set Arrow
-                mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
+                //mapPos[coordinates[1]-1][coordinates[0]].setText("▼");
                 //Set Color
-                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Top of the robot
+                //mapPos[coordinates[1]-1][coordinates[0]].setBackgroundColor(0xFF2e2d2b);//Top of the robot
                 break;
             case "East":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
+                //mapPos[coordinates[1]][coordinates[0]+1].setText("▶");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF2e2d2b);//Right of the robot
+                //mapPos[coordinates[1]][coordinates[0]+1].setBackgroundColor(0xFF2e2d2b);//Right of the robot
+                //Set Bobby Sprite
+                mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbye00_background);//Top-Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbye01_background);//Left of the robot
+                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbye02_background);//Bottom-Left of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundResource(R.mipmap.bobbye10_background);//Top of the robot
+                mapPos[coordinates[1]][coordinates[0]].setBackgroundResource(R.mipmap.bobbye11_background);//Center of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundResource(R.mipmap.bobbye12_background);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbye20_background);//Top-Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbye21_background);//Right of the robot
+                mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbye22_background);//Bottom-Right of the robot
                 break;
             case "West":
                 //Set Arrow
-                mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
+                //mapPos[coordinates[1]][coordinates[0]-1].setText("◀");
                 //Set Color
-                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF2e2d2b);//Left of the robot
+                //mapPos[coordinates[1]][coordinates[0]-1].setBackgroundColor(0xFF2e2d2b);//Left of the robot
+                //Set Bobby Sprite
+                mapPos[coordinates[1]+1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyw00_background);//Top-Left of the robot
+                mapPos[coordinates[1]][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyw01_background);//Left of the robot
+                mapPos[coordinates[1]-1][coordinates[0]-1].setBackgroundResource(R.mipmap.bobbyw02_background);//Bottom-Left of the robot
+                mapPos[coordinates[1]+1][coordinates[0]].setBackgroundResource(R.mipmap.bobbyw10_background);//Top of the robot
+                mapPos[coordinates[1]][coordinates[0]].setBackgroundResource(R.mipmap.bobbyw11_background);//Center of the robot
+                mapPos[coordinates[1]-1][coordinates[0]].setBackgroundResource(R.mipmap.bobbyw12_background);//Bottom of the robot
+                mapPos[coordinates[1]+1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyw20_background);//Top-Right of the robot
+                mapPos[coordinates[1]][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyw21_background);//Right of the robot
+                mapPos[coordinates[1]-1][coordinates[0]+1].setBackgroundResource(R.mipmap.bobbyw22_background);//Bottom-Right of the robot
                 break;
         }
 
