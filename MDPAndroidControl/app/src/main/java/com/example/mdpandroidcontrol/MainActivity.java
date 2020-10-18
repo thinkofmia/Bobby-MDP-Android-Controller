@@ -897,7 +897,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     case 20: //Waypoint
-                        mapPos[y][x].setBackgroundColor(0x70F0F000);//Set bg color of the map
+                        mapPos[y][x].setBackgroundResource(R.mipmap.pokeball_background);
+                        //mapPos[y][x].setBackgroundColor(0x70F0F000);//Set bg color of the map
                         //ViewCompat.setBackgroundTintList(mapPos[y][x], ContextCompat.getColorStateList(this, android.R.color.holo_blue_light));
                         break;
                     default:
