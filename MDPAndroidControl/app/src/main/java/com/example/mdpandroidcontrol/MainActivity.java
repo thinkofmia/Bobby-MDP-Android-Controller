@@ -1282,9 +1282,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             String[] filteredMsg = delimiterMsg(msg.replaceAll("\\n", "").trim(), "\\|");
 
-            Log.d(TAG, "filteredmsg[0] :" + filteredMsg[0]);
-
-            //Log.d(TAG, "Stage 1: " + filteredMsg[1]);
+            int i;
+            //Loop for the split messages
+            for (i=0; i<filteredMsg.length;i++){
+                Log.d(TAG, "filteredmsg["+i+"] :" + filteredMsg[i]);
+            }
 
             switch (filteredMsg[0]) {
                 case "map":
@@ -1315,7 +1317,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     catch (Exception e){
                         e.printStackTrace();
                     }
+                    //If the map data contains the bot position
+                    if (filteredMsg[1].contains("bot_pos")){
+                        purpose = "pos";
+
+                        String[] filteredPos = delimiterMsg(filteredMsg[2 ].replaceAll(" ","").replaceAll("\\n", "").trim(), ",");
+
+                        Log.d(TAG, "filteredPos[0] "+filteredPos[0]);
+                        Log.d(TAG, "filteredPos[1] "+filteredPos[1]);
+                        Log.d(TAG, "filteredPos[2] "+filteredPos[2]);
+
+
+                        try {
+                            //ENSURE ROBOT COORDINATES IS WITHIN RANGE
+                            mapView.updateMaze(purpose, filteredPos[1], filteredPos[0], filteredPos[2]);
+
+                            if(mapMode == "Auto"){
+                                updateMap();
+                            }
+
+
+
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                     break;
+
 
                 case "bot_pos":
                     purpose = "pos";
@@ -1441,6 +1470,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                        e.printStackTrace();
 //                    }
             }
+
 
         }
     };
