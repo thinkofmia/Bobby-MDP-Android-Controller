@@ -95,7 +95,7 @@ public class mapGridView {
         for (int j = 0; j < numRows; j++) {
             for (int i=0; i < numColumns; i++){
                 if (mapper[j][i]==20){
-                    mapper[j][i] = 0;
+                    mapper[j][i] = -1;
                 }
             }
         }
