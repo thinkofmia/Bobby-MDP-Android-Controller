@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String SendArena = "SA"; // Android > Algo: Send MDF String
     String sendMapRequest = "mapstatus";
     String sendStartCoord = "startcoord";
-    String sendCallibrateCode = "N";
+    String sendCallibrateCode = "C";
 
     //Modes
     String currentMode = "None";
